@@ -1,0 +1,2 @@
+admin;admin
+40220096@esmad.ipp.pt;123456789
