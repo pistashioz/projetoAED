@@ -101,9 +101,9 @@ def signUp():
     txtUserN.place(x = 100, y = 120)
     #Button
 
-    btnLogIn = Button(signWindow, font=('Helvetica', 10), text="Already have an account? Log in!", fg="grey", relief="flat", command= lambda: criarConta(txtEmail, txtPassword, txtUserN))
+    btnLogIn = Button(signWindow, font=('Helvetica', 10), text="Already have an account? Log in!", fg="grey", relief="flat", command=logIn)
     btnLogIn.place(x=40, y=160)
-    btnSignUp = Button(signWindow, font=('helvetica', 10), text="Sign Up", fg="blue", command="noaction")
+    btnSignUp = Button(signWindow, font=('helvetica', 10), text="Sign Up", fg="blue", command=criarConta(txtEmail, txtPassword, txtUserN))
     btnSignUp.place(x=120, y=210)
 
 def logIn():
@@ -161,7 +161,7 @@ def categoria(txtName, txtCategory, txtRated, txtVisits): #para obter dados da l
     value_rate.set(linha["values"][3])
 
 
-#-----Arranque da aplicação --------------------------------
+#-----Arranque da aplicação ------#
 window = Tk()
 Application(window)
 window.title('myGameList')
@@ -224,7 +224,7 @@ tree.heading("Rated", text="Rated")
 tree.place(x=20, y=20)
 
 
-tree.insert("", "end", values = (campos[0], campos[1], campos[2], campos[3]))
+#tree.insert("", "end", values = (campos[0], campos[1], campos[2], campos[3]))
 #Label
 
 """
