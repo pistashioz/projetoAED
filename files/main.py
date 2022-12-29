@@ -7,13 +7,12 @@ from tkinter import messagebox
 class Application:
     def __init__(self, master=None):
         pass
-
+        """
 def lerFicheiroUsers():
-    ficheiro = "projetoAED/users.txt"
+    ficheiro = "users.txt"
 
 def lerFicheiroCategoria(): #o podria simplemente juntar esta con VerificarSenha porque literal solo las necesito para la misma vaina
-    ficheiro = "projetoAED/games.txt"
-    """
+    ficheiro = "games.txt"
      f = open(ficheiro, 'r', encoding='utf-8')
     linhas = f.readlines()
     f.close()
@@ -28,20 +27,33 @@ def lerFicheiroCategoria(): #o podria simplemente juntar esta con VerificarSenha
         messagebox.showinfo('Hi User ', 'welcome back:)')
     else:
         messagebox.showwarning('Error','incorrect password or mail')
-    """
-
+    
+def lerFicheiro():
+    ficheiro = 'games.txt'
+    f = open(ficheiro, "r", encoding="utf-8")
+    linhas = f.readlines()    
+    f.close()
+"""
 def verificarSenha(txtEmail, txtPassword):
 
     mail = txtEmail.get()
     pw = str(txtPassword.get())
 
-    credenciais = ['4020096@esmad.ipp.pt', '123456789']
-    if mail == 'admin' and pw == 'admin':
-        messagebox.showinfo('Hi Admin', 'welcome back :)')
-    elif mail == credenciais[0] and pw == credenciais[1]:
-        messagebox.showinfo('Hi User', 'welcome back :)' )
-    else:
-        messagebox.showwarning('Error', 'incorrect password or mail')
+    ficheiro = "users.txt"
+    f = open(ficheiro, 'r', encoding="utf-8")
+    linhas = f.readlines()
+    f.close()
+
+    for linha in linhas:
+        campos = linha.split(";")
+        user = campos[0]
+        password = campos[1]
+        if mail == 'admin' and pw == 'admin':
+            messagebox.showinfo('Hi Admin', 'welcome back :)')
+        elif mail == user and pw == password:
+            messagebox.showinfo('Hi User', 'welcome back :)' )
+        else:
+            messagebox.showwarning('Error', 'incorrect password or mail')
     
     """
     f = open(ficheiro, 'r', encoding='utf-8')
@@ -134,7 +146,10 @@ def logIn():
     btnLogIn = Button(logWindow, font=('helvetica', 10), text="Log In", fg="blue", command= lambda: verificarSenha(txtEmail, txtPassword))
     btnLogIn.place(x=120, y=210)
 
+
+
 def dadosTreeview():
+    """
     tree.delete(*tree.get_children())
     mov = ""
     lista = lerFicheiro()
@@ -148,18 +163,20 @@ def dadosTreeview():
             tree.insert("", "end", values = (campos[0], campos[1], campos[2], campos[3]))
         elif txtVisits.get() == campos[3]:
             tree.insert("", "end", values = (campos[0], campos[1], campos[2], campos[3]))
+    """
+
+
+#todavia tengo que ver una forma de que categoria() funcione, borrar despues
 
 
 
-def categoria(txtName, txtCategory, txtRated, txtVisits): #para obter dados da linha ativa/sselecionada da treeview
-
-    row_id = tree.focus()
-    linha = tree.item(row_id) #que es value_nosequecosa ? solo aqui esta definida?
-    value_name.set(linha["values"][0])
-    value_category.set(linha["values"][1])
-    value_rate.set(linha["values"][2])
-    value_rate.set(linha["values"][3])
-
+def categoria(): #para obter dados da linha ativa/selecionada da treeview
+    rowId = tree.focus()
+    linha = tree.item(rowId)
+    txtName.set(linha["values"][0])
+    txtCategory.set(linha["values"][1])
+    txtRated.set(linha["values"][2])
+    txtVisits.set(linha["values"][3])
 
 #-----Arranque da aplicação ------#
 window = Tk()
@@ -212,10 +229,10 @@ tree = ttk.Treeview(frame2, selectmode = "browse", columns = ("Name", "Category"
 
 
 #treeview para filtrar os jogos
-tree.column("Name", width = 150, anchor = "c")
-tree.column("Category", width = 150, anchor = "c")
-tree.column("Visits", width = 150, anchor = "c")
-tree.column("Rated", width = 150, anchor = "c")
+tree.column("Name", width = 160, anchor = "c")
+tree.column("Category", width = 180, anchor = "c")
+tree.column("Visits", width = 120, anchor = "c")
+tree.column("Rated", width = 120, anchor = "c")
 
 tree.heading("Name", text="Name")
 tree.heading("Category", text = "Category")
@@ -223,27 +240,30 @@ tree.heading("Visits", text="Visited")
 tree.heading("Rated", text="Rated")
 tree.place(x=20, y=20)
 
+ficheiro = 'games.txt'
+f = open(ficheiro, "r", encoding="utf-8")
+linhas = f.readlines()    
+f.close()
+for linha in linhas:
+    campos = linha.split(";")   
+    tree.insert('', 'end', values = (campos[0], campos[1], campos[2], campos[3]))
 
-#tree.insert("", "end", values = (campos[0], campos[1], campos[2], campos[3]))
-#Label
 
-"""
-lblName = StringVar()
-lblCategory = StringVar()
-lblVisits = StringVar()
-lblRated = StringVar()
-"""
 lblName = Label(frame2, text = "Name: ", font=("Helvetica", 9))
 lblCategory = Label(frame2, text = "Category: ", font=("Helvetica", 9))
 lblVisits = Label(frame2, text = "Visits: ", font=("Helvetica", 9))
 lblRated = Label(frame2, text = "Rate: ", font=("Helvetica", 9))
-
+"""
 #Entry
-
-txtName = Entry(frame2, width=20)
-txtCategory = Entry(frame2, width=20)
-txtVisits = Entry(frame2, width=20)
-txtRated = Entry(frame2, width=20)
+val_name = StringVar()
+val_category = StringVar()
+val_visits = StringVar()
+val_rated = StringVar()
+"""
+txtName = Entry(frame2, width=20) #textvariable = val_name)
+txtCategory = Entry(frame2, width=20)#, textvariable= val_category)
+txtVisits = Entry(frame2, width=20)#, textvariable=val_visits)
+txtRated = Entry(frame2, width=20)#, textvariable=val_rated)
 
 lblName.place(x=30, y=270)
 txtName.place(x=80, y = 270)
@@ -271,8 +291,11 @@ btn2.place(x=550, y = 270)
 btn3 = Button(frame2, text = "Cancel", state = "disable", fg = "red")
 btn3.place(x=480, y = 310)
 
-btn4 = Button(frame2, text = "Search", state = "active", fg = "blue", command = "lambda: categoria(txtName, txtCategory, txtRated, txtVisits)")
-btn4.place(x=550, y = 310)
+#btn4 = Button(frame2, text = "Search", state = "active", fg = "blue", command = "lambda: categoria(txtName, txtCategory, txtRated, txtVisits)")
+#btn4.place(x=550, y = 310)
+
+btn5 = Button(frame2, text = "Consultar", state = "active", fg = "blue", command = lambda: categoria)
+btn5.place(x=550, y = 310)
 
 
 

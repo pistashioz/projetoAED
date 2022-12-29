@@ -1,0 +1,8 @@
+God of War: Ragnarök;Action;a;b
+Stray;Adventure;a;b
+Elden Ring;Action;a;b
+Night in the Woods;Adventure;a;b
+Call of Duty: Modern Warface II;Ação;a;b
+Animal Crossing;Social simulation game;a;b
+League of Legends;Muliplayer online battle arena;a;b
+Signalis;Survival horror;a;b

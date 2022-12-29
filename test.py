@@ -1,11 +1,24 @@
-myDict = {'user1': [], 'user2': [], 'user3':[]}
-myDict['user1'].append('victoria')
-myDict['user1'].append('40220096@esmad.ipp.pt')
-myDict['user1'].append('1234')
+from tkinter import *
+from tkinter import ttk
 
-myDict['user2'].append('juana')
-myDict['user2'].append('40220123@esmad.ipp.pt')
-myDict['user2'].append('5678')
+window = Tk()
+window.title('treeview test')
+window.geometry('500x500')
 
-valueList = myDict['user2']
-print(valueList)
+myTree = ttk.Treeview(window)
+
+myTree = ttk.Treeview(window, selectmode= 'browse', columns= ('name', 'category', 'rated', 'views'), show = 'headings')
+
+#Formate our columns
+
+myTree.column('name', anchor='c', width = 120)
+myTree.column('category', anchor='c', width=120)
+myTree.column('rated', anchor ='c', width=80)
+myTree.column('views', anchor ='c', width=80)
+myTree.heading('name', text = 'name')
+myTree.heading('category', text = 'category')
+myTree.heading('rated', text = 'rated')
+myTree.heading('views', text = 'views')
+myTree.place(x=5, y=5)
+
+
