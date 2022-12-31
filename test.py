@@ -1,24 +1,59 @@
 from tkinter import *
 from tkinter import ttk
+def filterFirstName(*args):
+    itemsOnTreeview = myTree.get_children()
 
-window = Tk()
-window.title('treeview test')
-window.geometry('500x500')
+    search = search_ent_var.get().capitalize()
+    for eachItem in itemsOnTreeview:
 
-myTree = ttk.Treeview(window)
+        if search in myTree.item(eachItem)['values'][2]:
+            #print(myTree.item(eachItem)['values'][2])
+            search_var = myTree.item(eachItem)['values']
+            myTree.delete(eachItem)
 
-myTree = ttk.Treeview(window, selectmode= 'browse', columns= ('name', 'category', 'rated', 'views'), show = 'headings')
+            myTree.insert("", 0, values=search_var)
 
-#Formate our columns
+column = ['id', 'passport', 'FullName', 'color']
+data = [
+    (1, '159', 'victoria', 'blue'),
+    (2, '123', 'ana', 'blue'),
+    (3, '489', 'victoria', 'yellow'),
+    (4, '546', 'juan', 'red')
+]
 
-myTree.column('name', anchor='c', width = 120)
-myTree.column('category', anchor='c', width=120)
-myTree.column('rated', anchor ='c', width=80)
-myTree.column('views', anchor ='c', width=80)
-myTree.heading('name', text = 'name')
-myTree.heading('category', text = 'category')
-myTree.heading('rated', text = 'rated')
-myTree.heading('views', text = 'views')
-myTree.place(x=5, y=5)
+root= Tk()
+root.geometry('600x500')
 
 
+
+search_ent_var = StringVar()
+
+
+
+search_by = ttk.Combobox(root, values = column)
+search_by.current(2)
+search_by.grid(row = 0, column = 0)
+
+
+search_ent = Entry(root, textvariable=search_ent_var)
+search_ent.grid(row=0, column=1, padx = 10)
+
+
+search_ent_var.trace('w', filterFirstName)
+
+tree_frame = Frame(root)
+tree_frame.place(x=10, y=50, width = 500, height =300)
+myTree = ttk.Treeview(tree_frame)
+myTree['columns'] = column
+
+
+for i in column:
+    myTree.column(i, width=80)
+    myTree.heading(i, text=i.capitalize())
+myTree["show"] = "headings"
+myTree.pack()
+
+for each in data:
+    myTree.insert("", END, values = each)
+
+root.mainloop()
