@@ -3,6 +3,12 @@ from tkinter import Tk, ttk
 from tkinter import messagebox
 
 
+"""
+isto é meramente um teste, como o professor disse temos que fazer varios ficheiros ent podemos tirar coisas de aqui que achemos essenciais :-)
+"""
+
+
+
 #todavia tengo que hacer que funcione el archivo, hacerlo mañana
 class Application:
     def __init__(self, master=None):
