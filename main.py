@@ -240,7 +240,7 @@ tree.heading("Visits", text="Visited")
 tree.heading("Rated", text="Rated")
 tree.place(x=20, y=20)
 
-ficheiro = 'games.txt'
+ficheiro = 'files/games.txt'
 f = open(ficheiro, "r", encoding="utf-8")
 linhas = f.readlines()    
 f.close()
