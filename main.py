@@ -40,7 +40,14 @@ def lerFicheiro():
     linhas = f.readlines()    
     f.close()
 """
+
+def fechar():
+    window.destroy()
+
+
 def verificarSenha(txtEmail, txtPassword):
+
+    fechar()
 
     mail = txtEmail.get()
     pw = str(txtPassword.get())
