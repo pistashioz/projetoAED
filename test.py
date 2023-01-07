@@ -1,59 +1,82 @@
 from tkinter import *
-from tkinter import ttk
-def filterFirstName(*args):
-    itemsOnTreeview = myTree.get_children()
+from tkinter import Tk, ttk
+from tkinter import messagebox
 
-    search = search_ent_var.get().capitalize()
-    for eachItem in itemsOnTreeview:
+#-----Arranque da aplicação ------#
+class Application:
+    def __init__(self, master=None):
+        pass
+window = Tk()
+Application(window)
+window.title('Log In')
+window.iconbitmap('images/login.ico')
 
-        if search in myTree.item(eachItem)['values'][2]:
-            #print(myTree.item(eachItem)['values'][2])
-            search_var = myTree.item(eachItem)['values']
-            myTree.delete(eachItem)
+screenWidth =window.winfo_screenwidth()
+screenHeight = window.winfo_screenheight()
 
-            myTree.insert("", 0, values=search_var)
+appWidth = 1200
+appHeight = 600
 
-column = ['id', 'passport', 'FullName', 'color']
-data = [
-    (1, '159', 'victoria', 'blue'),
-    (2, '123', 'ana', 'blue'),
-    (3, '489', 'victoria', 'yellow'),
-    (4, '546', 'juan', 'red')
-]
-
-root= Tk()
-root.geometry('600x500')
+x = (screenWidth/2) - (appWidth/2)
+y = (screenHeight/2) - (appHeight/2)
+window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+window.configure(bg="grey")
 
 
 
-search_ent_var = StringVar()
+
+
+#imagem
+
+ctnImg = Canvas(window, width= 500, height=600)
+ctnImg.place(x=0, y=0)
+
+
+imagem = PhotoImage(file = 'images/Create_Account.png')
+ctnImg.create_image(250, 300, image=imagem)
 
 
 
-search_by = ttk.Combobox(root, values = column)
-search_by.current(2)
-search_by.grid(row = 0, column = 0)
+#parte do log in
 
 
-search_ent = Entry(root, textvariable=search_ent_var)
-search_ent.grid(row=0, column=1, padx = 10)
+#Titulo
+lblLogIn = Label(window, text = 'LOG IN', fg = 'black', font = ('Calibri', 35), bg = 'grey')
+lblLogIn.place(x=770, y=100)
 
 
-search_ent_var.trace('w', filterFirstName)
+#Label e Entry
 
-tree_frame = Frame(root)
-tree_frame.place(x=10, y=50, width = 500, height =300)
-myTree = ttk.Treeview(tree_frame)
-myTree['columns'] = column
+lblMail = Label(window, text = 'E-MAIL',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+lblMail.place(x = 700, y = 200)
+txtMail = Entry(window, width=20, font = ('Calibri', 20))
+txtMail.place( x = 700, y = 250)
 
 
-for i in column:
-    myTree.column(i, width=80)
-    myTree.heading(i, text=i.capitalize())
-myTree["show"] = "headings"
-myTree.pack()
+lblPw = Label(window, text = 'PASSWORD',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+lblPw.place(x = 700, y = 300)
+txtPw = Entry(window, width=20, font = ('Calibri', 20), show = '*')
+txtPw.place( x = 700, y = 350)
 
-for each in data:
-    myTree.insert("", END, values = each)
 
-root.mainloop()
+#botao submit
+
+btnSubmit = Button(window, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command='noaction', width = 25)
+btnSubmit.place(x = 710, y = 430)
+
+btnNoAcc = Button(window, text='No Account yet?', font = ('Calibri', 13), command='noaction', bg='grey', relief='flat')
+btnNoAcc.place(x = 700, y = 480)
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.mainloop()

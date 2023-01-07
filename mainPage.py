@@ -72,6 +72,46 @@ txtSearch = Entry(frame4, width=50)
 txtSearch.place(x=0, y=30)
 #button search
 
-btnSearch = Button(frame4, text='Search', width=36, height=2)
+btnSearch = Button(frame4, text='Search', width=36, height=2, command='noaction')
 btnSearch.place(x= 2, y = 60)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.mainloop()
