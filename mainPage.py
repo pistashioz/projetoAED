@@ -7,6 +7,50 @@ class Application:
     def __init__(self, master=None):
         pass
 
+def login():
+    """renderiza a pagina de login"""
+    loginWindow = Toplevel()
+    loginWindow.title('myGameList')
+    loginWindow.resizable(0,0)
+    loginWindow.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+    loginWindow.focus_force()
+    loginWindow.grab_set()
+    loginWindow.configure(bg="#595959")
+    #opcoesBarra
+
+    barraMenu = Menu(loginWindow, background='orange', fg='white')
+    barraMenu.add_command(label="LIBRARY", command="noaction")
+    barraMenu.add_command(label="COMMUNITY", command="noaction")
+    barraMenu.add_command(label="ADD A GAME", command="noaction")
+
+    loginWindow.configure(menu=barraMenu)
+
+    #Frames
+
+    frameVideo = LabelFrame(loginWindow, width=1200, height=260, bg='#D3996E', borderwidth=0, highlightthickness=0)
+    frameVideo.place(x=0, y=0)
+
+    frameJogo=LabelFrame(loginWindow, width=310,height=435,bg='#3C3D3E', borderwidth=0, highlightthickness=0)
+    frameJogo.place(x=30, y=50)
+
+    #Labels
+
+    lblTitle = Label(loginWindow, text = 'GAME TITLE', font=('Helvetica', 30), bg="#595959",fg='white')
+    lblTitle.place(x=400, y=265)
+
+    lblDescription=Label(loginWindow, text = 'Nulla porttitor massa id neque aliquam vestibulum. Sed odio morbi quis commodo. ', font=('Helvetica', 12), bg="#595959",fg='white')
+    lblDescription.place(x=400, y=330)
+
+    #Buttons
+
+    btnLike = Button(loginWindow, text='', width=5, height=2,bg="#BBA97A")
+    btnLike.place(x=400, y =440)
+
+    btnAddGame = Button(loginWindow, text='ADD GAME', width=15, height=2,bg="#F89546",fg='white')
+    btnAddGame.place(x=500, y =440)
+
+    btnAddFavorite = Button(loginWindow, text='ADD FAVORITE', width=15, height=2,bg="#F89546", fg='white')
+    btnAddFavorite.place(x=625, y =440)
 
 
 window = Tk()
@@ -138,9 +182,9 @@ btnSearch.place(x= 100, y = 60)
 # Login Button
 
 loginImg = PhotoImage(file="images/4115235-exit-logout-sign-out_114030.png")
-btnLoginImage = Button(window, image=loginImg, width=25, height=25, bg="orange")
+btnLoginImage = Button(window, image=loginImg, width=25, height=25, bg="orange", command=login)
 btnLoginImage.place(x = 950, y = 0)
-btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black")
+btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command=login)
 btnLogin.place(x = 985, y = 1)
 
 # Create Account Button
