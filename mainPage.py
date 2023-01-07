@@ -129,6 +129,7 @@ search_by.place(x = 0, y = 0)
 txtSearch = Entry(frame4, width=46)
 txtSearch.place(x=0, y=30)
 
+
 # Search Button
 
 btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white")
@@ -152,8 +153,36 @@ btnCreateAccount.place(x = 1095, y = 1)
 
 
 
-
-
-
-
 window.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
