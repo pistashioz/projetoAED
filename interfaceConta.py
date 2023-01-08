@@ -55,7 +55,8 @@ def signUp():
 
     lblMail = Label(signWindow, text = 'E-MAIL',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
     lblMail.place(x = 700, y = 100)
-    txtMail = Entry(signWindow, width=20, font = ('Calibri', 20))
+    userMail = StringVar()
+    txtMail = Entry(signWindow, width=20, font = ('Calibri', 20), textvariable=userMail)
     txtMail.place( x = 700, y = 140)
 
     lblUsername = Label(signWindow, text = 'USERNAME',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
@@ -81,7 +82,7 @@ def signUp():
 
     #botao submit
 
-    btnSubmit = Button(signWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: criaConta(userName.get(), userPass.get(), userPassConfirm.get(), signWindow), width = 25)
+    btnSubmit = Button(signWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: criaConta(userMail.get(), userName.get(), userPass.get(), userPassConfirm.get(), signWindow), width = 25)
     btnSubmit.place(x = 710, y =500)
 
     btnNoAcc = Button(signWindow, text='Already have an account?', font = ('Calibri', 13), command='noaction', bg='grey', relief='flat')

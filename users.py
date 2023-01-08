@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-
+from main import startMain
 
 # Registar, Iniciar Sessão
 fUsers= "files/users.txt"
@@ -25,12 +25,11 @@ def validaConta(userName, userPass):
     listaUsers = fileUsers.readlines()
     fileUsers.close()
     for linha in listaUsers:
-        if linha.split(";")[0] == userName and linha.split(";")[1][:-1] == userPass:
-            window.destroy()
+        if linha.split(";")[1] == userName and linha.split(";")[2][:-1] == userPass:
             msg = "Bem-Vindo " + userName
             messagebox.showinfo("Iniciar Sessão", msg)
+            startMain()
             return msg
-            
     messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
 
@@ -39,7 +38,7 @@ def validaConta(userName, userPass):
 
 
 
-def criaConta(userName, userPass, userPassConfirm, signWindow):
+def criaConta(userMail, userName, userPass, userPassConfirm, signWindow):
     """
     Criar uma nova conta
     """
@@ -58,7 +57,7 @@ def criaConta(userName, userPass, userPassConfirm, signWindow):
             messagebox.showerror("Criar Conta", "Já existe um utilizador com esse username!")
             return 
     fileUsers = open(fUsers, "a")
-    linha = userName + ";" + userPass + "\n"
+    linha = userMail + ';' + userName + ";" + userPass + "\n"
     fileUsers.write(linha)
     fileUsers.close()
     messagebox.showinfo("Criar Conta", "Conta criada com sucesso!")
