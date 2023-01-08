@@ -80,20 +80,23 @@ barraMenu.add_command(label="ADD A GAME", command="noaction")
 window.configure(menu=barraMenu)
 
 #FrameCatalogo
-frame1 = LabelFrame(window, width=280, height=660, bg='gray50', borderwidth=0, highlightthickness=0)
+frame1 = LabelFrame(window, width=280, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
 frame1.place(x=0, y=30)
 
 frameNewGames = LabelFrame(window, width = 920, height=220, relief = "ridge", bg='RoyalBlue4', borderwidth=0, highlightthickness=0)
 frameNewGames.place(x=280, y=30)
 
-frame2 = LabelFrame(window, width = 920, height=450, bg='gray70', borderwidth=0, highlightthickness=0)
+frame2 = LabelFrame(window, width = 920, height=450, bg='gray45', borderwidth=0, highlightthickness=0)
 frame2.place(x=280, y=250)
 
-frame4 = LabelFrame(window,width=280, height=150, bg='gray13', borderwidth=0, highlightthickness=0)
+frame4 = LabelFrame(window,width=280, height=100, bg='gray13', borderwidth=0, highlightthickness=0)
 frame4.place(x=0, y=30)
 
 frameLoginBackground = LabelFrame(window,width=1200,height=30, bg="thistle",borderwidth=0, highlightthickness=0)
 frameLoginBackground.place(x=0, y=0)
+
+frameLinha1 = LabelFrame(frameNewGames,width=850,height=1, bg="white",borderwidth=0, highlightthickness=0)
+frameLinha1.place(x=130, y=20)
 
 # Canvas
 canvasWhatsNew1 = Canvas(frameNewGames, width=150, height=125)
@@ -152,13 +155,13 @@ labelWhatsNew8.place(x=740, y=185)
 lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")
 lblWhatsNew.place(x=20, y=10)
 
-lblMostViewed = Label(frame2, text = 'MOST VIEWED', font=('Helvetica', 12, "bold"), bg="gray70", fg="white")
+lblMostViewed = Label(frame2, text = 'MOST VIEWED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMostViewed.place(x=20, y=20)
 
-lblMostLiked = Label(frame2, text='MOST LIKED', font=('Helvetica', 12, "bold"), bg="gray70", fg="white")
+lblMostLiked = Label(frame2, text='MOST LIKED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMostLiked.place(x=20, y=150)
 
-lblMyFavorites = Label(frame2, text = 'MY FAVORITES', font=('Helvetica', 12, "bold"), bg="gray70", fg="white")
+lblMyFavorites = Label(frame2, text = 'MY FAVORITES', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMyFavorites.place(x=20, y=280)
 
 # Search Category
