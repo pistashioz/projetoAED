@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
 from users import *
-#from interfaceConta import logInInterface
+from interfaceConta import logInInterface
 
 #-----Arranque da aplicação ------#
 class Application:
