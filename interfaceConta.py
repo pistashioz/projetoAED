@@ -1,13 +1,16 @@
 from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
-from users import *
+from users import validaConta, criaConta
 #-----Arranque da aplicação ------#
 class Application:
     def __init__(self, master=None):
         pass
 window = Tk()
 Application(window)
+
+
+
 def signUp():
     signWindow = Toplevel()
     screenWidth =window.winfo_screenwidth()
@@ -68,17 +71,24 @@ def signUp():
     btnNoAcc = Button(signWindow, text='Already have an account?', font = ('Calibri', 13), command='noaction', bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 550)
 
-def logIn():
+def logInInterface():
+
     window.title('Log In')
     window.iconbitmap('images/login.ico')
+
     screenWidth =window.winfo_screenwidth()
     screenHeight = window.winfo_screenheight()
+
     appWidth = 1200
     appHeight = 600
+
     x = (screenWidth/2) - (appWidth/2)
     y = (screenHeight/2) - (appHeight/2)
     window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
     window.configure(bg="grey")
+
+
+
     #imagem
     ctnImg = Canvas(window, width= 500, height=600)
     ctnImg.place(x=0, y=0)
@@ -105,5 +115,11 @@ def logIn():
     btnSubmit.place(x = 710, y = 430)
     btnNoAcc = Button(window, text='No Account yet?', font = ('Calibri', 13), command=signUp, bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 480)
-logIn()
+
+
+
+logInInterface()
+
+
+
 window.mainloop()

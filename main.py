@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
 from users import *
-from interfaceConta import *
+#from interfaceConta import logInInterface
 
 #-----Arranque da aplicação ------#
 class Application:
@@ -56,8 +56,10 @@ def login():
 
 window = Tk()
 Application(window)
-
 def startMain():
+
+    logInInterface()
+
     window.title('myGameList')
     window.resizable(0,0)
     window.iconbitmap('images/video-game-play-pad-boy-gameboy-nintendo_108539.ico')
@@ -200,6 +202,11 @@ def startMain():
     btnCreateImage.place(x = 1060, y = 0)
     btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange")
     btnCreateAccount.place(x = 1095, y = 1)
+
+
+
+
+startMain()
 
 
 
