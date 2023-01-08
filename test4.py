@@ -114,4 +114,3 @@ userMail.place(x=360, y= 240)
 
 
 window.mainloop()
-
