@@ -44,6 +44,20 @@ def signUp():
     txtMail.place( x = 700, y = 140)
 
     lblUsername = Label(signWindow, text = 'USERNAME',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblUsername.place(x = 700, y = 200)
+    userName = StringVar()
+    txtUserNlblUsername = Entry(signWindow, width=20, font = ('Calibri', 20), textvariable=userName)
+    txtUserNlblUsername.place( x = 700, y = 240)
+    lblPw = Label(signWindow, text = 'PASSWORD',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblPw.place(x = 700, y = 300)
+    userPass = StringVar()
+    txtPw = Entry(signWindow, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
+    txtPw.place( x = 700, y = 340)
+    labelPass = Label(signWindow, text ="CONFIRM PASSWORD:", fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    labelPass.place(x=700, y= 400)
+    userPassConfirm = StringVar()
+    txtPass = Entry(signWindow, width=20, font = ('Calibri', 20), textvariable = userPassConfirm, show = "*")
+    txtPass.place(x=700, y= 440)
 
     #botao submit
 
