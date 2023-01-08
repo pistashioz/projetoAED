@@ -4,6 +4,18 @@ from tkinter import messagebox
 
 # Registar, Iniciar Sessão
 fUsers= "files/users.txt"
+ficheiro_perfil = 'files/perfil.txt'
+
+def guardarPerfil(filename):
+  """
+  Guarda dados no ficheiro perfil.txt
+  """
+  filePerfil = open(ficheiro_perfil, "w")
+
+  linha = filename
+  filePerfil.write(linha)
+  filePerfil.close()
+ 
 
 def validaConta(userName, userPass):
     """
