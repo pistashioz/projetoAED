@@ -10,20 +10,6 @@ class Application:
         pass
 window = Tk()
 Application(window)
-window.title('Log In')
-window.iconbitmap('images/login.ico')
-
-screenWidth =window.winfo_screenwidth()
-screenHeight = window.winfo_screenheight()
-
-appWidth = 1200
-appHeight = 600
-
-x = (screenWidth/2) - (appWidth/2)
-y = (screenHeight/2) - (appHeight/2)
-window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
-window.configure(bg="grey")
-
 
 def signUp():
 
@@ -31,7 +17,7 @@ def signUp():
     signWindow = Toplevel()
     screenWidth =window.winfo_screenwidth()
     screenHeight = window.winfo_screenheight()
-    signWindow.title('Log In')
+    signWindow.title('Sign In')
     signWindow.iconbitmap('images/login.ico')
 
     appWidth = 1200
@@ -105,6 +91,20 @@ def signUp():
 
 
 def logIn():
+    window.title('Log In')
+    window.iconbitmap('images/login.ico')
+
+    screenWidth =window.winfo_screenwidth()
+    screenHeight = window.winfo_screenheight()
+
+    appWidth = 1200
+    appHeight = 600
+
+    x = (screenWidth/2) - (appWidth/2)
+    y = (screenHeight/2) - (appHeight/2)
+    window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+    window.configure(bg="grey")
+
 
 
     #imagem
