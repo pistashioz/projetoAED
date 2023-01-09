@@ -4,6 +4,7 @@ from tkinter import messagebox
 from users import *
 
 
+
 #-----Arranque da aplicação ------#
 class Application:
     def __init__(self, master=None):

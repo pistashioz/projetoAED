@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-from main import startMain
 
 # Registar, Iniciar Sessão
 fUsers= "files/users.txt"
