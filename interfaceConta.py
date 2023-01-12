@@ -73,46 +73,45 @@ def signUp():
     btnNoAcc.place(x = 700, y = 550)
 
 def logInInterface():
-    
-    window.title('Log In')
-    window.iconbitmap('images/login.ico')
+    logInWindow.title('Log In')
+    logInWindow.iconbitmap('images/login.ico')
 
-    screenWidth =window.winfo_screenwidth()
-    screenHeight = window.winfo_screenheight()
+    screenWidth =logInWindow.winfo_screenwidth()
+    screenHeight =logInWindow.winfo_screenheight()
 
     appWidth = 1200
     appHeight = 600
 
     x = (screenWidth/2) - (appWidth/2)
     y = (screenHeight/2) - (appHeight/2)
-    window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
-    window.configure(bg="grey")
+    logInWindow.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+    logInWindow.configure(bg="grey")
 
 
 
     #imagem
-    ctnImg = Canvas(window, width= 500, height=600)
+    ctnImg = Canvas(logInWindow, width= 500, height=600)
     ctnImg.place(x=0, y=0)
     global imagem 
     imagem = PhotoImage(file = 'images/Login.png') 
     ctnImg.create_image(250, 300, image=imagem)
     #parte do log in
     #Titulo
-    lblLogIn = Label(window, text = 'LOG IN', fg = 'black', font = ('Calibri', 35), bg = 'grey')
+    lblLogIn = Label(logInWindow, text = 'LOG IN', fg = 'black', font = ('Calibri', 35), bg = 'grey')
     lblLogIn.place(x=770, y=100)
     #Label e Entry
-    lblUser = Label(window, text = 'USERNAME',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblUser = Label(logInWindow, text = 'USERNAME',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
     lblUser.place(x = 700, y = 200)
     userName = StringVar()
-    txtUser = Entry(window, width=20, font = ('Calibri', 20), textvariable=userName)
+    txtUser = Entry(logInWindow, width=20, font = ('Calibri', 20), textvariable=userName)
     txtUser.place( x = 700, y = 250)
-    lblPw = Label(window, text = 'PASSWORD',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblPw = Label(logInWindow, text = 'PASSWORD',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
     lblPw.place(x = 700, y = 300)
     userPass = StringVar()
-    txtPw = Entry(window, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
+    txtPw = Entry(logInWindow, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
     txtPw.place( x = 700, y = 350)
     #botao submit
-    btnSubmit = Button(window, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get()), width = 25)
+    btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get()), width = 25)
     btnSubmit.place(x = 710, y = 430)
-    btnNoAcc = Button(window, text='No Account yet?', font = ('Calibri', 13), command=signUp, bg='grey', relief='flat')
+    btnNoAcc = Button(logInWindow, text='No Account yet?', font = ('Calibri', 13), command=signUp, bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 480)
