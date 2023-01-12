@@ -10,10 +10,9 @@ class Application:
 
 
 window = Tk()
+windowFechar = window
 Application(window)
-window.title('myGameList')
-window.resizable(0,0)
-window.iconbitmap('images/video-game-play-pad-boy-gameboy-nintendo_108539.ico')
+
 
 screenWidth = window.winfo_screenwidth()
 screenHeight = window.winfo_screenheight()
@@ -24,6 +23,9 @@ appHeight = 600
 x = (screenWidth/2) - (appWidth/2)
 y = (screenHeight/2) - (appHeight/2)
 window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+window.title('myGameList')
+window.resizable(0,0)
+window.iconbitmap('images/video-game-play-pad-boy-gameboy-nintendo_108539.ico')
 window.configure(bg="beige")
 
 #opcoesBarra
@@ -153,8 +155,9 @@ btnSearch.place(x= 100, y = 60)
 
 # Login Button
 
-btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command=logInInterface)
+btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
 btnLogin.place(x = 985, y = 1)
+
 
 # Create Account Button
 

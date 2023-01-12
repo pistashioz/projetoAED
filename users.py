@@ -15,6 +15,7 @@ def guardarPerfil(filename):
   filePerfil.write(linha)
   filePerfil.close()
  
+#pasar esto para interfacve conta y hacer withdwraw y toda esa vaina para windowfechar
 
 def validaConta(userName, userPass):
     """
@@ -28,6 +29,7 @@ def validaConta(userName, userPass):
             msg = "Bem-Vindo " + userName
             messagebox.showinfo("Iniciar Sessão", msg)
             logInWindow.destroy()
+            
     messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
 
