@@ -1,15 +1,13 @@
 from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
+from interfaceConta import logInInterface
 
 #-----Arranque da aplicação ------#
 class Application:
     def __init__(self, master=None):
         pass
 
-def login():
-    """renderiza a pagina de login"""
-    o    
 
 window = Tk()
 Application(window)
@@ -143,9 +141,9 @@ btnSearch.place(x= 100, y = 60)
 # Login Button
 
 loginImg = PhotoImage(file="images/4115235-exit-logout-sign-out_114030.png")
-btnLoginImage = Button(window, image=loginImg, width=25, height=25, bg="orange", command=login)
+btnLoginImage = Button(window, image=loginImg, width=25, height=25, bg="orange", command=logInInterface)
 btnLoginImage.place(x = 950, y = 0)
-btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command=login)
+btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command=logInInterface)
 btnLogin.place(x = 985, y = 1)
 
 # Create Account Button

@@ -3,12 +3,13 @@ from tkinter import Tk, ttk
 from tkinter import messagebox
 from users import validaConta, criaConta
 #-----Arranque da aplicação ------#
+"""
 class Application:
     def __init__(self, master=None):
         pass
 window = Tk()
 Application(window)
-
+"""
 
 
 def signUp():
@@ -72,7 +73,7 @@ def signUp():
     btnNoAcc.place(x = 700, y = 550)
 
 def logInInterface():
-
+    
     window.title('Log In')
     window.iconbitmap('images/login.ico')
 
@@ -115,11 +116,3 @@ def logInInterface():
     btnSubmit.place(x = 710, y = 430)
     btnNoAcc = Button(window, text='No Account yet?', font = ('Calibri', 13), command=signUp, bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 480)
-
-
-
-logInInterface()
-
-
-
-window.mainloop()

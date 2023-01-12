@@ -27,7 +27,6 @@ def validaConta(userName, userPass):
         if linha.split(";")[1] == userName and linha.split(";")[2][:-1] == userPass:
             msg = "Bem-Vindo " + userName
             messagebox.showinfo("Iniciar Sessão", msg)
-            startMain()
             return msg
     messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
