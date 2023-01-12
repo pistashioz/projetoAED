@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
-from interfaceConta import logInInterface
+from interfaceConta import logInInterface, signUp
 
 #-----Arranque da aplicação ------#
 class Application:
@@ -79,6 +79,19 @@ canvasWhatsNew4.place(x=740, y=35)
 whatsNew4Img = PhotoImage(file="images/nightsinthewood.PNG")
 canvasWhatsNew4.create_image(70,60, image= whatsNew4Img)
 
+
+canvasLoginImage = Canvas(window, width=27, height=28, bg="orange", highlightthickness=0)
+canvasLoginImage.place(x=955, y=1)
+
+loginImg = PhotoImage(file="images/4115235-exit-logout-sign-out_114030.png")
+canvasLoginImage.create_image(15,15, image= loginImg)
+
+canvasCreateImage = Canvas(window, width=27, height=28, bg="orange", highlightthickness=0)
+canvasCreateImage.place(x=1065, y=1)
+
+createImg = PhotoImage(file="images/-create_90479.png")
+canvasCreateImage.create_image(15,15, image= createImg)
+
 # Label What's New -> Game's Name
 labelWhatsNew1 = Label(frameNewGames, text = 'God of War', font=('Helvetica', 11), bg="RoyalBlue4", fg="orange")
 labelWhatsNew1.place(x=30, y=165)
@@ -140,18 +153,12 @@ btnSearch.place(x= 100, y = 60)
 
 # Login Button
 
-loginImg = PhotoImage(file="images/4115235-exit-logout-sign-out_114030.png")
-btnLoginImage = Button(window, image=loginImg, width=25, height=25, bg="orange", command=logInInterface)
-btnLoginImage.place(x = 950, y = 0)
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command=logInInterface)
 btnLogin.place(x = 985, y = 1)
 
 # Create Account Button
 
-createImg = PhotoImage(file="images/-create_90479.png")
-btnCreateImage = Button(window, image=createImg, width=25, height=25, bg="orange")
-btnCreateImage.place(x = 1060, y = 0)
-btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange")
+btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=signUp)
 btnCreateAccount.place(x = 1095, y = 1)
 
 
