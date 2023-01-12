@@ -9,7 +9,7 @@ class Application:
 
 def login():
     """renderiza a pagina de login"""
-    
+    o    
 
 window = Tk()
 Application(window)
