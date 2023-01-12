@@ -73,7 +73,11 @@ def signUp():
     btnNoAcc.place(x = 700, y = 550)
 
 def logInInterface():
+    logInWindow = Toplevel()
     logInWindow.title('Log In')
+    logInWindow.resizable(0, 0)
+    logInWindow.focus_force()
+    logInWindow.grab_set()
     logInWindow.iconbitmap('images/login.ico')
 
     screenWidth =logInWindow.winfo_screenwidth()
