@@ -14,20 +14,24 @@ Application(window)
 
 def signUp():
     signWindow = Toplevel()
-    screenWidth =window.winfo_screenwidth()
-    screenHeight = window.winfo_screenheight()
+    signWindow.focus_force()  # força o focus na window atual
+    signWindow.grab_set()
+    signWindow.resizable(0, 0)
+
     signWindow.title('Sign In')
     signWindow.iconbitmap('images/login.ico')
+
+    screenWidth =sigWindow.winfo_screenwidth()
+    screenHeight = signWindow.winfo_screenheight()
+
     appWidth = 1200
     appHeight = 600
     x = (screenWidth/2) - (appWidth/2)
     y = (screenHeight/2) - (appHeight/2)
     signWindow.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
     signWindow.configure(bg="grey")
-    signWindow.title("Sign Up")
-    signWindow.iconbitmap('images/login.ico')
-    signWindow.focus_force()  # força o focus na window atual
-    signWindow.grab_set() 
+
+
     #imagem
     ctnImag = Canvas(signWindow, width= 500, height=600)
     ctnImag.place(x=0, y=0)#,width=500,height=500
@@ -74,10 +78,10 @@ def signUp():
 
 def logInInterface():
     logInWindow = Toplevel()
-    logInWindow.title('Log In')
-    logInWindow.resizable(0, 0)
     logInWindow.focus_force()
     logInWindow.grab_set()
+    logInWindow.title('Log In')
+    logInWindow.resizable(0, 0)
     logInWindow.iconbitmap('images/login.ico')
 
     screenWidth =logInWindow.winfo_screenwidth()
