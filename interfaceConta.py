@@ -21,7 +21,7 @@ def signUp():
     signWindow.title('Sign In')
     signWindow.iconbitmap('images/login.ico')
 
-    screenWidth =sigWindow.winfo_screenwidth()
+    screenWidth =signWindow.winfo_screenwidth()
     screenHeight = signWindow.winfo_screenheight()
 
     appWidth = 1200
