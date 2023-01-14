@@ -14,13 +14,45 @@ windowNewGame = Tk()
 
 Application(windowNewGame)
 
+ficheiroJogo = "files/games.txt"
+
 
 
 
 
 def NovoJogo():
-    dc
+    """
+    Guarda dados no ficheiro fileGsme.txt
+    """
+    fileGame = open(ficheiroJogo, "w")
+    global jogo
+    categoria = str(nameGame.get())
+    jogo= str(nameCategory.get())
+    linha = filename + ";" + jogo + ';' + categoria  + "\n"  # Imagem d eperfil;tema selecionado
+    fileGame.write(linha)
+    fileGame.close()
+    messagebox.showinfo('Great!', "You just added a new game :) ")
 
+
+def lerJogo():
+  """
+  Ler ficheiro de jogos: devolve nome do ficheiro associado à imagem de jogo e categoria
+  """
+  if not os.path.exists(ficheiroJogo):
+      fileGame = open(ficheiroJogo, "w")
+      fileGame.write("imagens\default-user-image.png;NOGAME;NOCATEGORY")
+      fileGame.close
+  fileGame = open(ficheiroJogo, "r")
+  linha= fileGame.readline()
+  fileGame.close()
+
+  filename =  linha.split(";")[0]
+  jogo = linha.split(";")[1]
+  categoria = linha.split(';')[2][:-1]
+  return filename, jogo, categoria
+
+
+  
 screenWidth = windowNewGame.winfo_screenwidth()
 screenHeight = windowNewGame.winfo_screenheight()
 
@@ -40,7 +72,7 @@ lblGame = Label(windowNewGame, text = 'Name of the Game', fg = 'black', font = (
 lblCategory = Label(windowNewGame, text = 'Category', fg = 'black', font = ('Calibri', 35), bg = 'white')
 
 #Button Selecionar Foto
-buttonGamePic = Button(windowNewGame, text = 'Game Image', font=('Helvetica', 20), width = 25, bg = 'pink', command=selecionaImgJogo)
+buttonGamePic = Button(windowNewGame, text = 'Game Image', font=('Helvetica', 20), width = 25, bg = 'pink', command='noaction')
 
 lblGame.place(x = 100, y = 100)
 lblCategory.place(x = 100, y = 240)
@@ -57,11 +89,6 @@ global image_jogo_id
 image_jogo_id = canvas_jogo.create_image(25, 25, image=img_jogo)
 
 
-btn_guardar = Button(panelConfig, text = "Guardar configurações", height = 3, width=42, 
-                command = lambda: [guardarPerfil(continente, filename),  atualizaImgPerfil()])
-btn_guardar.place(x=100, y=320)
-
-
 nameGame = StringVar()
 txtGame = Entry(windowNewGame, textvariable=nameGame, width=30, font = ('Calibri', 20))
 nameCategory = StringVar()
@@ -72,7 +99,7 @@ txtCategory.place(x=500, y= 260)
 
 #Button save changes
 
-buttonGuardar = Button(windowNewGame, text = 'SAVE CHANGES', font = ('Helvetica', 15), width = 15, bg = 'pink', command =  lambda: [NovoJogo(nameGame, nameCategory), atualizaImgJogo()])
+buttonGuardar = Button(windowNewGame, text = 'SAVE CHANGES', font = ('Helvetica', 15), width = 15, bg = 'pink', command =  lambda: [NovoJogo(nameGame, nameCategory, filename), atualizaImgJogo()])
 buttonGuardar.place(x = 850, y =500)
 
 
