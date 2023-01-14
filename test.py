@@ -59,37 +59,42 @@ frameLinha1.place(x=130, y=20)
 
 # Treeview New Games
 
-
-
-
 # Add the rowheight and vertical scrollbar
 
 s=ttk.Style()
-scrollbary = Scrollbar(tree, orient=VERTICAL)
-s.configure('Treeview', rowheight=150, fieldbackground="blue", background="blue", yscrollcommand = scrollbary.set)
+s.configure('Treeview', rowheight=150, fieldbackground="blue", background="blue")
 
-tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'))
+treeScroll = Scrollbar(frameNewGames)
+treeScroll.pack(side = RIGHT, fill = Y)
 
-scrollbary.place()
+
+tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'), yscrollcommand=treeScroll.set)
+tree.place(x=0, y=10)
+
 
 tree.column('Image', width =100, anchor = 'center', stretch=False)
-tree.column('Name', width = 350, anchor = 'center', stretch=False)
-tree.column('Category', width = 350, anchor = 'center', stretch=False)
+tree.column('Name', width = 300, anchor = 'center', stretch=False)
+tree.column('Category', width = 300, anchor = 'center', stretch=False)
 
 tree.heading('Image', text = 'Image')
 tree.heading('Name', text = 'Name')
 tree.heading('Category', text = 'Category')
 
-
-img = tk.PhotoImage(file = 'images/stray.png')
-tree.insert('', 'end', image = img, value = ('', 'Stray', 'Adventure'))
+img = tk.PhotoImage(file = 'images/stray.png') #aqui tiene que aparecer el url para la imagen, abrir los archivos
+tree.insert('', 'end', image = img, value = ('', 'Stray', 'Adventure')) #aqui las variables para titulo y el nombre
 tree.place(x=0, y=35)
+img2 = tk.PhotoImage(file = 'images/nightsinthewood.png') 
+tree.insert('', 'end', image = img2, value = ('', 'Stray', 'Adventure')) #aqui las variables para titulo y el nombre
+img3 = tk.PhotoImage(file = 'images/nightsinthewood.png') 
+tree.insert('', 'end', image = img3, value = ('', 'Stray', 'Adventure')) #aqui las variables para titulo y el nombre
+treeScroll.configure(command=tree.yview)
+tree.pack()
 
 
 #Labels
 
 lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")
-lblWhatsNew.place(x=20, y=10)
+lblWhatsNew.place(x=20, y=0)
 
 lblMostViewed = Label(frame2, text = 'MOST VIEWED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMostViewed.place(x=20, y=20)
