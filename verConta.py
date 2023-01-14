@@ -87,31 +87,5 @@ userMail = Label(frameConta, text = 'E-MAIL', bg = 'black', fg ='white', font=('
 userMail.place(x=360, y= 240)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 window.mainloop()
 

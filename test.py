@@ -3,6 +3,8 @@ from tkinter import Tk, ttk
 from tkinter import messagebox
 from interfaceConta import logInInterface, signUp
 import tkinter as tk
+from tkinter import filedialog
+from AddNewGame import *
 
 #-----Arranque da aplicação ------#
 class Application:
@@ -28,6 +30,38 @@ window.title('myGameList')
 window.resizable(0,0)
 window.iconbitmap('images/video-game-play-pad-boy-gameboy-nintendo_108539.ico')
 window.configure(bg="beige")
+
+
+
+
+def atualizaImgJogo():
+  """
+  atualiza canvas de imagem de perfil no PanelUser (HEADER), com imagem guardada em ficheiro
+  """
+  global imgJogoHeader
+  global imageJogo_id
+  imgJogoHeader = PhotoImage(file = filename)
+  ctnUser.itemconfig(imageJogo_id, image=imgJogoHeader)
+
+
+
+def selecionaImgJogo():
+
+
+
+
+    global filename 
+    filename = filedialog.askopenfilename(title = "Select file", initialdir= "./imagens",
+                filetypes = (("png files","*.png"),("gif files", "*.gif"), ("all files","*.*")))
+
+    global img_jogo
+    global image_jogo_id
+    img_jogo = PhotoImage(file = filename)
+    # change image on canvas
+    global canvaJogo
+    canvaJogo.itemconfig(image_jogo_id, image=img_jogo)
+
+
 
 #opcoesBarra
 
@@ -80,13 +114,16 @@ tree.heading('Image', text = 'Image')
 tree.heading('Name', text = 'Name')
 tree.heading('Category', text = 'Category')
 
-img = tk.PhotoImage(file = 'images/stray.png') #aqui tiene que aparecer el url para la imagen, abrir los archivos
-tree.insert('', 'end', image = img, value = ('', 'Stray', 'Adventure')) #aqui las variables para titulo y el nombre
+
+ctnGame = Canvas(frameNewGames, width = 50, height = 50, relief = "flat")
+ctnGame.place(x=600, y=0)
+imgJogoHeader = tk.PhotoImage(file = filename)
+imageJogo_id = ctnGame.create_image(25, 25, image=imgPerfilHeader)
+#aqui tiene que aparecer el url para la imagen, abrir los archivos
+tree.insert('', 'end', image = imageJogo_id, value = ('', 'Stray', 'Adventure')) #aqui las variables para titulo y el nombre
 tree.place(x=0, y=35)
-img2 = tk.PhotoImage(file = 'images/nightsinthewood.png') 
-tree.insert('', 'end', image = img2, value = ('', 'Stray', 'Adventure')) #aqui las variables para titulo y el nombre
-img3 = tk.PhotoImage(file = 'images/nightsinthewood.png') 
-tree.insert('', 'end', image = img3, value = ('', 'Stray', 'Adventure')) #aqui las variables para titulo y el nombre
+
+
 treeScroll.configure(command=tree.yview)
 tree.pack()
 
