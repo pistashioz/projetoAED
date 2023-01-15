@@ -150,6 +150,17 @@ canvasCreateImage.place(x=1065, y=1)
 createImg = PhotoImage(file="images/-create_90479.png")
 canvasCreateImage.create_image(15,15, image= createImg)
 
+# Label What's New -> Game's Name
+labelWhatsNew1 = Label(frameNewGames, text = jogo, font=('Helvetica', 11), bg="RoyalBlue4", fg="orange")
+labelWhatsNew1.place(x=30, y=165)
+
+
+# Label What's New -> Category
+labelWhatsNew5 = Label(frameNewGames, text = categoria, font=('Helvetica', 10), bg="RoyalBlue4", fg="red")
+labelWhatsNew5.place(x=30, y=185)
+
+
+
 #Labels
 
 lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")
