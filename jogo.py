@@ -13,7 +13,7 @@ def guardarJogo(nameCategory, nameGame, filename):
   """
   Guarda dados no ficheiro perfil.txt
   """
-  filePerfil = open(ficheiro_jogo, "w")
+  filePerfil = open(ficheiro_jogo, "a") #cuando quiera editar las vainas de un juego es darle w
   global jogo
   global categoria
   jogo = nameGame.get()
@@ -30,7 +30,7 @@ def ler_jogo():
   Ler ficheiro de perfil: devolve nome do ficheiro associado à imagem de perfil, assim como o tema predefinido 
   """
   if not os.path.exists(ficheiro_jogo):
-      filePerfil = open(ficheiro_jogo, "w")
+      filePerfil = open(ficheiro_jogo, "a")
       filePerfil.write("imagens\avatar0.png;Europa")
       filePerfil.close
   filePerfil = open(ficheiro_jogo, "r")

@@ -33,7 +33,7 @@ def selecionaPerfil():
   img_jogo = PhotoImage(file = filename)
   # change image on canvas
   global canvas_jogo
-  canvas_jogo.itemconfig(image_perfil_id, image=img_perfil)
+  canvas_jogo.itemconfig(image_jogo_id, image=img_jogo)
 
 
 
