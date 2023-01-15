@@ -5,17 +5,17 @@ from tkinter import filedialog   # filedialog boxes
 import os
 from jogo import *
 
-ficheiro_perfil = "files/games.txt"
+ficheiro_jogo = "files/games.txt"
 
 
-def atualizaImgPerfil():
+def atualizaImgJogo():
   """
-  atualiza canvas de imagem de perfil no PanelUser (HEADER), com imagem guardada em ficheiro
+  atualiza canvas de imagem de jogo no PanelUser (HEADER), com imagem guardada em ficheiro
   """
-  global imgPerfilHeader
+  global imgJogo
   global imageHeader_id
-  imgPerfilHeader = PhotoImage(file = filename)
-  ctnUser.itemconfig(imageHeader_id, image=imgPerfilHeader)
+  imgJogo = PhotoImage(file = filename)
+  ctnUser.itemconfig(imageHeader_id, image=imgJogo)
 
 
 
@@ -28,50 +28,54 @@ def selecionaPerfil():
   filename = filedialog.askopenfilename(title = "Select file", initialdir= "./imagens",
               filetypes = (("png files","*.png"),("gif files", "*.gif"), ("all files","*.*")))
   
-  global img_perfil
-  global image_perfil_id
-  img_perfil = PhotoImage(file = filename)
+  global img_jogo
+  global image_jogo_id
+  img_jogo = PhotoImage(file = filename)
   # change image on canvas
-  global canvas_perfil
-  canvas_perfil.itemconfig(image_perfil_id, image=img_perfil)
+  global canvas_jogo
+  canvas_jogo.itemconfig(image_perfil_id, image=img_perfil)
 
 
 
 def PanelConfigurar():
     # ------------------------------------------------------------
-    panelConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken")
-    panelConfig.place(x=0, y=50)
 
-    btn_selecionar = Button(panelConfig, text = "Selecione imagem \nde perfil", width = 14, height = 3, 
+
+    panelJogos = PanedWindow(window, width = 1200, height =600, bd = "3", relief = "sunken")
+    panelJogos.place(x=0, y=50)
+
+    btn_selecionar = Button(panelJogos, text = "Selecione imagem \n do jogo", width = 20, height = 5, 
                     command = selecionaPerfil)
 
-    btn_selecionar.place(x=100, y= 70)
-    global canvas_perfil
-    canvas_perfil = Canvas(panelConfig, width = 50, height = 50, bd = 4, relief = "sunken")
-    canvas_perfil.place(x=270, y=70)
-    global img_perfil, filename
-    img_perfil = PhotoImage(file = filename)
-    global image_perfil_id
-    image_perfil_id = canvas_perfil.create_image(25, 25, image=img_perfil)
+    btn_selecionar.place(x=250, y= 210)
+    global canvas_jogo
+    canvas_jogo = Canvas(panelJogos, width = 180, height = 220)
+    canvas_jogo.place(x=70, y=180)
+    global img_jogo, filename
+    img_jogo = PhotoImage(file = filename)
+    global image_jogo_id
+    image_jogo_id = canvas_jogo.create_image(25, 25, image=img_jogo)
 
-    frame1 = LabelFrame(panelConfig, text = "Selecione o continente para jogar", width = 300, height = 150, bd = 3, relief = "sunken")
-    frame1.place(x=100, y=150)
-    continente = StringVar() 
-    rb1 = Radiobutton(frame1, text = "Europa",  variable = continente, value = "Europa")
-    rb2 = Radiobutton(frame1, text = "America", variable = continente, value = "America")
-    rb3 = Radiobutton(frame1, text = "Asia",    variable = continente, value = "Asia")
-    if tema != "":
-       continente.set(tema)
-    else:
-       continente.set("Europa")
-    rb1.place(x=10, y= 20)
-    rb2.place(x=10, y= 50)
-    rb3.place(x=10, y= 80)
+    lblGame = Label(panelJogos, text = 'Name of the Game', fg = 'black', font = ('Calibri', 12), bg = 'white')
+    lblCategory = Label(panelJogos, text = 'Category', fg = 'black', font = ('Calibri', 12), bg = 'white')
+
+
+    lblGame.place(x = 50, y = 80)
+    lblCategory.place(x = 50, y = 120)
+
+
+    nameGame = StringVar()
+    txtGame = Entry(panelJogos, textvariable=nameGame, width=30, font = ('Calibri',10))
+    nameCategory = StringVar()
+    txtCategory = Entry(panelJogos, textvariable=nameCategory, width=30, font = ('Calibri', 10))
+
+    txtGame.place(x= 180, y =80)
+    txtCategory.place(x=180, y= 120)
 
     #---- GUARDAR configurações
-    btn_guardar = Button(panelConfig, text = "Guardar configurações", height = 3, width=42, 
-                    command = lambda: [guardarPerfil(continente, filename),  atualizaImgPerfil()])
-    btn_guardar.place(x=100, y=320)
+    btn_guardar = Button(panelJogos, text = "Guardar configurações", height = 3, width=24, 
+                    command = lambda: [guardarJogo(nameCategory, nameGame, filename),  atualizaImgJogo()])
+    btn_guardar.place(x=450, y=320)
 
 
 
@@ -149,7 +153,7 @@ window.title('Quizz - Capitais')
 #window.overrideredirect(True)         # remove os atributos da window de maximizar, minimizar e fecho
 #window.attributes('-disabled', True)   # desativa os atrubutos da window de maximizar, minimizar e fecho
 
-filename, tema = ler_perfil()
+filename, jogo, categoria = ler_jogo()
 
 
 PanelStatus = PanedWindow(window, width=700, height=50, relief = "flat")
@@ -170,11 +174,11 @@ imageConfig = PhotoImage(file = "images/signIn.png" )
 btnConfig = Button(PanelStatus, text = "Configurar \nopções", image = imageConfig, compound = LEFT, 
                   width = 100, height = 48, font = ("Helvetica", "10"), command = PanelConfigurar)
 btnConfig.place(x=400, y=0)
-# Imagem de perfil
+# Imagem de jogo
 ctnUser = Canvas(PanelStatus, width = 50, height = 50, relief = "flat")
 ctnUser.place(x=600, y=0)
-imgPerfilHeader = PhotoImage(file = filename)
-imageHeader_id = ctnUser.create_image(25, 25, image=imgPerfilHeader)
+imgJogo = PhotoImage(file = filename)
+imageHeader_id = ctnUser.create_image(25, 25, image=imgJogo)
 
 
 # ------------ Imagem do Quizz ------------------
