@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
 from tkinter import filedialog
-
+import os 
 
 #-----Arranque da aplicação ------#
 class Application:
@@ -14,44 +14,26 @@ windowNewGame = Tk()
 
 Application(windowNewGame)
 
-ficheiroJogo = "files/games.txt"
+"""
+ficheiroJogos = "files/games.txt"
 
+def guardarJogo(nameGame, nameCategory, filename):
+    fileJogos = open(ficheiroJogos, 'w')
+    global jogo, categoria
+    jogo = nameGame.get()
 
+"""
 
+def selecionaImgJogo():
+    global filename
+    filename = filedialog.askopenfilename(title = 'select file', initialdir = "images",  filetypes = (("png files","*.png"),("gif files", "*.gif"), ("all files","*.*")))
 
+    global imgJogo
+    global imgJogoid
+    imgJogo = PhotoImage(file = filename)
 
-def NovoJogo():
-    """
-    Guarda dados no ficheiro fileGsme.txt
-    """
-    fileGame = open(ficheiroJogo, "w")
-    global jogo
-    categoria = str(nameGame.get())
-    jogo= str(nameCategory.get())
-    linha = filename + ";" + jogo + ';' + categoria  + "\n"  # Imagem d eperfil;tema selecionado
-    fileGame.write(linha)
-    fileGame.close()
-    messagebox.showinfo('Great!', "You just added a new game :) ")
-
-
-def lerJogo():
-  """
-  Ler ficheiro de jogos: devolve nome do ficheiro associado à imagem de jogo e categoria
-  """
-  if not os.path.exists(ficheiroJogo):
-      fileGame = open(ficheiroJogo, "w")
-      fileGame.write("imagens\default-user-image.png;NOGAME;NOCATEGORY")
-      fileGame.close
-  fileGame = open(ficheiroJogo, "r")
-  linha= fileGame.readline()
-  fileGame.close()
-
-  filename =  linha.split(";")[0]
-  jogo = linha.split(";")[1]
-  categoria = linha.split(';')[2][:-1]
-  return filename, jogo, categoria
-
-
+    global canvasJogo
+    canvasJogo.itemconfig(imgJogo, imgJogoid)
   
 screenWidth = windowNewGame.winfo_screenwidth()
 screenHeight = windowNewGame.winfo_screenheight()
@@ -72,21 +54,12 @@ lblGame = Label(windowNewGame, text = 'Name of the Game', fg = 'black', font = (
 lblCategory = Label(windowNewGame, text = 'Category', fg = 'black', font = ('Calibri', 35), bg = 'white')
 
 #Button Selecionar Foto
-buttonGamePic = Button(windowNewGame, text = 'Game Image', font=('Helvetica', 20), width = 25, bg = 'pink', command='noaction')
-
-lblGame.place(x = 100, y = 100)
-lblCategory.place(x = 100, y = 240)
+buttonGamePic = Button(windowNewGame, text = 'Game Image', font=('Helvetica', 20), width = 25, bg = 'pink', command=selecionaImgJogo)
 buttonGamePic.place(x = 100, y = 400)
 
 
-
-global canvas_jogo
-canvas_jogo = Canvas(windowNewGame, width = 50, height = 50, bd = 4, relief = "sunken")
-canvas_jogo.place(x=270, y=70)
-global img_jogo, filename
-img_jogo = PhotoImage(file = filename)
-global image_jogo_id
-image_jogo_id = canvas_jogo.create_image(25, 25, image=img_jogo)
+lblGame.place(x = 100, y = 100)
+lblCategory.place(x = 100, y = 240)
 
 
 nameGame = StringVar()
@@ -99,7 +72,7 @@ txtCategory.place(x=500, y= 260)
 
 #Button save changes
 
-buttonGuardar = Button(windowNewGame, text = 'SAVE CHANGES', font = ('Helvetica', 15), width = 15, bg = 'pink', command =  lambda: [NovoJogo(nameGame, nameCategory, filename), atualizaImgJogo()])
+buttonGuardar = Button(windowNewGame, text = 'SAVE CHANGES', font = ('Helvetica', 15), width = 15, bg = 'pink', command =  'noaction')#lambda: guardarJogo(nameGame, nameCategory, filename))
 buttonGuardar.place(x = 850, y =500)
 
 
