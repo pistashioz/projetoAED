@@ -16,12 +16,25 @@ def atualizaImgJogo():
   imgJogo = PhotoImage(file = filename)
   ctnUser.itemconfig(imageHeader_id, image=imgJogo)
 
+"""
+def consulta_jogo(search_by):
 
+  val = search_by.get()
 
+  filePerfil = open(ficheiro_jogo, "r")
+  linhas = filePerfil.readlines()
+  filePerfil.close()
 
-def selecionaPerfil():
+  for linha in linhas:
+    filename =  linha.split(";")[0]
+    jogo = linha.split(";")[1]
+    categoria = linha.split(';')[2][:-1]
+    if categoria == val:
+      oo
+"""
+def selecionaJogo():
   """
-  selecionar imagem para o perfil, nas configurações, a partir de FileDialog
+  selecionar imagem para o jogo, nas configurações, a partir de FileDialog
   """
   global filename
   filename = filedialog.askopenfilename(title = "Select file", initialdir= "./imagens",
@@ -43,7 +56,7 @@ def PanelConfigurar():
     panelJogos.place(x=0, y=0)
 
     btn_selecionar = Button(panelJogos, text = "Selecione imagem \n do jogo", width = 20, height = 5, 
-                    command = selecionaPerfil)
+                    command = selecionaJogo)
 
     btn_selecionar.place(x=250, y= 210)
     global canvas_jogo
@@ -125,7 +138,7 @@ frameLinha1.place(x=130, y=20)
 
 s=ttk.Style()
 
-
+global tree
 
 tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'))
 treeScroll = Scrollbar(tree, orient = 'vertical')
@@ -154,6 +167,16 @@ tree.configure(yscrollcommand=treeScroll.set)
 treeScroll.pack(side = RIGHT, fill= BOTH)
 tree.pack()
 
+#treeview Jogos por categorias
+
+global treeCategoria
+
+treeCategoria = ttk.Treeview(frame1, selectmode= 'browse', columns = ('jogos', 'categoria'), show = 'headings')
+
+treeCategoria.column('jogos', width = 50, anchor = 'c')
+treeCategoria.heading('jogos', text = 'Jogos')
+
+treeCategoria.place(x = 10, y=150)
 
 #Labels
 
@@ -178,7 +201,7 @@ txtSearch.place(x=0, y=30)
 btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white")
 btnSearch.place(x= 100, y = 60)
 # Login Button
-btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
+btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= 'noaction')#lambda: logInInterface(windowFechar))
 btnLogin.place(x = 985, y = 1)
 # Create Account Button
 btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=signUp)

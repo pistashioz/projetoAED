@@ -178,7 +178,7 @@ search_by.place(x = 0, y = 0)
 txtSearch = Entry(frame4, width=46)
 txtSearch.place(x=0, y=30)
 # Search Button
-btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white")
+btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by))
 btnSearch.place(x= 100, y = 60)
 # Login Button
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
