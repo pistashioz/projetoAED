@@ -16,22 +16,25 @@ def atualizaImgJogo():
   imgJogo = PhotoImage(file = filename)
   ctnUser.itemconfig(imageHeader_id, image=imgJogo)
 
-"""
+
 def consulta_jogo(search_by):
 
-  val = search_by.get()
+    
+    treeCategoria.delete(*treeCategoria.get_children())
 
-  filePerfil = open(ficheiro_jogo, "r")
-  linhas = filePerfil.readlines()
-  filePerfil.close()
+    val = search_by.get()
 
-  for linha in linhas:
-    filename =  linha.split(";")[0]
-    jogo = linha.split(";")[1]
-    categoria = linha.split(';')[2][:-1]
-    if categoria == val:
-      oo
-"""
+    filePerfil = open(ficheiro_jogo, "r")
+    linhas = filePerfil.readlines()
+    filePerfil.close()
+
+    for linha in linhas:
+        filename =  linha.split(";")[0]
+        jogo = linha.split(";")[1]
+        categoria = linha.split(';')[2][:-1]
+        if categoria == val:
+            treeCategoria.insert('', 'end', values=(jogo))
+
 def selecionaJogo():
   """
   selecionar imagem para o jogo, nas configurações, a partir de FileDialog
@@ -201,7 +204,7 @@ txtSearch.place(x=0, y=30)
 btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white")
 btnSearch.place(x= 100, y = 60)
 # Login Button
-btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= 'noaction')#lambda: logInInterface(windowFechar))
+btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
 btnLogin.place(x = 985, y = 1)
 # Create Account Button
 btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=signUp)
