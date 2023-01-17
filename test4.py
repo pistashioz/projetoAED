@@ -2,14 +2,9 @@ from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
 from interfaceConta import logInInterface, signUp
-from tkinter import filedialog   # filedialog boxes
+import tkinter as tk
 import os
 from jogo import *
-
-#-----Arranque da aplicação ------#
-class Application:
-    def __init__(self, master=None):
-        pass
 
 
 def atualizaImgJogo():
@@ -38,10 +33,6 @@ def selecionaPerfil():
   # change image on canvas
   global canvas_jogo
   canvas_jogo.itemconfig(image_jogo_id, image=img_jogo)
-
-def fecharMenuOption():
-  window.destroy()
-
 
 
 def PanelConfigurar():
@@ -86,17 +77,18 @@ def PanelConfigurar():
 
 
 
+
+#-----Arranque da aplicação ------#
+class Application:
+    def __init__(self, master=None):
+        pass
 window = Tk()
 windowFechar = window
 Application(window)
-
-
 screenWidth = window.winfo_screenwidth()
 screenHeight = window.winfo_screenheight()
-
 appWidth = 1200
 appHeight = 600
-
 x = (screenWidth/2) - (appWidth/2)
 y = (screenHeight/2) - (appHeight/2)
 window.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
@@ -104,65 +96,63 @@ window.title('myGameList')
 window.resizable(0,0)
 window.iconbitmap('images/video-game-play-pad-boy-gameboy-nintendo_108539.ico')
 window.configure(bg="beige")
-
-filename, jogo, categoria = ler_jogo()
-imgJogo = PhotoImage(file = filename)
-
 #opcoesBarra
-
 barraMenu = Menu(window, background='orange', fg='white')
 barraMenu.add_command(label="LIBRARY", command="noaction")
-barraMenu.add_command(label="COMMUNITY", command='noaction')
-barraMenu.add_command(label="ADD A GAME", command=PanelConfigurar)
-
+barraMenu.add_command(label="COMMUNITY", command="noaction")
+barraMenu.add_command(label="ADD A GAME", command="noaction")
 window.configure(menu=barraMenu)
-
 #FrameCatalogo
 frame1 = LabelFrame(window, width=280, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
 frame1.place(x=0, y=30)
-
 frameNewGames = LabelFrame(window, width = 920, height=220, relief = "ridge", bg='RoyalBlue4', borderwidth=0, highlightthickness=0)
 frameNewGames.place(x=280, y=30)
-
 frame2 = LabelFrame(window, width = 920, height=450, bg='gray45', borderwidth=0, highlightthickness=0)
 frame2.place(x=280, y=250)
-
 frame4 = LabelFrame(window,width=280, height=100, bg='gray13', borderwidth=0, highlightthickness=0)
 frame4.place(x=0, y=30)
-
 frameLoginBackground = LabelFrame(window,width=1200,height=30, bg="thistle",borderwidth=0, highlightthickness=0)
 frameLoginBackground.place(x=0, y=0)
-
 frameLinha1 = LabelFrame(frameNewGames,width=850,height=1, bg="white",borderwidth=0, highlightthickness=0)
 frameLinha1.place(x=130, y=20)
 
-# Canvas
-ctnUser = Canvas(frameNewGames, width = 150, height = 125)
-ctnUser.place(x=30, y=35)
-imgJogo = PhotoImage(file = filename)
-imageHeader_id = ctnUser.create_image(25, 25, image=imgJogo)
-
-canvasLoginImage = Canvas(window, width=27, height=28, bg="orange", highlightthickness=0)
-canvasLoginImage.place(x=955, y=1)
-
-loginImg = PhotoImage(file="images/4115235-exit-logout-sign-out_114030.png")
-canvasLoginImage.create_image(15,15, image= loginImg)
-
-canvasCreateImage = Canvas(window, width=27, height=28, bg="orange", highlightthickness=0)
-canvasCreateImage.place(x=1065, y=1)
-
-createImg = PhotoImage(file="images/-create_90479.png")
-canvasCreateImage.create_image(15,15, image= createImg)
-
-# Label What's New -> Game's Name
-labelWhatsNew1 = Label(frameNewGames, text = jogo, font=('Helvetica', 11), bg="RoyalBlue4", fg="orange")
-labelWhatsNew1.place(x=30, y=165)
+# Treeview New Games
 
 
-# Label What's New -> Category
-labelWhatsNew5 = Label(frameNewGames, text = categoria, font=('Helvetica', 10), bg="RoyalBlue4", fg="red")
-labelWhatsNew5.place(x=30, y=185)
 
+
+# Add the rowheight and vertical scrollbar
+
+s=ttk.Style()
+
+
+
+tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'))
+treeScroll = Scrollbar(tree, orient = 'vertical')
+treeScroll.pack(side = 'right', fill = 'y')
+
+tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'), yscrollcommand=treeScroll.set)
+tree.place(x=0, y=10)
+
+tree.column('Image', width =100, anchor = 'center', stretch=False)
+tree.column('Name', width = 350, anchor = 'center', stretch=False)
+tree.column('Category', width = 350, anchor = 'center', stretch=False)
+
+
+tree.heading('Image', text = 'Image')
+tree.heading('Name', text = 'Name')
+tree.heading('Category', text = 'Category')
+
+filename, jogo, categoria = ler_jogo()
+img = tk.PhotoImage(file = filename) #aqui tiene que aparecer el url para la imagen, abrir los archivos
+tree.insert('', 'end', image = img, value = ('', jogo, categoria)) #aqui las variables para titulo y el nombre
+tree.place(x=0, y=35)
+
+treeScroll = ttk.Scrollbar(frameNewGames)
+treeScroll.configure(command=tree.yview)
+tree.configure(yscrollcommand=treeScroll.set)
+treeScroll.pack(side = RIGHT, fill= BOTH)
+tree.pack()
 
 
 #Labels
@@ -172,67 +162,53 @@ lblWhatsNew.place(x=20, y=10)
 
 lblMostViewed = Label(frame2, text = 'MOST VIEWED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMostViewed.place(x=20, y=20)
-
 lblMostLiked = Label(frame2, text='MOST LIKED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMostLiked.place(x=20, y=150)
-
 lblMyFavorites = Label(frame2, text = 'MY FAVORITES', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMyFavorites.place(x=20, y=280)
-
 # Search Category
-
 column = ['ALL', 'ACTION-ADVENTURE', 'ACTION', 'ADVENTURE', 'ARCADE', 'CASUAL', 'COZY', 'CRIME', 'CYBERPUNK', 'EXPERIMENTAL', 'FAMILY-FRIENDLY', 'FANTASY', 'FIRST-PERSON', 'HORROR', 'MINIGAMES', 'MISTERY', 'NOSTALGIA', 'RACING', 'RELAXING', 'SCI-FI']
-
 search_by = ttk.Combobox(frame4, values = column, width = 43, height= 100)
 search_by.current(0)
 search_by.place(x = 0, y = 0)
-
 # Search Text
 txtSearch = Entry(frame4, width=46)
 txtSearch.place(x=0, y=30)
-
-
 # Search Button
-
 btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white")
 btnSearch.place(x= 100, y = 60)
-
 # Login Button
-
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
 btnLogin.place(x = 985, y = 1)
-
-
 # Create Account Button
-
 btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=signUp)
 btnCreateAccount.place(x = 1095, y = 1)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -36,8 +36,15 @@ def ler_jogo():
   filePerfil = open(ficheiro_jogo, "r")
   linha= filePerfil.readline()
   filePerfil.close()
-
+  
   filename =  linha.split(";")[0]
   jogo = linha.split(";")[1]
   categoria = linha.split(';')[2][:-1]
   return filename, jogo, categoria
+"""
+  for linha in linhas:
+    filename =  linha.split(";")[0]
+    jogo = linha.split(";")[1]
+    categoria = linha.split(';')[2][:-1]
+  return filename, jogo, categoria
+  """

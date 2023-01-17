@@ -148,9 +148,9 @@ tree.heading('Image', text = 'Image')
 tree.heading('Name', text = 'Name')
 tree.heading('Category', text = 'Category')
 
-
-img = tk.PhotoImage(file = 'images/stray.png') #aqui tiene que aparecer el url para la imagen, abrir los archivos
-tree.insert('', 'end', image = img, value = ('',jogo, categoria)) #aqui las variables para titulo y el nombre
+filename, jogo, categoria = ler_jogo()
+img = tk.PhotoImage(file = filename) #aqui tiene que aparecer el url para la imagen, abrir los archivos
+tree.insert('', 'end', image = img, value = ('', jogo, categoria)) #aqui las variables para titulo y el nombre
 tree.place(x=0, y=35)
 
 treeScroll.configure(command=tree.yview)
