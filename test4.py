@@ -18,7 +18,7 @@ def atualizaImgJogo():
   ctnUser.itemconfig(imageHeader_id, image=imgJogo)
 
 
-def consulta_jogo(search_by):
+def consulta_jogo(search_by, buscaLivre):
 
     
     treeCategoria.delete(*treeCategoria.get_children())
@@ -34,7 +34,10 @@ def consulta_jogo(search_by):
         jogo = linha.split(";")[1]
         categoria = linha.split(';')[2][:-1]
         if categoria == val:
-            treeCategoria.insert('', 'end', values=(jogo))
+            treeCategoria.insert('', 'end', values=(jogo, categoria))
+        elif jogo == buscaLivre.get() or categoria == buscaLivre.get():
+            treeCategoria.insert('', 'end', values=(jogo, categoria))
+        
 
 def selecionaJogo():
   """
@@ -178,8 +181,10 @@ global treeCategoria
 
 treeCategoria = ttk.Treeview(frame1, selectmode= 'browse', columns = ('jogos', 'categoria'), show = 'headings')
 
-treeCategoria.column('jogos', width = 50, anchor = 'c')
+treeCategoria.column('jogos', width = 120, anchor = 'c')
 treeCategoria.heading('jogos', text = 'Jogos')
+treeCategoria.column('categoria', width = 120, anchor = 'c')
+treeCategoria.heading('categoria', text = 'Categoria')
 
 
 treeCategoria.place(x = 10, y=150)
@@ -203,10 +208,11 @@ search_by = ttk.Combobox(frame4, values = column, width = 43, height= 100)
 search_by.current(0)
 search_by.place(x = 0, y = 0)
 # Search Text
-txtSearch = Entry(frame4, width=46)
+buscaLivre = StringVar()
+txtSearch = Entry(frame4, width=46, textvariable= buscaLivre)
 txtSearch.place(x=0, y=30)
 # Search Button
-btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by))
+btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by, buscaLivre))
 btnSearch.place(x= 100, y = 60)
 # Login Button
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
