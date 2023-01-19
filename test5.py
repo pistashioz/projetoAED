@@ -147,7 +147,7 @@ treeScroll = Scrollbar(tree, orient = 'vertical')
 treeScroll.pack(side = 'right', fill = 'y')
 
 tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'), yscrollcommand=treeScroll.set)
-tree.place(x=0, y=10)
+tree.place(x=0, y=35)
 
 tree.column('Image', width =100, anchor = 'center', stretch=False)
 tree.column('Name', width = 350, anchor = 'center', stretch=False)
@@ -158,10 +158,18 @@ tree.heading('Image', text = 'Image')
 tree.heading('Name', text = 'Name')
 tree.heading('Category', text = 'Category')
 
-filename, jogo, categoria = ler_jogo()
+listaJogos = ler_jogo()
 img = tk.PhotoImage(file = filename) #aqui tiene que aparecer el url para la imagen, abrir los archivos
-tree.insert('', 'end', image = img, value = ('', jogo, categoria)) #aqui las variables para titulo y el nombre
-tree.place(x=0, y=35)
+
+for linha in linhas:
+    filename =  linha.split(";")[0]
+    jogo = linha.split(";")[1]
+    categoria = linha.split(';')[2][:-1]
+    tree.insert('', 'end', image = img, value = ('', jogo, categoria)) #aqui las variables para titulo y el nombre
+
+
+
+
 
 #  Scrollbar Vertical
 verscrlbar = ttk.Scrollbar(frameNewGames, orient ="vertical", command = tree.yview)

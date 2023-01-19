@@ -19,10 +19,9 @@ def guardarJogo(nameCategory, nameGame, filename, tree):
   jogo = nameGame.get()
   categoria  = nameCategory.get()
   linha = filename + ';' + jogo + ';' + categoria + "\n"   # Imagem de jogo;jogo;categoria
-  fileJogo.append(linha)
+  fileJogo.write(linha)
   fileJogo.close()
   messagebox.showinfo("Great", "Game saved succesfully")
-  tree.insert('', 'end', values=(linha))
   
 
 
@@ -36,11 +35,7 @@ def ler_jogo():
   linhas = filePerfil.readlines()
   filePerfil.close()
 
-  for linha in linhas:
-    filename =  linha.split(";")[0]
-    jogo = linha.split(";")[1]
-    categoria = linha.split(';')[2][:-1]
-  return filename, jogo, categoria
+
 
 
 

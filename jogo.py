@@ -19,6 +19,7 @@ def guardarJogo(nameCategory, nameGame, filename):
   jogo = nameGame.get()
   categoria  = nameCategory.get()
   linha = filename + ';' + jogo + ';' + categoria + "\n"   # Imagem de jogo;jogo;categoria
+  print(linha)
   filePerfil.write(linha)
   filePerfil.close()
   messagebox.showinfo("Great", "Game saved succesfully")
