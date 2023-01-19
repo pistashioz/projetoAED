@@ -5,6 +5,8 @@ from interfaceConta import logInInterface, signUp
 import tkinter as tk
 import os
 from jogo import *
+from AddNewGame import *
+
 
 
 def atualizaImgJogo():
@@ -116,7 +118,7 @@ window.configure(bg="beige")
 barraMenu = Menu(window, background='orange', fg='white')
 barraMenu.add_command(label="LIBRARY", command="noaction")
 barraMenu.add_command(label="COMMUNITY", command="noaction")
-barraMenu.add_command(label="ADD A GAME", command="noaction")
+barraMenu.add_command(label="ADD A GAME", command=PanelConfigurar)
 window.configure(menu=barraMenu)
 #FrameCatalogo
 frame1 = LabelFrame(window, width=280, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
