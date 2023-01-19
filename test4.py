@@ -5,7 +5,6 @@ from interfaceConta import logInInterface, signUp
 import tkinter as tk
 import os
 from jogo import *
-from AddNewGame import *
 
 
 
@@ -54,7 +53,6 @@ def selecionaJogo():
 
 
 def PanelConfigurar():
-    # ------------------------------------------------------------
 
 
     panelJogos = PanedWindow(window, width = 1200, height =600, bd = "3", relief = "sunken")
@@ -88,7 +86,7 @@ def PanelConfigurar():
     txtGame.place(x= 180, y =80)
     txtCategory.place(x=180, y= 120)
 
-    #---- GUARDAR configurações
+    #---- GUARDAR configurações----#
     btn_guardar = Button(panelJogos, text = "Guardar configurações", height = 3, width=24, 
                     command = lambda: [guardarJogo(nameCategory, nameGame, filename),  atualizaImgJogo()])
     btn_guardar.place(x=450, y=320)
@@ -182,19 +180,20 @@ treeCategoria.column('jogos', width = 50, anchor = 'c')
 treeCategoria.heading('jogos', text = 'Jogos')
 
 treeCategoria.place(x = 10, y=150)
-
+#treeCategoria.insert('', 'end', values()) #aqui tengo que poner, si el valor escogido en el combobox es igual x, treeCategoria.insert('', 'end', juego, categoria)
 #Labels
 
 lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")
 lblWhatsNew.place(x=20, y=10)
-
 lblMostViewed = Label(frame2, text = 'MOST VIEWED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMostViewed.place(x=20, y=20)
 lblMostLiked = Label(frame2, text='MOST LIKED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMostLiked.place(x=20, y=150)
 lblMyFavorites = Label(frame2, text = 'MY FAVORITES', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
 lblMyFavorites.place(x=20, y=280)
+
 # Search Category
+
 column = ['ALL', 'ACTION-ADVENTURE', 'ACTION', 'ADVENTURE', 'ARCADE', 'CASUAL', 'COZY', 'CRIME', 'CYBERPUNK', 'EXPERIMENTAL', 'FAMILY-FRIENDLY', 'FANTASY', 'FIRST-PERSON', 'HORROR', 'MINIGAMES', 'MISTERY', 'NOSTALGIA', 'RACING', 'RELAXING', 'SCI-FI']
 search_by = ttk.Combobox(frame4, values = column, width = 43, height= 100)
 search_by.current(0)
@@ -203,7 +202,7 @@ search_by.place(x = 0, y = 0)
 txtSearch = Entry(frame4, width=46)
 txtSearch.place(x=0, y=30)
 # Search Button
-btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white")
+btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command='noaction') #funcion que filtra los juegos por categoria
 btnSearch.place(x= 100, y = 60)
 # Login Button
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
