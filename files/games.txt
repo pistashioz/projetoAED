@@ -9,3 +9,6 @@ C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/proj
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game9;ARCADE
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/signIn.png;game10;ARCADE
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;game11;COZY
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;;
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game12;ADVENTURE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game12;ADVENTURE

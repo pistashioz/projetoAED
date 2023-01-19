@@ -15,7 +15,7 @@ def atualizaImgJogo():
   global imgJogo
   global imageHeader_id
   imgJogo = PhotoImage(file = filename)
-  ctnUser.itemconfig(imageHeader_id, image=imgJogo)
+
 
 def contarJogos(numJogos, treeCategoria):
   numJogos.set(len(treeCategoria.get_children()))
@@ -151,9 +151,7 @@ frameLinha1.place(x=130, y=20)
 s=ttk.Style()
 
 global tree
-#verscrollbar = ttk.Scrollbar(panel, prient = vertical, command  = tree.yview)
-#verscrollbar.place(x=y=)
-#tree.configure(yscrollcommand = verscrollbar.set)
+
 tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'))
 treeScroll = Scrollbar(tree, orient = 'vertical')
 treeScroll.pack(side = 'right', fill = 'y')
@@ -175,12 +173,12 @@ img = tk.PhotoImage(file = filename) #aqui tiene que aparecer el url para la ima
 tree.insert('', 'end', image = img, value = ('', jogo, categoria)) #aqui las variables para titulo y el nombre
 tree.place(x=0, y=35)
 
-treeScroll = ttk.Scrollbar(frameNewGames)
-treeScroll.configure(command=tree.yview)
-tree.configure(yscrollcommand=treeScroll.set)
-treeScroll.pack(side = RIGHT, fill= BOTH)
-tree.pack()
-
+#  Scrollbar Vertical
+verscrlbar = ttk.Scrollbar(frameNewGames, orient ="vertical", command = tree.yview)
+# CallinPlace da Scrollbar
+verscrlbar.place(x=905, y=20, height=250)
+# Adicionar scrollbar à  treeview
+tree.configure(yscrollcommand = verscrlbar.set)
 #treeview Jogos por categorias
 
 global treeCategoria
