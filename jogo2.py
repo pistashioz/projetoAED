@@ -9,19 +9,20 @@ from tkinter import messagebox   #  messagebox
 ficheiro_jogo = "files/games.txt"
 
 
-def guardarJogo(nameCategory, nameGame, filename):
+def guardarJogo(nameCategory, nameGame, filename, tree):
   """
   Guarda dados no ficheiro perfil.txt
   """
-  filePerfil = open(ficheiro_jogo, "a") #cuando quiera editar las vainas de un juego es darle w
+  fileJogo = open(ficheiro_jogo, "a") #cuando quiera editar las vainas de un juego es darle w
   global jogo
   global categoria
   jogo = nameGame.get()
   categoria  = nameCategory.get()
   linha = filename + ';' + jogo + ';' + categoria + "\n"   # Imagem de jogo;jogo;categoria
-  filePerfil.write(linha)
-  filePerfil.close()
+  fileJogo.append(linha)
+  fileJogo.close()
   messagebox.showinfo("Great", "Game saved succesfully")
+  tree.insert('', 'end', values=(linha))
   
 
 
@@ -45,3 +46,5 @@ def ler_jogo():
 
 def adicionar_categorias():
   column.append()
+
+
