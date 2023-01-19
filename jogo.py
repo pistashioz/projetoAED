@@ -46,4 +46,4 @@ def ler_jogo():
 
 
 def adicionar_categorias():
-  columns.append()
+  column.append()

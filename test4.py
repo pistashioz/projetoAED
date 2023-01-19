@@ -144,7 +144,7 @@ s=ttk.Style()
 global tree
 #verscrollbar = ttk.Scrollbar(panel, prient = vertical, command  = tree.yview)
 #verscrollbar.place(x=y=)
-#tree.configure()
+#tree.configure(yscrollcommand = verscrollbar.set)
 tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'))
 treeScroll = Scrollbar(tree, orient = 'vertical')
 treeScroll.pack(side = 'right', fill = 'y')
@@ -181,8 +181,9 @@ treeCategoria = ttk.Treeview(frame1, selectmode= 'browse', columns = ('jogos', '
 treeCategoria.column('jogos', width = 50, anchor = 'c')
 treeCategoria.heading('jogos', text = 'Jogos')
 
+
 treeCategoria.place(x = 10, y=150)
-#treeCategoria.insert('', 'end', values()) #aqui tengo que poner, si el valor escogido en el combobox es igual x, treeCategoria.insert('', 'end', juego, categoria) #esta en la ficha 12!!!
+#treeCategoria.insert('', 'end', values = ()) #aqui tengo que poner, si el valor escogido en el combobox es igual x, treeCategoria.insert('', 'end', juego, categoria) #esta en la ficha 12!!!
 #Labels
 
 lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")
@@ -197,6 +198,7 @@ lblMyFavorites.place(x=20, y=280)
 # Search Category
 
 column = ['ALL', 'ACTION-ADVENTURE', 'ACTION', 'ADVENTURE', 'ARCADE', 'CASUAL', 'COZY', 'CRIME', 'CYBERPUNK', 'EXPERIMENTAL', 'FAMILY-FRIENDLY', 'FANTASY', 'FIRST-PERSON', 'HORROR', 'MINIGAMES', 'MISTERY', 'NOSTALGIA', 'RACING', 'RELAXING', 'SCI-FI']
+
 search_by = ttk.Combobox(frame4, values = column, width = 43, height= 100)
 search_by.current(0)
 search_by.place(x = 0, y = 0)
@@ -204,7 +206,7 @@ search_by.place(x = 0, y = 0)
 txtSearch = Entry(frame4, width=46)
 txtSearch.place(x=0, y=30)
 # Search Button
-btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command='noaction') #funcion que filtra los juegos por categoria
+btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by))
 btnSearch.place(x= 100, y = 60)
 # Login Button
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
