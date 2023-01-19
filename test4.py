@@ -17,8 +17,10 @@ def atualizaImgJogo():
   imgJogo = PhotoImage(file = filename)
   ctnUser.itemconfig(imageHeader_id, image=imgJogo)
 
+def contarJogos(numJogos, treeCategoria):
+  numJogos.set(len(treeCategoria.get_children()))
 
-def consulta_jogo(search_by, buscaLivre):
+def consulta_jogo(search_by, buscaLivre, numJogos):
 
     
     treeCategoria.delete(*treeCategoria.get_children())
@@ -28,7 +30,7 @@ def consulta_jogo(search_by, buscaLivre):
     filePerfil = open(ficheiro_jogo, "r")
     linhas = filePerfil.readlines()
     filePerfil.close()
-
+    cont = 0
     for linha in linhas:
         filename =  linha.split(";")[0]
         jogo = linha.split(";")[1]
@@ -37,6 +39,10 @@ def consulta_jogo(search_by, buscaLivre):
             treeCategoria.insert('', 'end', values=(jogo, categoria))
         elif jogo == buscaLivre.get() or categoria == buscaLivre.get():
             treeCategoria.insert('', 'end', values=(jogo, categoria))
+        if val == 'ALL':
+          treeCategoria.insert('', 'end', values = (jogo, categoria))
+        
+    contarJogos(numJogos, treeCategoria)
         
 
 def selecionaJogo():
@@ -188,8 +194,15 @@ treeCategoria.heading('categoria', text = 'Categoria')
 
 
 treeCategoria.place(x = 10, y=150)
-#treeCategoria.insert('', 'end', values = ()) #aqui tengo que poner, si el valor escogido en el combobox es igual x, treeCategoria.insert('', 'end', juego, categoria) #esta en la ficha 12!!!
-#Labels
+
+#TOTAL GAMES
+lbNumJogos = Label(frame1, text = "Nº Games:", font = ("Helvetica", "10"))
+lbNumJogos.place(x=50, y=400)
+
+numJogos = StringVar()
+txt_num_jogos = Entry(frame1, width=10, textvariable = numJogos)
+txt_num_jogos.place(x=150, y=400)
+
 
 lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")
 lblWhatsNew.place(x=20, y=10)
@@ -212,8 +225,9 @@ buscaLivre = StringVar()
 txtSearch = Entry(frame4, width=46, textvariable= buscaLivre)
 txtSearch.place(x=0, y=30)
 # Search Button
-btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by, buscaLivre))
+btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by, buscaLivre, numJogos))
 btnSearch.place(x= 100, y = 60)
+
 # Login Button
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
 btnLogin.place(x = 985, y = 1)
