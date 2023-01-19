@@ -142,7 +142,9 @@ frameLinha1.place(x=130, y=20)
 s=ttk.Style()
 
 global tree
-
+#verscrollbar = ttk.Scrollbar(panel, prient = vertical, command  = tree.yview)
+#verscrollbar.place(x=y=)
+#tree.configure()
 tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'))
 treeScroll = Scrollbar(tree, orient = 'vertical')
 treeScroll.pack(side = 'right', fill = 'y')
@@ -180,7 +182,7 @@ treeCategoria.column('jogos', width = 50, anchor = 'c')
 treeCategoria.heading('jogos', text = 'Jogos')
 
 treeCategoria.place(x = 10, y=150)
-#treeCategoria.insert('', 'end', values()) #aqui tengo que poner, si el valor escogido en el combobox es igual x, treeCategoria.insert('', 'end', juego, categoria)
+#treeCategoria.insert('', 'end', values()) #aqui tengo que poner, si el valor escogido en el combobox es igual x, treeCategoria.insert('', 'end', juego, categoria) #esta en la ficha 12!!!
 #Labels
 
 lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")
