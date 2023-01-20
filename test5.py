@@ -20,7 +20,6 @@ def consulta_jogo(search_by, buscaLivre, numJogos):
     fileJogo = open(ficheiro_jogo, "r")
     linhas = fileJogo.readlines()
     fileJogo.close()
-    cont = 0
     for linha in linhas:
         filename =  linha.split(";")[0]
         jogo = linha.split(";")[1]
@@ -130,7 +129,8 @@ frameLoginBackground = LabelFrame(window,width=1200,height=30, bg="thistle",bord
 frameLoginBackground.place(x=0, y=0)
 frameLinha1 = LabelFrame(frameNewGames,width=850,height=1, bg="white",borderwidth=0, highlightthickness=0)
 frameLinha1.place(x=130, y=20)
-
+frame5 = LabelFrame(window,width=280, height=50, bg='blue', borderwidth=0, highlightthickness=0)
+frame5.place(x=0, y=530)
 # Treeview New Games
 
 
@@ -194,15 +194,15 @@ treeCategoria.column('categoria', width = 120, anchor = 'c')
 treeCategoria.heading('categoria', text = 'Categoria')
 
 
-treeCategoria.place(x = 10, y=150)
+treeCategoria.place(x = 20, y=110)
 
 #TOTAL GAMES
-lbNumJogos = Label(frame1, text = "Nº Games:", font = ("Helvetica", "10"))
-lbNumJogos.place(x=50, y=400)
+lbNumJogos = Label(frame5, text = "Nº Games:", font = ("Helvetica", "15"), bg = 'blue')
+lbNumJogos.place(x=40, y=10)
 
 numJogos = StringVar()
-txt_num_jogos = Entry(frame1, width=10, textvariable = numJogos)
-txt_num_jogos.place(x=150, y=400)
+txt_num_jogos = Entry(frame5, width=15, textvariable = numJogos)
+txt_num_jogos.place(x=150, y=15)
 
 
 lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")

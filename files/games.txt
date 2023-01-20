@@ -1,4 +1,17 @@
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/Login.png;game1;ARCADE
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game2;ARCADE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;???;?
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;WTF;AAAAAAAAAAA
-
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/-create_90479.png;game3;ADVENTURE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/signIn.png;game4;COZY
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/signIn.png;game5;ACTION
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game6;ADVENTURE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game7;ADVENTURE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game8;ACTION
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game9;ARCADE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/signIn.png;game10;ARCADE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;game11;COZY
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;elder ring;ARCADE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game12;ADVENTURE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game12;ADVENTURE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game13;ADVENTURE
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game;idk
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;kkk;mmmm
