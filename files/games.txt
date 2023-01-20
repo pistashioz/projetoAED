@@ -1,4 +1,3 @@
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/Login.png;game1;ARCADE
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game2;ARCADE
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/-create_90479.png;game3;ADVENTURE
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/signIn.png;game4;COZY

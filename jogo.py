@@ -35,7 +35,7 @@ def ler_jogo():
   filePerfil = open(ficheiro_jogo, "r")
   linhas = filePerfil.readlines()
   filePerfil.close()
-
+  print(linhas)
   for linha in linhas:
     filename =  linha.split(";")[0]
     jogo = linha.split(";")[1]

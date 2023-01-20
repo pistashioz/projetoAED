@@ -145,6 +145,7 @@ global tree
 tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'))
 treeScroll = Scrollbar(tree, orient = 'vertical')
 treeScroll.pack(side = 'right', fill = 'y')
+tree.place(x=0, y=35)
 
 tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'), yscrollcommand=treeScroll.set)
 tree.place(x=0, y=35)
@@ -158,15 +159,18 @@ tree.heading('Image', text = 'Image')
 tree.heading('Name', text = 'Name')
 tree.heading('Category', text = 'Category')
 
-listaJogos = ler_jogo()
-img = tk.PhotoImage(file = filename) #aqui tiene que aparecer el url para la imagen, abrir los archivos
 
-for linha in linhas:
-    filename =  linha.split(";")[0]
-    jogo = linha.split(";")[1]
-    categoria = linha.split(';')[2][:-1]
-    tree.insert('', 'end', image = img, value = ('', jogo, categoria)) #aqui las variables para titulo y el nombre
 
+
+jogos = ler_jogo()
+
+for jogo in jogos:
+    filename =  jogos[0]
+    jogo = jogos[1]
+    categoria = jogos[2]
+    img = tk.PhotoImage(file = filename) #aqui tiene que aparecer el url para la imagen, abrir los archivos
+    tree.insert('', 'end', image = img, value = ('', jogo, categoria))
+    
 
 
 

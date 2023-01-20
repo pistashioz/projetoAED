@@ -26,7 +26,8 @@ def guardarJogo(nameCategory, nameGame, filename, tree):
 
 
 def ler_jogo():
-
+  lista = []
+  
   if not os.path.exists(ficheiro_jogo):
       filePerfil = open(ficheiro_jogo, "a")
       filePerfil.write("imagens/gow.png;NOGAME;NOGAME")
@@ -34,6 +35,13 @@ def ler_jogo():
   filePerfil = open(ficheiro_jogo, "r")
   linhas = filePerfil.readlines()
   filePerfil.close()
+  for linha in linhas:
+    filename =  linha.split(";")[0]
+    jogo = linha.split(";")[1]
+    categoria = linha.split(';')[2][:-1]
+    dados = (filename, jogo, categoria)
+    lista.append(dados)
+  return lista
 
 
 
