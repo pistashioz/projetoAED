@@ -87,7 +87,7 @@ def PanelConfigurar():
 
     #---- GUARDAR configurações----#
     btn_guardar = Button(panelJogos, text = "Guardar configurações", height = 3, width=24, 
-                    command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree),  atualizaImgJogo()])
+                    command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree)])
     btn_guardar.place(x=450, y=320)
 
 
@@ -139,6 +139,7 @@ frameLinha1.place(x=130, y=20)
 # Add the rowheight and vertical scrollbar
 
 s=ttk.Style()
+s.configure('Treeview', rowheight=50)
 
 global tree
 
@@ -168,9 +169,9 @@ for dato in jogos:
     filename =  dato[0]
     jogo = dato[1]
     categoria = dato[2]
-    img = tk.PhotoImage(file = filename) #aqui tiene que aparecer el url para la imagen, abrir los archivos
+    img = tk.PhotoImage(file = filename) 
     tree.insert('', 'end', image = img, value = ('', jogo, categoria))
-    
+    print(dato)
 
 
 
