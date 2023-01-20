@@ -164,10 +164,10 @@ tree.heading('Category', text = 'Category')
 
 jogos = ler_jogo()
 
-for jogo in jogos:
-    filename =  jogos[0]
-    jogo = jogos[1]
-    categoria = jogos[2]
+for dato in jogos:
+    filename =  dato[0]
+    jogo = dato[1]
+    categoria = dato[2]
     img = tk.PhotoImage(file = filename) #aqui tiene que aparecer el url para la imagen, abrir los archivos
     tree.insert('', 'end', image = img, value = ('', jogo, categoria))
     
