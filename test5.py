@@ -10,7 +10,7 @@ from jogo2 import *
 def contarJogos(numJogos, treeCategoria):
   numJogos.set(len(treeCategoria.get_children()))
 
-def consulta_jogo(search_by, buscaLivre, numJogos):
+def consulta_jogo(search_by, numJogos):
 
     
     treeCategoria.delete(*treeCategoria.get_children())
@@ -26,9 +26,7 @@ def consulta_jogo(search_by, buscaLivre, numJogos):
         categoria = linha.split(';')[2][:-1]
         if categoria == val:
             treeCategoria.insert('', 'end', values=(jogo, categoria))
-        elif jogo == buscaLivre.get() or categoria == buscaLivre.get():
-            treeCategoria.insert('', 'end', values=(jogo, categoria))
-        if val == 'ALL':
+        elif val == 'ALL':
           treeCategoria.insert('', 'end', values = (jogo, categoria))
         
     contarJogos(numJogos, treeCategoria)
@@ -48,6 +46,24 @@ def selecionaJogo():
   # change image on canvas
   global canvas_jogo
   canvas_jogo.itemconfig(image_jogo_id, image=img_jogo)
+
+
+
+
+
+def panelCategoria(search_by):
+    panelCategorias = PanedWindow(window, width = 500, height =300, bg = 'blue')
+    panelCategorias.place(x=400, y=130)
+
+    lblCategoria = Label(panelCategorias, text='Nome da Categoria: ', width = 20, height = 3, font= ('Helvetica', 10), bg = 'blue')
+    lblCategoria.place(x = 30, y = 90)
+    newCategoria = StringVar()
+    txtCategoria = Entry(panelCategorias, textvariable=newCategoria, font=('Helvetica', 15), width=15)
+    txtCategoria.place(x=180, y = 105)
+
+    btnSaveCategoria = Button(panelCategorias, text = 'Guardar', font=('Helvetica', 10), height = 3, width=30, command=lambda: adicionarCategoria(newCategoria, search_by))
+    btnSaveCategoria.place(x = 130, y = 190)
+
 
 
 def PanelConfigurar():
@@ -115,6 +131,7 @@ barraMenu = Menu(window, background='orange', fg='white')
 barraMenu.add_command(label="LIBRARY", command="noaction")
 barraMenu.add_command(label="COMMUNITY", command="noaction")
 barraMenu.add_command(label="ADD A GAME", command=PanelConfigurar)
+barraMenu.add_command(label="ADD A CATEGORY", command=lambda: panelCategoria(search_by))
 window.configure(menu=barraMenu)
 #FrameCatalogo
 frame1 = LabelFrame(window, width=280, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
@@ -222,12 +239,10 @@ search_by = ttk.Combobox(frame4, values = column, width = 43, height= 100)
 search_by.current(0)
 search_by.place(x = 0, y = 0)
 # Search Text
-buscaLivre = StringVar()
-txtSearch = Entry(frame4, width=46, textvariable= buscaLivre)
-txtSearch.place(x=0, y=30)
+
 # Search Button
-btnSearch = Button(frame4, text='Search', width=10, height=1, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by, buscaLivre, numJogos))
-btnSearch.place(x= 100, y = 60)
+btnSearch = Button(frame4, text='Search', width=25, height=2, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by, numJogos))
+btnSearch.place(x= 50, y = 40)
 
 # Login Button
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))

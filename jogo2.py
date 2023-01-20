@@ -8,6 +8,11 @@ from tkinter import messagebox   #  messagebox
 
 ficheiro_jogo = "files/games.txt"
 
+def adicionarCategoria(newCategoria, search_by):
+    search_by['values'] += (newCategoria.get(),)
+    messagebox.showinfo("Great", "Category saved succesfully")
+
+
 
 def guardarJogo(nameCategory, nameGame, filename, tree):
   """
