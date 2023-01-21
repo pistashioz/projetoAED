@@ -1,17 +1,17 @@
 images/stray.png;game1;ARCADE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game2;ARCADE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game3;ADVENTURE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game4;COZY
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game5;ACTION
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game6;ADVENTURE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game7;ADVENTURE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game8;ACTION
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game9;ARCADE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/signIn.png;game10;ARCADE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game11;COZY
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;elder ring;ARCADE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game12;ADVENTURE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game12;ADVENTURE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game13;ADVENTURE
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;game;idk
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;kkk;mmmm
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game2;ARCADE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game3;ADVENTURE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game4;COZY;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game5;ACTION;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game6;ADVENTURE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game7;ADVENTURE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game8;ACTION;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game9;ARCADE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/signIn.png;game10;ARCADE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game11;COZY;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;elder ring;ARCADE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game12;ADVENTURE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game12;ADVENTURE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game13;ADVENTURE;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;game;idk;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;kkk;mmmm;description

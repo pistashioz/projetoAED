@@ -36,16 +36,18 @@ def adicionarCategoria(newCategoria, search_by):
 
 
 
-def guardarJogo(nameCategory, nameGame, filename, tree):
+def guardarJogo(nameCategory, nameGame, filename, tree, description):
   """
   Guarda dados no ficheiro perfil.txt
   """
   fileJogo = open(ficheiro_jogo, "a") #cuando quiera editar las vainas de un juego es darle w
   global jogo
   global categoria
+  global descricao
   jogo = nameGame.get()
   categoria  = nameCategory.get()
-  linha = filename + ';' + jogo + ';' + categoria + "\n"   # Imagem de jogo;jogo;categoria
+  descricao = description.get()
+  linha = filename + ';' + jogo + ';' + categoria + descricao + "\n"   # Imagem de jogo;jogo;categoria
   fileJogo.write(linha)
   fileJogo.close()
   messagebox.showinfo("Great", "Game saved succesfully")

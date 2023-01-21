@@ -60,7 +60,7 @@ def PanelConfigurar():
     btn_selecionar.place(x=250, y= 210)
     global canvas_jogo
     canvas_jogo = Canvas(panelJogos, width = 180, height = 220)
-    canvas_jogo.place(x=70, y=180)
+    canvas_jogo.place(x=70, y=240)
     global img_jogo, filename
     img_jogo = PhotoImage(file = filename)
     global image_jogo_id
@@ -68,24 +68,28 @@ def PanelConfigurar():
 
     lblGame = Label(panelJogos, text = 'Name of the Game', fg = 'black', font = ('Calibri', 12), bg = 'white') 
     lblCategory = Label(panelJogos, text = 'Category', fg = 'black', font = ('Calibri', 12), bg = 'white') #añadir un combobox
-
+    lblDescription = Label(panelJogos, text = 'Description', fg = 'black', font = ('Calibri', 12), bg = 'white')
 
     lblGame.place(x = 50, y = 80)
     lblCategory.place(x = 50, y = 120)
+    lblDescription.place(x= 50, y = 180)
+
 
 
     nameGame = StringVar()
     txtGame = Entry(panelJogos, textvariable=nameGame, width=30, font = ('Calibri',10))
     nameCategory = StringVar()
     txtCategory = Entry(panelJogos, textvariable=nameCategory, width=30, font = ('Calibri', 10))
-
+    description = StringVar()
+    txtDescription = Entry(panelJogos, textvariable=description, width = 30, font = ('Helvetica', 10))
     txtGame.place(x= 180, y =80)
     txtCategory.place(x=180, y= 120)
+    txtDescription.place(x=180, y = 180)
 
     #---- GUARDAR configurações----#
     btn_guardar = Button(panelJogos, text = "Guardar configurações", height = 3, width=24, 
-                    command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree)])
-    btn_guardar.place(x=450, y=320)
+                    command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree, description)])
+    btn_guardar.place(x=450, y=420)
 
 
 
