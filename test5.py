@@ -17,29 +17,40 @@ def on_select(event):
     def disable_button():
         btnLike['state'] = DISABLED
     
-    nameTitle=StringVar()
-    
-    nameCategory=StringVar()
 
-    numLikes=IntVar()
-
-    
-    jogoSelecionado = treeCategoria.item(treeCategoria.selection()[0])["text"]
     fileJogo = open(ficheiro_jogo, "r")
     linhas = fileJogo.readlines()
     for linha in linhas:
-        field=linha.split(";")
-        filename = field[0]
-        jogo2 = field[1]
-        categoria = field[2]
-        if jogoSelecionado == jogo2:
-            nameTitle.set(jogo2)
-    print(f"O jogo selecionado foi {jogo}")
+            field=linha.split(";")
+            filename = field[0]
+            game = field[1]
+            categoria = field[2]
+            descricao=field[3]
+    
     fileJogo.close()
-
-    print(f'Selected Item: {treeCategoria.item(jogoSelecionado)["text"]}')
+    
+    row_id=treeCategoria.focus()
+    linha=treeCategoria.item(row_id)
+    
+    
 
     
+
+    numLikes=IntVar(root)
+    numLikes.set(like)
+    
+    textDescription=StringVar(root)
+   
+    
+    jogo=linha["values"][0]
+    categoria=linha["values"][1]
+    nameTitle=StringVar(root)
+    nameTitle.set(jogo)
+
+    nameCategory=StringVar(root)
+    nameCategory.set(categoria)
+
+
     screenWidth =root.winfo_screenwidth()
     screenHeight = root.winfo_screenheight()
 
@@ -64,13 +75,14 @@ def on_select(event):
     
     Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), bg="#595959",fg='white')
     Title.place(x=350, y=100)
+
     
 
     Category = Entry( frameAll,textvariable=nameCategory, font=('Helvetica', 15), bg="#595959",fg='white')
     Category.place(x=350, y=165)
     
 
-    textDescription=StringVar()
+    
     Description=Entry( frameAll,textvariable=textDescription,font=('Helvetica', 12), bg="#595959",fg='white')
     Description.place(x=350, y=200)
 
@@ -257,11 +269,13 @@ tree.heading('Category', text = 'Category')
 
 
 jogos = ler_jogo()
+print(ler_jogo())
 imgs=[]
 for dato in jogos:
     filename =  dato[0]
     jogo = dato[1]
     categoria = dato[2]
+    descricao=dato[3]
     imgs.append(tk.PhotoImage(file=filename))
     tree.insert('', 'end', image = imgs[-1], value = ('', jogo, categoria))
 
