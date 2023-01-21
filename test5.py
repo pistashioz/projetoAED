@@ -5,6 +5,94 @@ from interfaceConta import logInInterface, signUp
 import tkinter as tk
 import os
 from jogo2 import *
+ficheiro_jogo = "files/games.txt"
+like=0
+def on_select(event):
+    root = Tk()
+    def likess():
+        global like
+        like+=1
+        numLikes.set(like) 
+
+    def disable_button():
+        btnLike['state'] = DISABLED
+    
+    nameTitle=StringVar()
+    
+    nameCategory=StringVar()
+
+    numLikes=IntVar()
+
+    
+    jogoSelecionado = treeCategoria.item(treeCategoria.selection()[0])["text"]
+    fileJogo = open(ficheiro_jogo, "r")
+    linhas = fileJogo.readlines()
+    for linha in linhas:
+        field=linha.split(";")
+        filename = field[0]
+        jogo2 = field[1]
+        categoria = field[2]
+        if jogoSelecionado == jogo2:
+            nameTitle.set(jogo2)
+    print(f"O jogo selecionado foi {jogo}")
+    fileJogo.close()
+
+    print(f'Selected Item: {treeCategoria.item(jogoSelecionado)["text"]}')
+
+    
+    screenWidth =root.winfo_screenwidth()
+    screenHeight = root.winfo_screenheight()
+
+    appWidth = 1000
+    appHeight = 700
+
+    x = (screenWidth/2) - (appWidth/2)
+    y = (screenHeight/2) - (appHeight/2)
+    root.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+
+    frameAll=LabelFrame(root,width=1000,height=700,bg="#595959")
+    frameAll.place(x=0,y=200)
+
+    frameVideo = LabelFrame(root, width=1000, height=260, bg='#D3996E')
+    frameVideo.place(x=0, y=0)
+
+    frameJogo=LabelFrame(root, width=310,height=435,bg='#3C3D3E')
+    frameJogo.place(x=30, y=100)
+
+    #ENTRYS
+
+    
+    Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), bg="#595959",fg='white')
+    Title.place(x=350, y=100)
+    
+
+    Category = Entry( frameAll,textvariable=nameCategory, font=('Helvetica', 15), bg="#595959",fg='white')
+    Category.place(x=350, y=165)
+    
+
+    textDescription=StringVar()
+    Description=Entry( frameAll,textvariable=textDescription,font=('Helvetica', 12), bg="#595959",fg='white')
+    Description.place(x=350, y=200)
+
+   
+    Like = Entry(root,textvariable=numLikes, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=2)
+    Like.place(x=40, y=540)
+
+
+
+    
+
+    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white', command=lambda:[likess(), disable_button()])
+    btnLike.place(x=350, y =330)
+
+
+    btnAddGame = Button(frameAll, text='ADD GAME', width=15, height=2,bg="#F89546",fg='white')
+    btnAddGame.place(x=480, y =330)
+
+    btnAddFavorite = Button(frameAll, text='ADD FAVORITE', width=15, height=2,bg="#F89546", fg='white', image="")
+    btnAddFavorite.place(x=600, y =330)
+    
+
 
 def switch():
     """
