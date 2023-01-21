@@ -56,22 +56,22 @@ def panelCategoria(search_by):
     panelCategorias.place(x=400, y=130)
 
     lblCategoriaAdd = Label(panelCategorias, text='Nome da Categoria a adicionar: ', width = 20, height = 3, font= ('Helvetica', 10), bg = 'blue')
-    lblCategoriaAdd.place(x = 30, y = 40)
+    lblCategoriaAdd.place(x = 40, y = 40)
     newCategoria = StringVar()
     txtCategoriaAdd = Entry(panelCategorias, textvariable=newCategoria, font=('Helvetica', 15), width=15)
-    txtCategoriaAdd.place(x=180, y = 55)
+    txtCategoriaAdd.place(x=190, y = 55)
 
     btnSaveCategoria = Button(panelCategorias, text = 'Save Category', font=('Helvetica', 10), height = 3, width=30, command=lambda: adicionarCategoria(newCategoria, search_by))
     btnSaveCategoria.place(x = 150, y = 90)
 
     lblCategoriaRem = Label(panelCategorias, text='Nome da Categoria a adicionar: ', width = 20, height = 3, font= ('Helvetica', 10), bg = 'blue')
-    lblCategoriaRem.place(x = 30, y = 110)
+    lblCategoriaRem.place(x = 40, y = 150)
     delCategoria = StringVar()
-    CategoriaRem = Entry(panelCategorias, textvariable=delCategoria, font=('Helvetica', 15), width=15)
-    txtCategoriaRem.place(x=180, y = 115)
+    txtCategoriaRem = Entry(panelCategorias, textvariable='Nome da Categoria a apagar', font=('Helvetica', 15), width=15)
+    txtCategoriaRem.place(x=40, y = 195)
 
-    btnSaveCategoria = Button(panelCategorias, text = 'Save Category', font=('Helvetica', 10), height = 3, width=30, command=lambda: adicionarCategoria(newCategoria, search_by))
-    btnSaveCategoria.place(x = 150, y = 150)
+    btnRemCategoria = Button(panelCategorias, text = 'Delete Category', font=('Helvetica', 10), height = 3, width=15, command=lambda: removerCategoria(delCategoria, search_by))
+    btnRemCategoria.place(x = 220, y = 190)
 
 
 
@@ -201,7 +201,6 @@ for dato in jogos:
     categoria = dato[2]
     imgs.append(tk.PhotoImage(file=filename))
     tree.insert('', 'end', image = imgs[-1], value = ('', jogo, categoria))
-    print(dato)
 
 
 
@@ -255,7 +254,9 @@ search_by.place(x = 0, y = 0)
 
 # Search Button
 btnSearch = Button(frame4, text='Search', width=25, height=2, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by, numJogos))
-btnSearch.place(x= 50, y = 40)
+btnSearch.place(x= 50, y = 20)
+
+
 
 # Login Button
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
