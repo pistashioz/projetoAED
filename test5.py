@@ -6,6 +6,10 @@ import tkinter as tk
 import os
 from jogo2 import *
 
+def switch():
+    """
+    """
+
 
 def contarJogos(numJogos, treeCategoria):
   numJogos.set(len(treeCategoria.get_children()))
@@ -188,9 +192,9 @@ global treeCategoria
 
 treeCategoria = ttk.Treeview(frame1, selectmode= 'browse', columns = ('jogos', 'categoria'), show = 'headings')
 
-treeCategoria.column('jogos', width = 120, anchor = 'c')
+treeCategoria.column('jogos', width = 120, anchor = 'center')
 treeCategoria.heading('jogos', text = 'Jogos')
-treeCategoria.column('categoria', width = 120, anchor = 'c')
+treeCategoria.column('categoria', width = 120, anchor = 'center')
 treeCategoria.heading('categoria', text = 'Categoria')
 treeCategoria.place(x = 20, y=110)
 
