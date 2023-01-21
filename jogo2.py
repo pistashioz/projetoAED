@@ -13,6 +13,13 @@ def removerCategoria(search_by):
   for opt in search_by['values']:
     if (opt != search_by.get()):
       my_new.append(opt)
+      with open('files/categorias.txt', 'r') as f:
+        lines = f.readlines()
+      with open('files/categorias.txt', 'w') as f:
+        for line in lines:
+          if line.strip('\n') != search_by.get():
+            f.write(line)
+      f.close()
   search_by['values']=my_new
   search_by.delete(0, 'end')
 
