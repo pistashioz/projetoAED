@@ -94,6 +94,12 @@ canvasCreateImage.place(x=1065, y=1)
 createImg = PhotoImage(file="images/-create_90479.png")
 canvasCreateImage.create_image(15,15, image= createImg)
 
+canvasNotificationImge = Canvas(window, width=30, height=28, bg="orange", highlightthickness=0)
+canvasNotificationImge.place(x=900, y=1)
+
+notificationImage = PhotoImage(file="images/alarm-bell_icon-icons.com_68596.png")
+canvasNotificationImge.create_image(15,15, image = notificationImage )
+
 # Label What's New -> Game's Name
 labelWhatsNew1 = Label(frameNewGames, text = 'God of War', font=('Helvetica', 11), bg="RoyalBlue4", fg="orange")
 labelWhatsNew1.place(x=30, y=165)
