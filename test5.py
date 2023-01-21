@@ -55,14 +55,25 @@ def panelCategoria(search_by):
     panelCategorias = PanedWindow(window, width = 500, height =300, bg = 'blue')
     panelCategorias.place(x=400, y=130)
 
-    lblCategoria = Label(panelCategorias, text='Nome da Categoria: ', width = 20, height = 3, font= ('Helvetica', 10), bg = 'blue')
-    lblCategoria.place(x = 30, y = 90)
+    lblCategoriaAdd = Label(panelCategorias, text='Nome da Categoria a adicionar: ', width = 20, height = 3, font= ('Helvetica', 10), bg = 'blue')
+    lblCategoriaAdd.place(x = 30, y = 40)
     newCategoria = StringVar()
-    txtCategoria = Entry(panelCategorias, textvariable=newCategoria, font=('Helvetica', 15), width=15)
-    txtCategoria.place(x=180, y = 105)
+    txtCategoriaAdd = Entry(panelCategorias, textvariable=newCategoria, font=('Helvetica', 15), width=15)
+    txtCategoriaAdd.place(x=180, y = 55)
 
-    btnSaveCategoria = Button(panelCategorias, text = 'Guardar', font=('Helvetica', 10), height = 3, width=30, command=lambda: adicionarCategoria(newCategoria, search_by))
-    btnSaveCategoria.place(x = 130, y = 190)
+    btnSaveCategoria = Button(panelCategorias, text = 'Save Category', font=('Helvetica', 10), height = 3, width=30, command=lambda: adicionarCategoria(newCategoria, search_by))
+    btnSaveCategoria.place(x = 150, y = 90)
+
+    lblCategoriaRem = Label(panelCategorias, text='Nome da Categoria a adicionar: ', width = 20, height = 3, font= ('Helvetica', 10), bg = 'blue')
+    lblCategoriaRem.place(x = 30, y = 110)
+    delCategoria = StringVar()
+    CategoriaRem = Entry(panelCategorias, textvariable=delCategoria, font=('Helvetica', 15), width=15)
+    txtCategoriaRem.place(x=180, y = 115)
+
+    btnSaveCategoria = Button(panelCategorias, text = 'Save Category', font=('Helvetica', 10), height = 3, width=30, command=lambda: adicionarCategoria(newCategoria, search_by))
+    btnSaveCategoria.place(x = 150, y = 150)
+
+
 
 
 
@@ -131,7 +142,7 @@ barraMenu = Menu(window, background='orange', fg='white')
 barraMenu.add_command(label="LIBRARY", command="noaction")
 barraMenu.add_command(label="COMMUNITY", command="noaction")
 barraMenu.add_command(label="ADD A GAME", command=PanelConfigurar)
-barraMenu.add_command(label="ADD A CATEGORY", command=lambda: panelCategoria(search_by))
+barraMenu.add_command(label="MANAGE CATEGORIES", command=lambda: panelCategoria(search_by))
 window.configure(menu=barraMenu)
 #FrameCatalogo
 frame1 = LabelFrame(window, width=280, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
@@ -156,7 +167,7 @@ frame5.place(x=0, y=530)
 # Add the rowheight and vertical scrollbar
 
 s=ttk.Style()
-s.configure('Treeview', rowheight=50)
+s.configure('Treeview', rowheight=150)
 
 global tree
 
@@ -182,12 +193,14 @@ tree.heading('Category', text = 'Category')
 
 jogos = ler_jogo()
 
+jogos = ler_jogo()
+imgs=[]
 for dato in jogos:
     filename =  dato[0]
     jogo = dato[1]
     categoria = dato[2]
-    img = tk.PhotoImage(file = filename) 
-    tree.insert('', 'end', image = img, value = ('', jogo, categoria))
+    imgs.append(tk.PhotoImage(file=filename))
+    tree.insert('', 'end', image = imgs[-1], value = ('', jogo, categoria))
     print(dato)
 
 
