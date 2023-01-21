@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
 from interfaceConta import logInInterface, signUp
+from test5 import PanelConfigurar
 
 #-----Arranque da aplicação ------#
 class Application:
@@ -33,7 +34,7 @@ window.configure(bg="beige")
 barraMenu = Menu(window, background='orange', fg='white')
 barraMenu.add_command(label="LIBRARY", command="noaction")
 barraMenu.add_command(label="COMMUNITY", command="noaction")
-barraMenu.add_command(label="ADD A GAME", command="noaction")
+barraMenu.add_command(label="ADD A GAME", command="PanelConfigurar")
 
 window.configure(menu=barraMenu)
 

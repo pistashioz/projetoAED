@@ -87,7 +87,7 @@ def PanelConfigurar():
 
     #---- GUARDAR configurações----#
     btn_guardar = Button(panelJogos, text = "Guardar configurações", height = 3, width=24, 
-                    command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree, description)])
+                    command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree, description, panelJogos)])
     btn_guardar.place(x=450, y=420)
 
 

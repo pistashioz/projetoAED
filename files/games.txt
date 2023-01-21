@@ -1,18 +1,23 @@
-images/stray.png;game1;ARCADE
-images/nightsinthewood.png;game2;ARCADE;description
-images/gow.png;game3;ADVENTURE;description
-images/stray.png;game4;COZY;description
-images/gow.png;game5;ACTION;description
-images/stray.png;game6;ADVENTURE;description
 images/stray.png;game1;ARCADE;description
 images/nightsinthewood.png;game2;ARCADE;description
 images/gow.png;game3;ADVENTURE;description
 images/stray.png;game4;COZY;description
 images/gow.png;game5;ACTION;description
 images/stray.png;game6;ADVENTURE;description
-images/stray.png;game1;ARCADE
-images/nightsinthewood.png;game2;ARCADE;description
-images/gow.png;game3;ADVENTURE;description
-images/stray.png;game4;COZY;description
-images/gow.png;game5;ACTION;description
-images/stray.png;game6;ADVENTURE;description
+images/gow.png;game7;ADVENTURE;description
+images/gow.png;game12;ADVENTURE;description
+images/stray.png;game12;ADVENTURE;description
+images/gow.png;game13;ADVENTURE;description
+images/eldenring.png;game14;EXPERIMENTAL;description
+images/nightsinthewood.png;game15;MINIGAMES;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game19;AAA;AAA
+images/stray.png;GAME20;COZY;DESCRIPTION
+images/stray.png;test;test;test
+images/stray.png;teste;test;test
+images/stray.png;;;
+images/stray.png;;;
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/Login.png;ttese;adada;dadada
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;teste;teste;teste
+images/stray.png;teste;teste;teste
+images/stray.png;a;a;a
+images/stray.png;a;a;a

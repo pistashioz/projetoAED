@@ -32,11 +32,11 @@ def adicionarCategoria(newCategoria, search_by):
     fileCategoria.write(newCategoria.get() + '\n')
     fileCategoria.close()
   else:
-    messagebox.showinfo("Error", "Category already saved")
+    messagebox.showinfo("Error", "Category was already saved")
 
 
 
-def guardarJogo(nameCategory, nameGame, filename, tree, description):
+def guardarJogo(nameCategory, nameGame, filename, tree, description, panelJogos):
   """
   Guarda dados no ficheiro perfil.txt
   """
@@ -47,10 +47,11 @@ def guardarJogo(nameCategory, nameGame, filename, tree, description):
   jogo = nameGame.get()
   categoria  = nameCategory.get()
   descricao = description.get()
-  linha = filename + ';' + jogo + ';' + categoria + descricao + "\n"   # Imagem de jogo;jogo;categoria
+  linha = filename + ';' + jogo + ';' + categoria + ';' + descricao + "\n"   # Imagem de jogo;jogo;categoria
   fileJogo.write(linha)
   fileJogo.close()
   messagebox.showinfo("Great", "Game saved succesfully")
+  panelJogos.place_forget()
   
 
 
@@ -62,7 +63,7 @@ def ler_jogo():
       filePerfil.write("imagens/gow.png;NOGAME;NOGAME")
       filePerfil.close
   filePerfil = open(ficheiro_jogo, "r")
-  linhas = filePerfil.readlines()
+  linhas = reversed(filePerfil.readlines())
   filePerfil.close()
   for linha in linhas:
     filename =  linha.split(";")[0]
