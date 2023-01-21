@@ -8,13 +8,16 @@ from jogo2 import *
 ficheiro_jogo = "files/games.txt"
 like=0
 def on_select(event):
+    '''Abre o game info'''
     root = Tk()
     def likess():
+        '''Aumenta a quantidade de likes'''
         global like
         like+=1
         numLikes.set(like) 
 
     def disable_button():
+        '''Faz o botão ser clicável apenas uma vez'''
         btnLike['state'] = DISABLED
     
 
@@ -28,29 +31,39 @@ def on_select(event):
             descricao=field[3]
     
     fileJogo.close()
-    
+
+    #Isso identifica o row selecionado na tree view
+    #Com isso transformei pra uma linha onde carrega os valores jogo e categoria que se encontram lá
     row_id=treeCategoria.focus()
     linha=treeCategoria.item(row_id)
     
     
 
     
-
+    #Isso é a variável de número de likes que altera pra um se clicado
+    #ainda é preciso fazer com que esse valor seja armazenado em algum lado pra manter, e fazer com que apenas um usuário por conta pode dar like
     numLikes=IntVar(root)
-    numLikes.set(like)
+  
     
+    #Essa é a variavel da descrição que precisa ser alterada para carregar o valor da descriçaõ
+    # de acordo com cada jogo
     textDescription=StringVar(root)
    
-    
+    # Isso sao onde se encontram o jogo e a categoria na linha que criei acima
     jogo=linha["values"][0]
     categoria=linha["values"][1]
+
+    #Essa é a variavel do game title que ja ta funcionando e já muda 
+    #de acordo com o titulo selecionado na treeview
     nameTitle=StringVar(root)
     nameTitle.set(jogo)
 
+    #Essa é a variavel que determina a categoria do game que também ja funciona e
+    #muda de acordo com a categoria que se encontra o jogo selecionado na treeview
     nameCategory=StringVar(root)
     nameCategory.set(categoria)
 
-
+    #Isso sao as medidas da janela que abre quando a função é chamada 
     screenWidth =root.winfo_screenwidth()
     screenHeight = root.winfo_screenheight()
 
@@ -60,6 +73,8 @@ def on_select(event):
     x = (screenWidth/2) - (appWidth/2)
     y = (screenHeight/2) - (appHeight/2)
     root.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+
+    #Frames que compoem a window
 
     frameAll=LabelFrame(root,width=1000,height=700,bg="#595959")
     frameAll.place(x=0,y=200)
@@ -92,7 +107,7 @@ def on_select(event):
 
 
 
-    
+    #Buttons
 
     btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white', command=lambda:[likess(), disable_button()])
     btnLike.place(x=350, y =330)
