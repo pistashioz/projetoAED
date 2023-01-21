@@ -8,17 +8,24 @@ from tkinter import messagebox   #  messagebox
 
 ficheiro_jogo = "files/games.txt"
 
-def removerCategoria(delCategoria, search_by):
+def removerCategoria(search_by):
   my_new = []
-  if delCategoria.get() in search_by['values']:
-    my_new.append(delCategoria.get())
-  search_by['values'] = my_new
+  for opt in search_by['values']:
+    if (opt != search_by.get()):
+      my_new.append(opt)
+  search_by['values']=my_new
   search_by.delete(0, 'end')
-  messagebox.showinfo("Great", "Category saved succesfully")
 
 def adicionarCategoria(newCategoria, search_by):
+  if newCategoria.get() not in search_by['values']:
     search_by['values'] += (newCategoria.get(),)
+    search_by.delete(0, 'end')
     messagebox.showinfo("Great", "Category saved succesfully")
+    fileCategoria = open('files/categorias.txt', 'a')
+    fileCategoria.write(newCategoria.get() + '\n')
+    fileCategoria.close()
+  else:
+    messagebox.showinfo("Error", "Category already saved")
 
 
 

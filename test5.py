@@ -48,35 +48,6 @@ def selecionaJogo():
   canvas_jogo.itemconfig(image_jogo_id, image=img_jogo)
 
 
-
-
-
-def panelCategoria(search_by):
-    panelCategorias = PanedWindow(window, width = 500, height =300, bg = 'blue')
-    panelCategorias.place(x=400, y=130)
-
-    lblCategoriaAdd = Label(panelCategorias, text='Nome da Categoria a adicionar: ', width = 20, height = 3, font= ('Helvetica', 10), bg = 'blue')
-    lblCategoriaAdd.place(x = 40, y = 40)
-    newCategoria = StringVar()
-    txtCategoriaAdd = Entry(panelCategorias, textvariable=newCategoria, font=('Helvetica', 15), width=15)
-    txtCategoriaAdd.place(x=190, y = 55)
-
-    btnSaveCategoria = Button(panelCategorias, text = 'Save Category', font=('Helvetica', 10), height = 3, width=30, command=lambda: adicionarCategoria(newCategoria, search_by))
-    btnSaveCategoria.place(x = 150, y = 90)
-
-    lblCategoriaRem = Label(panelCategorias, text='Nome da Categoria a adicionar: ', width = 20, height = 3, font= ('Helvetica', 10), bg = 'blue')
-    lblCategoriaRem.place(x = 40, y = 150)
-    delCategoria = StringVar()
-    txtCategoriaRem = Entry(panelCategorias, textvariable='Nome da Categoria a apagar', font=('Helvetica', 15), width=15)
-    txtCategoriaRem.place(x=40, y = 195)
-
-    btnRemCategoria = Button(panelCategorias, text = 'Delete Category', font=('Helvetica', 10), height = 3, width=15, command=lambda: removerCategoria(delCategoria, search_by))
-    btnRemCategoria.place(x = 220, y = 190)
-
-
-
-
-
 def PanelConfigurar():
 
 
@@ -142,7 +113,6 @@ barraMenu = Menu(window, background='orange', fg='white')
 barraMenu.add_command(label="LIBRARY", command="noaction")
 barraMenu.add_command(label="COMMUNITY", command="noaction")
 barraMenu.add_command(label="ADD A GAME", command=PanelConfigurar)
-barraMenu.add_command(label="MANAGE CATEGORIES", command=lambda: panelCategoria(search_by))
 window.configure(menu=barraMenu)
 #FrameCatalogo
 frame1 = LabelFrame(window, width=280, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
@@ -190,8 +160,6 @@ tree.heading('Category', text = 'Category')
 
 
 
-
-jogos = ler_jogo()
 
 jogos = ler_jogo()
 imgs=[]
@@ -245,8 +213,11 @@ lblMyFavorites.place(x=20, y=280)
 
 # Search Category
 
-column = ['ALL', 'ACTION-ADVENTURE', 'ACTION', 'ADVENTURE', 'ARCADE', 'CASUAL', 'COZY', 'CRIME', 'CYBERPUNK', 'EXPERIMENTAL', 'FAMILY-FRIENDLY', 'FANTASY', 'FIRST-PERSON', 'HORROR', 'MINIGAMES', 'MISTERY', 'NOSTALGIA', 'RACING', 'RELAXING', 'SCI-FI']
-
+column = []
+fileCategoria = open('files/categorias.txt', 'r')
+for line in fileCategoria:
+    column.append(line.strip())
+fileCategoria.close()
 search_by = ttk.Combobox(frame4, values = column, width = 43, height= 100)
 search_by.current(0)
 search_by.place(x = 0, y = 0)
@@ -264,6 +235,16 @@ btnLogin.place(x = 985, y = 1)
 # Create Account Button
 btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=signUp)
 btnCreateAccount.place(x = 1095, y = 1)
+
+btnCreateCategory = Button(window, text="Create Category",font=('Helvetica', 10), width=12, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
+btnCreateCategory.place(x = 10, y = 1)
+
+newCategoria = StringVar()
+txtCategoriaAdd = Entry(window, textvariable=newCategoria, font=('Helvetica', 15), width=15)
+txtCategoriaAdd.place(x=120, y = 1)
+
+btnDeleteCategory = Button(window, text="Delete Category",font=('Helvetica', 10), width=20, height=1, bg="red", fg="black", command= lambda: removerCategoria(search_by))
+btnDeleteCategory.place(x = 300, y = 1)
 
 
 
