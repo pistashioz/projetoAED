@@ -67,16 +67,8 @@ def ler_jogo():
   for linha in linhas:
     filename =  linha.split(";")[0]
     jogo = linha.split(";")[1]
-    categoria = linha.split(';')[2][:-1]
+    categoria = linha.split(';')[2]
     dados = (filename, jogo, categoria)
     lista.append(dados)
   return lista
-
-
-
-
-
-def adicionar_categorias():
-  column.append()
-
 

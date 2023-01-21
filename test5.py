@@ -23,11 +23,10 @@ def consulta_jogo(search_by, numJogos):
     for linha in linhas:
         filename =  linha.split(";")[0]
         jogo = linha.split(";")[1]
-        categoria = linha.split(';')[2][:-1]
+        categoria = linha.split(';')[2]
         if categoria == val:
             treeCategoria.insert('', 'end', values=(jogo, categoria))
-        elif val == 'ALL':
-          treeCategoria.insert('', 'end', values = (jogo, categoria))
+        elif val == 'ALL':treeCategoria.insert('', 'end', values = (jogo, categoria))
         
     contarJogos(numJogos, treeCategoria)
         
@@ -193,8 +192,6 @@ treeCategoria.column('jogos', width = 120, anchor = 'c')
 treeCategoria.heading('jogos', text = 'Jogos')
 treeCategoria.column('categoria', width = 120, anchor = 'c')
 treeCategoria.heading('categoria', text = 'Categoria')
-
-
 treeCategoria.place(x = 20, y=110)
 
 #TOTAL GAMES
@@ -228,8 +225,8 @@ search_by.place(x = 0, y = 0)
 # Search Text
 
 # Search Button
-btnSearch = Button(frame4, text='Search', width=25, height=2, bg="gray13", fg="white", command= lambda: consulta_jogo(search_by, numJogos))
-btnSearch.place(x= 50, y = 20)
+btnSearch = Button(frame4, text='Search', width=25, height=2, bg="gray13", fg="white", command= lambda: (consulta_jogo(search_by, numJogos)))
+btnSearch.place(x= 50, y = 40)
 
 
 
