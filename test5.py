@@ -279,6 +279,7 @@ tree.configure(yscrollcommand = verscrlbar.set)
 global treeCategoria
 
 treeCategoria = ttk.Treeview(frame1, selectmode= 'browse', columns = ('jogos', 'categoria'), show = 'headings')
+treeCategoria.bind('<<TreeviewSelect>>', on_select)
 
 treeCategoria.column('jogos', width = 120, anchor = 'center')
 treeCategoria.heading('jogos', text = 'Jogos')
