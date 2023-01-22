@@ -357,8 +357,9 @@ for dato in jogos:
     filename =  dato[0]
     jogo = dato[1]
     categoria = dato[2]
+    descricao=dato[3]
     imgs.append(tk.PhotoImage(file=filename))
-    tree.insert('', 'end', image = imgs[-1], value = ('', jogo, categoria))
+    tree.insert('', 'end', image = imgs[-1], value = ('', jogo, categoria,descricao))
 
 
 
