@@ -23,7 +23,7 @@ def on_select(event):
     row_id=tree.focus() #Obtem o id da linha ativa
     linha=tree.item(row_id) #Transforma em uma linha
 
-    image=linha['values'][0]
+    filenamePhoto=linha['values'][0]
     title=linha['values'][1]#Seleciona o nome da linha
     category=linha['values'][2]
     description=linha['values'][3]
@@ -66,27 +66,33 @@ def on_select(event):
     frameVideo = LabelFrame(root, width=1000, height=260, bg='#D3996E')
     frameVideo.place(x=0, y=0)
 
-    frameJogo=LabelFrame(root, width=310,height=435,bg='#3C3D3E')
-    frameJogo.place(x=30, y=100)
+    
+    canvasjogo = Canvas(root, width = 280, height = 280)
+    canvasjogo.place(x=38, y=240)
+    
+    Imgjogo = PhotoImage(file =filenamePhoto )
+    # change image on canvas
+    canvasjogo.itemconfig(filenamePhoto, image= Imgjogo)
+
 
     #ENTRYS
 
     
-    Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), bg="#595959",fg='white')
+    Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
     Title.place(x=350, y=100)
-
+    
     
 
-    Category = Entry( frameAll,textvariable=nameCategory, font=('Helvetica', 15), bg="#595959",fg='white')
+    Category = Entry( frameAll,textvariable=nameCategory, font=('Helvetica', 15),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
     Category.place(x=350, y=165)
     
 
     
-    Description=Entry( frameAll,textvariable=textDescription,font=('Helvetica', 12), bg="#595959",fg='white')
+    Description=Entry( frameAll,textvariable=textDescription,font=('Helvetica', 12),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
     Description.place(x=350, y=200)
 
    
-    Like = Entry(root,textvariable=numLikes, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=2)
+    Like = Entry(root,textvariable=numLikes, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=1, highlightthickness=0)
     Like.place(x=40, y=540)
 
 
