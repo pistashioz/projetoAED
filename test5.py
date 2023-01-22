@@ -12,6 +12,7 @@ from jogo2 import *
 
 
 userLogedIn = ''
+imageLogedIn = ''
 
 def switch():
     while login == True:
@@ -51,7 +52,7 @@ def selecionaPerfil():
   global canvas_perfil
   canvas_perfil.itemconfig(image_perfil_id, image=img_perfil)
 
-filenamePerfil = ler_perfil()
+filenamePerfil = ler_perfil(imageLogedIn)
 
 
 
@@ -208,7 +209,7 @@ def logInInterface(windowFechar):
     txtPw = Entry(logInWindow, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
     txtPw.place( x = 700, y = 350)
     #botao submit
-    btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get(), windowFechar, logInWindow, login, userLogedIn), width = 25)
+    btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get(), windowFechar, logInWindow, login, userLogedIn, imageLogedIn), width = 25)
     btnSubmit.place(x = 710, y = 430)
     btnNoAcc = Button(logInWindow, text='No Account yet?', font = ('Calibri', 13), command= lambda: (signUp(logInWindow), logInWindow.withdraw()), bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 480)
@@ -234,7 +235,7 @@ def PerfilConfigurar():
 
     #---- GUARDAR configurações
     btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, 
-                    command = lambda: [guardarPerfil(filenamePerfil),  atualizaImgPerfil()])
+                    command = lambda: [guardarPerfil(userLogedIn,imageLogedIn),  atualizaImgPerfil()])
     btn_guardar.place(x=100, y=320)
 
 

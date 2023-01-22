@@ -8,38 +8,44 @@ import os
 fUsers= "files/users.txt"
 
 
+def guardarPerfil(userLogedIn,imageLogedIn):
+    listcopy = []
+    print(userLogedIn + '?')
+    with open(fUsers,'r') as file:
+        listUsers = file.readlines()
+        listcopy=listUsers.copy()
+        for user in listUsers:
+            userNameI = user.split(';')[1]
+            filenamePerfil = user.split(';')[3][:-1] # ve se pega o \n
+            print(filenamePerfil)
+            print(userLogedIn)
+            if userNameI==userLogedIn:
+                listcopy.remove(user)
+                print(listcopy, 'depoois do if')
+                userNewI = user.replace(filenamePerfil,imageLogedIn)
+                listcopy.append(userNewI)
+            
+        
+    with open(fUsers,'w') as file:#teoricamente so abrir nesse modo apaga o conteudo mas confirma
+        for line in listcopy:
+            file.write(line)# n sei se isso ja adiciona o \n do ouro lado mas qlqr coisa adicionas um \n
+        messagebox.showinfo("Boa!", "Configurações guardadas com sucesso")
+    return 
 
 
-def guardarPerfil(filenamePerfil): #mudarFotoPerfil
- 
-  #Guarda dados no ficheiro perfil.txt
-  filePerfil = open(fUsers, "r")
-  listaPerfis = filePerfil.readline()
-  filePerfil.close
-  for linha in listaPerfis:
-    fields = linha.split(';')
-  
-  fields[3][:-1] = filenamePerfil     
-  filePerfil.write(fields)
-  filePerfil.close()
-  messagebox.showinfo("Boa!", "Configurações guardadas com sucesso")
-  
-
-
-def ler_perfil():
+def ler_perfil(imageLogedIn):
   
   #Ler ficheiro de perfil: devolve nome do ficheiro associado à imagem de perfil
   filePerfil = open(fUsers, "r")
-  linha= filePerfil.readline()
+  linhas= filePerfil.readlines()
   filePerfil.close()
-
-  filenamePerfil =  linha.split(";")[3][:-1]
-  return filenamePerfil
+  filenamePerfil =  imageLogedIn
+  return imageLogedIn
  
 #pasar esto para interface conta y hacer withdwraw y toda esa vaina para windowfechar
 
 
-def validaConta(userName, userPass, windowFechar, logInWindow, login, userLogedIn):
+def validaConta(userName, userPass, windowFechar, logInWindow, login, userLogedIn, imageLogedIn):
     """
     Validar cautenticação com uma conta
     """
@@ -56,7 +62,7 @@ def validaConta(userName, userPass, windowFechar, logInWindow, login, userLogedI
                 login = True
                 userLogedIn = userName
                 defaultImg = linha.split(';')[3][:-1]
-                filenamePerfil = defaultImg
+                imageLogedIn = defaultImg
                 windowFechar.deiconify()
                 logInWindow.destroy()
                 break
