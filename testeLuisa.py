@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
-from interfaceConta import logInInterface, signUp
 import tkinter as tk
 import os
 from jogo2 import *
