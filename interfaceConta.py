@@ -43,7 +43,7 @@ def validaConta(userName, userPass, windowFechar, logInWindow):
             messagebox.showinfo("Iniciar Sessão", msg)
             windowFechar.deiconify()
             logInWindow.destroy()
-        messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
+    messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
 
 
@@ -51,7 +51,7 @@ def validaConta(userName, userPass, windowFechar, logInWindow):
 
 
 
-def criaConta(userMail, userName, userPass, userPassConfirm, signWindow):
+def criaConta(userMail, userName, userPass, userPassConfirm, signWindow, logInWindow):
     """
     Criar uma nova conta
     """
@@ -75,3 +75,4 @@ def criaConta(userMail, userName, userPass, userPassConfirm, signWindow):
     fileUsers.close()
     messagebox.showinfo("Criar Conta", "Conta criada com sucesso!")
     signWindow.destroy()
+    logInWindow.deiconify()

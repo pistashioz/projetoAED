@@ -122,7 +122,8 @@ def PanelConfigurar():
 
 
 
-def signUp():
+def signUp(logInWindow):
+    
     windowFechar.withdraw()
 
     signWindow = Toplevel()
@@ -181,11 +182,11 @@ def signUp():
 
     #botao submit
 
-    btnSubmit = Button(signWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: criaConta(userMail.get(), userName.get(), userPass.get(), userPassConfirm.get(), signWindow), width = 25)
+    btnSubmit = Button(signWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: criaConta(userMail.get(), userName.get(), userPass.get(), userPassConfirm.get(), signWindow, logInWindow), width = 25)
 
     btnSubmit.place(x = 710, y =500)
 
-    btnNoAcc = Button(signWindow, text='Already have an account?', font = ('Calibri', 13), command= lambda: (logInInterface(windowFechar, signWindow), signWindow.withdraw()), bg='grey', relief='flat')
+    btnNoAcc = Button(signWindow, text='Already have an account?', font = ('Calibri', 13), command= lambda: (logInInterface(windowFechar), signWindow.withdraw()), bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 550)
 
 def logInInterface(windowFechar):
@@ -237,7 +238,7 @@ def logInInterface(windowFechar):
     #botao submit
     btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get(), windowFechar, logInWindow), width = 25)
     btnSubmit.place(x = 710, y = 430)
-    btnNoAcc = Button(logInWindow, text='No Account yet?', font = ('Calibri', 13), command= lambda: signUp(logInWindow), bg='grey', relief='flat')
+    btnNoAcc = Button(logInWindow, text='No Account yet?', font = ('Calibri', 13), command= lambda: (signUp(logInWindow), logInWindow.withdraw()), bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 480)
 
 
