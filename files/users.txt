@@ -1,6 +1,6 @@
-admin;admin;admin
-aa@aaa.com;vika;123
-simao@gmail.com;simao;123
-luisa@gmail.com;luisa;456
-victoria@gmail.com;victoria;123
-
+admin;admin;admin;images/default-user-image.png
+aa@aaa.com;vika;123;images/default-user-image.png
+simao@gmail.com;simao;123;images/default-user-image.png
+luisa@gmail.com;luisa;456;images/default-user-image.png
+victoria@gmail.com;victoria;123;images/default-user-image.png
+teste;teste2;teste;images/default-user-image.png

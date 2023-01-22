@@ -50,7 +50,7 @@ def validaConta(userName, userPass, windowFechar, logInWindow):
     try:
         n = 0
         for linha in listaUsers:
-            if linha.split(";")[1] == userName and linha.split(";")[2][:-1] == userPass:
+            if linha.split(";")[1] == userName and linha.split(";")[2] == userPass:
                 n=2
                 msg = "Bem-Vindo " + userName
                 messagebox.showinfo("Iniciar Sessão", msg)
@@ -89,7 +89,8 @@ def criaConta(userMail, userName, userPass, userPassConfirm, signWindow, logInWi
             messagebox.showerror("Criar Conta", "Já existe um utilizador com esse username!")
             return 
     fileUsers = open(fUsers, "a")
-    linha = userMail + ';' + userName + ";" + userPass + "\n"
+    defaultImg = 'images/default-user-image.png'
+    linha = userMail + ';' + userName + ";" + userPass + ';' + defaultImg + "\n"
     fileUsers.write(linha)
     fileUsers.close()
     messagebox.showinfo("Criar Conta", "Conta criada com sucesso!")
