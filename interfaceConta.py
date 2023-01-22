@@ -1,34 +1,44 @@
 from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
-#-----Arranque da aplicação ------#
-"""
-class Application:
-    def __init__(self, master=None):
-        pass
-window = Tk()
-Application(window)
-"""
-
-
 
 
 # Registar, Iniciar Sessão
 fUsers= "files/users.txt"
-ficheiro_perfil = 'files/perfil.txt'
 
-def guardarPerfil(filename):
-  """
-  Guarda dados no ficheiro perfil.txt
-  """
-  filePerfil = open(ficheiro_perfil, "w")
-
-  linha = filename
+"""
+def guardarPerfil(filename): #mudarFotoPerfil
+ 
+  #Guarda dados no ficheiro perfil.txt
+ 
+  filePerfil = open(fUsers, "w")
+  global tema
+  tema = str(continente.get())
+  linha = filename + ";" + tema     
   filePerfil.write(linha)
   filePerfil.close()
+  messagebox.showinfo("Quizz Cidades", "Configurações guardadas com sucesso")
+  
+
+
+def ler_perfil():
+  
+  #Ler ficheiro de perfil: devolve nome do ficheiro associado à imagem de perfil, assim como o tema predefinido 
+
+  if not os.path.exists(fUsers):
+      filePerfil = open(fUsers, "w")
+      filePerfil.write("imagens\avatar0.png;Europa")
+      filePerfil.close
+  filePerfil = open(fUsers, "r")
+  linha= filePerfil.readline()
+  filePerfil.close()
+
+  filename =  linha.split(";")[0]
+  tema = linha.split(";")[1]
+  return filename, tema
  
 #pasar esto para interfacve conta y hacer withdwraw y toda esa vaina para windowfechar
-
+"""
 
 def validaConta(userName, userPass, windowFechar, logInWindow):
     """
@@ -37,20 +47,21 @@ def validaConta(userName, userPass, windowFechar, logInWindow):
     fileUsers=open(fUsers, "r", encoding="utf-8")
     listaUsers = fileUsers.readlines()
     fileUsers.close()
-    for linha in listaUsers:
-        try:
+    try:
+        n = 0
+        for linha in listaUsers:
             if linha.split(";")[1] == userName and linha.split(";")[2][:-1] == userPass:
+                n=2
                 msg = "Bem-Vindo " + userName
                 messagebox.showinfo("Iniciar Sessão", msg)
                 windowFechar.deiconify()
                 logInWindow.destroy()
-            else:
-                messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
                 break
+        if n == 0:
+            messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
 
-        except:
-            if linha.split(";")[1] != userName and linha.split(";")[2][:-1] != userPass:
-                messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
+    except:
+        messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
 
 

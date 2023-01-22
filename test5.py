@@ -8,32 +8,40 @@ from jogo2 import *
 
 def switch():
     """
+    need to do
     """
 
-def PerfilConfigurar():
-    # ------------------------------------------------------------
-    perfilConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken")
-    perfilConfig.place(x=0, y=50)
 
-    btn_selecionar = Button(perfilConfig, text = "Selecione imagem \nde perfil", width = 14, height = 3, 
-                    command = selecionaPerfil)
 
-    btn_selecionar.place(x=100, y= 70)
-    global canvas_perfil
-    canvas_perfil = Canvas(perfilConfig, width = 50, height = 50, bd = 4, relief = "sunken")
-    canvas_perfil.place(x=270, y=70)
-    global img_perfil, filename
-    img_perfil = PhotoImage(file = filename)
-    global image_perfil_id
-    image_perfil_id = canvas_perfil.create_image(25, 25, image=img_perfil)
+""" 
+def atualizaImgPerfil():
 
-    #---- GUARDAR configurações
-    btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, 
-                    command = lambda: [guardarPerfil(filename),  atualizaImgPerfil()])
-    btn_guardar.place(x=100, y=320)
+  #atualiza canvas de imagem de perfil no PanelUser (HEADER), com imagem guardada em ficheiro
+
+  global imgPerfilHeader
+  global imageHeader_id
+  imgPerfilHeader = PhotoImage(file = filename)
+  ctnUser.itemconfig(imageHeader_id, image=imgPerfilHeader)
 
 
 
+
+def selecionaPerfil():
+  
+  #selecionar imagem para o perfil, nas configurações, a partir de FileDialog
+  
+  global filename
+  filename = filedialog.askopenfilename(title = "Select file", initialdir= "./imagens",
+              filetypes = (("png files","*.png"),("gif files", "*.gif"), ("all files","*.*")))
+  
+  global img_perfil
+  global image_perfil_id
+  img_perfil = PhotoImage(file = filename)
+  # change image on canvas
+  global canvas_perfil
+  canvas_perfil.itemconfig(image_perfil_id, image=img_perfil)
+
+"""
 
 def contarJogos(numJogos, treeCategoria):
   numJogos.set(len(treeCategoria.get_children()))
@@ -73,6 +81,34 @@ def selecionaJogo():
   # change image on canvas
   global canvas_jogo
   canvas_jogo.itemconfig(image_jogo_id, image=img_jogo)
+
+
+"""
+def PerfilConfigurar():
+    # ------------------------------------------------------------
+    perfilConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken")
+    perfilConfig.place(x=0, y=50)
+
+    btn_selecionar = Button(perfilConfig, text = "Selecione imagem \nde perfil", width = 14, height = 3, 
+                    command = selecionaPerfil)
+
+    btn_selecionar.place(x=100, y= 70)
+    global canvas_perfil
+    canvas_perfil = Canvas(perfilConfig, width = 50, height = 50, bd = 4, relief = "sunken")
+    canvas_perfil.place(x=270, y=70)
+    global img_perfil, filename
+    img_perfil = PhotoImage(file = filename)
+    global image_perfil_id
+    image_perfil_id = canvas_perfil.create_image(25, 25, image=img_perfil)
+
+    #---- GUARDAR configurações
+    btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, 
+                    command = lambda: [guardarPerfil(filename),  atualizaImgPerfil()])
+    btn_guardar.place(x=100, y=320)
+
+
+"""
+
 
 
 def PanelConfigurar():
@@ -124,6 +160,7 @@ def PanelConfigurar():
 
 def signUp(logInWindow):
     windowFechar.withdraw()
+    logInWindow.withdraw()
 
     signWindow = Toplevel()
     signWindow.focus_force()  # força o focus na window atual
@@ -381,11 +418,8 @@ btnSearch.place(x= 50, y = 40)
 
 
 # Login Button
-btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
-btnLogin.place(x = 985, y = 1)
-# Create Account Button
-btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=lambda: signUp(logInInterface))
-btnCreateAccount.place(x = 1095, y = 1)
+btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=10, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
+btnLogin.place(x = 1005, y = 1)
 
 btnCreateCategory = Button(window, text="Create Category",font=('Helvetica', 10), width=12, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
 btnCreateCategory.place(x = 10, y = 1)
