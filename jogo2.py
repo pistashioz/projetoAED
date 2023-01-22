@@ -70,7 +70,7 @@ def ler_jogo():
     jogo = linha.split(";")[1]
     categoria = linha.split(';')[2]
     descricao= linha.split(';')[3]
-    dados = (filename, jogo, categoria)
+    dados = (filename, jogo, categoria,descricao)
     lista.append(dados)
  
   return lista
