@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
 import tkinter as tk
+from tkinter import PhotoImage
 import os
 from jogo2 import *
 ficheiro_jogo = "files/games.txt"
@@ -58,6 +59,8 @@ def on_select(event):
     root.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
 
     #Frames que compoem a window
+    canvasjogo = Canvas(root, width = 280, height = 280)
+    canvasjogo.place(x=38, y=240)
 
     frameAll=LabelFrame(root,width=1000,height=700,bg="#595959")
     frameAll.place(x=0,y=200)
@@ -65,13 +68,9 @@ def on_select(event):
     frameVideo = LabelFrame(root, width=1000, height=260, bg='#D3996E')
     frameVideo.place(x=0, y=0)
 
+  
     
-    canvasjogo = Canvas(root, width = 280, height = 280)
-    canvasjogo.place(x=38, y=240)
     
-    Imgjogo = PhotoImage(file =filenamePhoto )
-    # change image on canvas
-    canvasjogo.itemconfig(filenamePhoto, image= Imgjogo)
 
 
     #ENTRYS
@@ -315,7 +314,7 @@ for dato in jogos:
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black",)
 btnLogin.place(x = 1000, y = 1)
 # Create Account Button
-btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black",)
+btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", )
 btnCreateAccount.place(x = 1065, y = 1)
 
 btnCreateCategory = Button(frame1, text="Create Category",font=('Helvetica', 10), width=12, height=1, bg="orange1", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
