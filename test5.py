@@ -11,7 +11,7 @@ from jogo2 import *
 
 
 
-userLogedIn = ''
+userLogedIn = abrirUser()
 imageLogedIn = ''
 
 def switch():
@@ -216,7 +216,7 @@ def logInInterface(windowFechar):
 
 
 
-def PerfilConfigurar():
+def PerfilConfigurar(userLogedIn, imageLogedIn):
     # ------------------------------------------------------------
     perfilConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken")
     perfilConfig.place(x=0, y=50)
@@ -444,7 +444,7 @@ btnLogin.place(x = 1005, y = 1)
 #----- Button CONFIGURAÇÕES -----------------------
 
 btnConfig = Button(window, text = "Configurar perfil", bg = 'orange', compound = LEFT, state = 'active',
-                  width = 15, height = 1, font = ("Helvetica", "10"), command = PerfilConfigurar)
+                  width = 15, height = 1, font = ("Helvetica", "10"), command = lambda: PerfilConfigurar(userLogedIn, imageLogedIn))
 btnConfig.place(x=800, y=1)
 # Imagem de perfil
 ctnUser = Canvas(window, width = 50, height = 50, relief = "flat")

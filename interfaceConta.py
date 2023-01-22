@@ -10,7 +10,7 @@ fUsers= "files/users.txt"
 
 def guardarPerfil(userLogedIn,imageLogedIn):
     listcopy = []
-    print(userLogedIn + '?')
+    print(userLogedIn + 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?')
     with open(fUsers,'r') as file:
         listUsers = file.readlines()
         listcopy=listUsers.copy()
@@ -44,6 +44,14 @@ def ler_perfil(imageLogedIn):
  
 #pasar esto para interface conta y hacer withdwraw y toda esa vaina para windowfechar
 
+def abrirUser():
+    userLogedIn = ''
+    fileUsers=open(fUsers, "r", encoding="utf-8")
+    listaUsers = fileUsers.readlines()
+    fileUsers.close()
+    for linha in listaUsers:
+        userLogedIn == linha.split(';')[1]
+    return userLogedIn
 
 def validaConta(userName, userPass, windowFechar, logInWindow, login, userLogedIn, imageLogedIn):
     """
