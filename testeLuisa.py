@@ -2,116 +2,29 @@ from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
 import tkinter as tk
+from tkinter import PhotoImage
 import os
 from jogo2 import *
+from gameInfo import *
+
 ficheiro_jogo = "files/games.txt"
 like=0
 def on_select(event):
     '''Abre o game info'''
-    root = Tk()
-    def likess():
-        '''Aumenta a quantidade de likes'''
-        global like
-        like+=1
-        numLikes.set(like) 
-
-    def disable_button():
-        '''Faz o botão ser clicável apenas uma vez'''
-        btnLike['state'] = DISABLED
     
     row_id=tree.focus() #Obtem o id da linha ativa
     linha=tree.item(row_id) #Transforma em uma linha
 
-    filenamePhoto=linha['values'][0]
-    title=linha['values'][1]#Seleciona o nome da linha
-    category=linha['values'][2]
-    description=linha['values'][3]
-    
-    #Variavel do número de likes que é preciso guardar
-    numLikes=IntVar(root) 
 
-    #Name Title que muda de acordo com o jogo que clicamos
-    nameTitle=StringVar(root)
-    nameTitle.set(title)
+    window.destroy()
+    gameInfo(linha)
+    
 
-    #Categoria q tambem muda de acordo com o jogo q clicamos
-    nameCategory=StringVar(root) 
-    nameCategory.set(category)
-    #descrição que muda de acordo com o jogo que clicamos
-    textDescription=StringVar(root)
-    textDescription.set(description)
-    
-    
 
     
    
 
-    #Isso sao as medidas da janela que abre quando a função é chamada 
-    screenWidth =root.winfo_screenwidth()
-    screenHeight = root.winfo_screenheight()
-
-    appWidth = 1000
-    appHeight = 700
-
-    x = (screenWidth/2) - (appWidth/2)
-    y = (screenHeight/2) - (appHeight/2)
-    root.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
-
-    #Frames que compoem a window
-
-    frameAll=LabelFrame(root,width=1000,height=700,bg="#595959")
-    frameAll.place(x=0,y=200)
-
-    frameVideo = LabelFrame(root, width=1000, height=260, bg='#D3996E')
-    frameVideo.place(x=0, y=0)
-
     
-    canvasjogo = Canvas(root, width = 280, height = 280)
-    canvasjogo.place(x=38, y=240)
-    
-    Imgjogo = PhotoImage(file =filenamePhoto )
-    # change image on canvas
-    canvasjogo.itemconfig(filenamePhoto, image= Imgjogo)
-
-
-    #ENTRYS
-
-    
-    Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Title.place(x=350, y=100)
-    
-    
-
-    Category = Entry( frameAll,textvariable=nameCategory, font=('Helvetica', 15),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Category.place(x=350, y=165)
-    
-
-    
-    Description=Entry( frameAll,textvariable=textDescription,font=('Helvetica', 12),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Description.place(x=350, y=200)
-
-   
-    Like = Entry(root,textvariable=numLikes, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=1, highlightthickness=0)
-    Like.place(x=40, y=540)
-
-
-
-    #Buttons
-    
-    btnVideo = Button(frameVideo, text="Play Trailer", width=10, height=2)
-    btnVideo.place(x=450, y=120)
-
-    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white')
-    btnLike.place(x=350, y =330)
-
-
-    btnAddGame = Button(frameAll, text='ADD GAME', width=15, height=2,bg="#F89546",fg='white')
-    btnAddGame.place(x=480, y =330)
-
-    btnAddFavorite = Button(frameAll, text='ADD FAVORITE', width=15, height=2,bg="#F89546", fg='white', image="")
-    btnAddFavorite.place(x=600, y =330)
-    
-
 
 def switch():
     """
@@ -137,6 +50,7 @@ def consulta_jogo(search_by, numJogos):
         categoria = linha.split(';')[2]
         descricao=linha.split(';')[3]
         if categoria == val:
+        
             img_jogo = PhotoImage(file = filename)
             tree.insert('', 'end', values=(jogo, categoria,descricao))
         elif val == 'ALL':tree.insert('', 'end', values = (jogo, categoria,descricao))
@@ -288,6 +202,8 @@ fileCategoria.close()
 search_by = ttk.Combobox(frame1, values = column, width = 164, height= 400)
 search_by.current(0)
 search_by.place(x = 160, y = 0)
+
+
 # Search Text
 
 # Search Button
@@ -318,7 +234,7 @@ for dato in jogos:
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black",)
 btnLogin.place(x = 1000, y = 1)
 # Create Account Button
-btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black",)
+btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", )
 btnCreateAccount.place(x = 1065, y = 1)
 
 btnCreateCategory = Button(frame1, text="Create Category",font=('Helvetica', 10), width=12, height=1, bg="orange1", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
