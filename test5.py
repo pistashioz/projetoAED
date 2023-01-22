@@ -12,15 +12,15 @@ def switch():
     """
 
 
+filenamePerfil = ler_perfil()
 
-""" 
 def atualizaImgPerfil():
 
   #atualiza canvas de imagem de perfil no PanelUser (HEADER), com imagem guardada em ficheiro
 
   global imgPerfilHeader
   global imageHeader_id
-  imgPerfilHeader = PhotoImage(file = filename)
+  imgPerfilHeader = PhotoImage(file = filenamePerfil)
   ctnUser.itemconfig(imageHeader_id, image=imgPerfilHeader)
 
 
@@ -36,12 +36,12 @@ def selecionaPerfil():
   
   global img_perfil
   global image_perfil_id
-  img_perfil = PhotoImage(file = filename)
+  img_perfil = PhotoImage(file = filenamePerfil)
   # change image on canvas
   global canvas_perfil
   canvas_perfil.itemconfig(image_perfil_id, image=img_perfil)
 
-"""
+
 
 def contarJogos(numJogos, treeCategoria):
   numJogos.set(len(treeCategoria.get_children()))
@@ -83,7 +83,7 @@ def selecionaJogo():
   canvas_jogo.itemconfig(image_jogo_id, image=img_jogo)
 
 
-"""
+
 def PerfilConfigurar():
     # ------------------------------------------------------------
     perfilConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken")
@@ -107,7 +107,6 @@ def PerfilConfigurar():
     btn_guardar.place(x=100, y=320)
 
 
-"""
 
 
 
@@ -272,7 +271,7 @@ def logInInterface(windowFechar):
     txtPw = Entry(logInWindow, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
     txtPw.place( x = 700, y = 350)
     #botao submit
-    btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get(), windowFechar, logInWindow), width = 25)
+    btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get(), windowFechar, logInWindow, login), width = 25)
     btnSubmit.place(x = 710, y = 430)
     btnNoAcc = Button(logInWindow, text='No Account yet?', font = ('Calibri', 13), command= lambda: (signUp(logInWindow), logInWindow.withdraw()), bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 480)
@@ -286,6 +285,7 @@ class Application:
         pass
 window = Tk()
 windowFechar = window
+login = False
 Application(window)
 screenWidth = window.winfo_screenwidth()
 screenHeight = window.winfo_screenheight()
@@ -434,6 +434,16 @@ btnDeleteCategory.place(x = 300, y = 1)
 
 
 
+#----- Button CONFIGURAÇÕES -----------------------
+
+btnConfig = Button(window, text = "Configurar perfil", bg = 'orange', compound = LEFT, 
+                  width = 15, height = 1, font = ("Helvetica", "10"), command = PerfilConfigurar)
+btnConfig.place(x=800, y=1)
+# Imagem de perfil
+ctnUser = Canvas(window, width = 50, height = 50, relief = "flat")
+ctnUser.place(x=600, y=0)
+imgPerfilHeader = PhotoImage(file = filenamePerfil)
+imageHeader_id = ctnUser.create_image(25, 25, image=imgPerfilHeader)
 
 
 

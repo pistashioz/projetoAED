@@ -1,20 +1,18 @@
 from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
+import os
 
 
 # Registar, Iniciar Sessão
 fUsers= "files/users.txt"
 
-"""
-def guardarPerfil(filename): #mudarFotoPerfil
+def guardarPerfil(filenamePerfil): #mudarFotoPerfil
  
   #Guarda dados no ficheiro perfil.txt
- 
-  filePerfil = open(fUsers, "w")
-  global tema
-  tema = str(continente.get())
-  linha = filename + ";" + tema     
+  filePerfil = open(fUsers, "a")
+
+  linha = filenamePerfil     
   filePerfil.write(linha)
   filePerfil.close()
   messagebox.showinfo("Quizz Cidades", "Configurações guardadas com sucesso")
@@ -23,24 +21,18 @@ def guardarPerfil(filename): #mudarFotoPerfil
 
 def ler_perfil():
   
-  #Ler ficheiro de perfil: devolve nome do ficheiro associado à imagem de perfil, assim como o tema predefinido 
-
-  if not os.path.exists(fUsers):
-      filePerfil = open(fUsers, "w")
-      filePerfil.write("imagens\avatar0.png;Europa")
-      filePerfil.close
+  #Ler ficheiro de perfil: devolve nome do ficheiro associado à imagem de perfil
   filePerfil = open(fUsers, "r")
   linha= filePerfil.readline()
   filePerfil.close()
 
-  filename =  linha.split(";")[0]
-  tema = linha.split(";")[1]
-  return filename, tema
+  filenamePerfil =  linha.split(";")[3][:-1]
+  return filenamePerfil
  
-#pasar esto para interfacve conta y hacer withdwraw y toda esa vaina para windowfechar
-"""
+#pasar esto para interface conta y hacer withdwraw y toda esa vaina para windowfechar
 
-def validaConta(userName, userPass, windowFechar, logInWindow):
+
+def validaConta(userName, userPass, windowFechar, logInWindow, login):
     """
     Validar cautenticação com uma conta
     """
@@ -54,6 +46,7 @@ def validaConta(userName, userPass, windowFechar, logInWindow):
                 n=2
                 msg = "Bem-Vindo " + userName
                 messagebox.showinfo("Iniciar Sessão", msg)
+                login = True
                 windowFechar.deiconify()
                 logInWindow.destroy()
                 break
