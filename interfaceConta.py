@@ -38,13 +38,22 @@ def validaConta(userName, userPass, windowFechar, logInWindow):
     listaUsers = fileUsers.readlines()
     fileUsers.close()
     for linha in listaUsers:
-        if linha.split(";")[1] == userName and linha.split(";")[2][:-1] == userPass:
-            msg = "Bem-Vindo " + userName
-            messagebox.showinfo("Iniciar Sessão", msg)
-            windowFechar.deiconify()
-            logInWindow.destroy()
-    messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
+        try:
+            if linha.split(";")[1] == userName and linha.split(";")[2][:-1] == userPass:
+                msg = "Bem-Vindo " + userName
+                messagebox.showinfo("Iniciar Sessão", msg)
+                windowFechar.deiconify()
+                logInWindow.destroy()
+            else:
+                messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
+                break
+
+        except:
+            if linha.split(";")[1] != userName and linha.split(";")[2][:-1] != userPass:
+                messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
+    
+
 
 
 

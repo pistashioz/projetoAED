@@ -123,7 +123,6 @@ def PanelConfigurar():
 
 
 def signUp(logInWindow):
-    
     windowFechar.withdraw()
 
     signWindow = Toplevel()
@@ -217,9 +216,9 @@ def logInInterface(windowFechar):
     #imagem
     ctnImg = Canvas(logInWindow, width= 500, height=600)
     ctnImg.place(x=0, y=0)
-    global imagem 
-    imagem = PhotoImage(file = 'images/Login.png') 
-    ctnImg.create_image(250, 300, image=imagem)
+    global imagemLog
+    imagemLog = PhotoImage(file = 'images/Login.png') 
+    ctnImg.create_image(250, 300, image=imagemLog)
     #parte do log in
     #Titulo
     lblLogIn = Label(logInWindow, text = 'LOG IN', fg = 'black', font = ('Calibri', 35), bg = 'grey')

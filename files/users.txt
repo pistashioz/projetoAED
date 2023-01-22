@@ -6,3 +6,4 @@ victoria@gmail.com;victoria;789
 teste1;teste1;15
 testee;testee;12
 testeeee;testeee;123
+teste2;teste2;teste
