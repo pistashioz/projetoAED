@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
-from interfaceConta import logInInterface, signUp
+from interfaceConta import *
 import tkinter as tk
 import os
 from jogo2 import *
@@ -9,6 +9,30 @@ from jogo2 import *
 def switch():
     """
     """
+
+def PerfilConfigurar():
+    # ------------------------------------------------------------
+    perfilConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken")
+    perfilConfig.place(x=0, y=50)
+
+    btn_selecionar = Button(perfilConfig, text = "Selecione imagem \nde perfil", width = 14, height = 3, 
+                    command = selecionaPerfil)
+
+    btn_selecionar.place(x=100, y= 70)
+    global canvas_perfil
+    canvas_perfil = Canvas(perfilConfig, width = 50, height = 50, bd = 4, relief = "sunken")
+    canvas_perfil.place(x=270, y=70)
+    global img_perfil, filename
+    img_perfil = PhotoImage(file = filename)
+    global image_perfil_id
+    image_perfil_id = canvas_perfil.create_image(25, 25, image=img_perfil)
+
+    #---- GUARDAR configurações
+    btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, 
+                    command = lambda: [guardarPerfil(filename),  atualizaImgPerfil()])
+    btn_guardar.place(x=100, y=320)
+
+
 
 
 def contarJogos(numJogos, treeCategoria):
@@ -93,6 +117,128 @@ def PanelConfigurar():
     btn_guardar = Button(panelJogos, text = "Guardar configurações", height = 3, width=24, 
                     command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree, description, panelJogos)])
     btn_guardar.place(x=450, y=420)
+
+
+
+
+
+def signUp():
+    windowFechar.withdraw()
+
+    signWindow = Toplevel()
+    signWindow.focus_force()  # força o focus na window atual
+    signWindow.grab_set()
+    signWindow.resizable(0, 0)
+
+    signWindow.title('Sign In')
+    signWindow.iconbitmap('images/login.ico')
+
+    screenWidth =signWindow.winfo_screenwidth()
+    screenHeight = signWindow.winfo_screenheight()
+
+    appWidth = 1200
+    appHeight = 600
+    x = (screenWidth/2) - (appWidth/2)
+    y = (screenHeight/2) - (appHeight/2)
+    signWindow.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+    signWindow.configure(bg="grey")
+
+
+    #imagem
+    ctnImag = Canvas(signWindow, width= 500, height=600)
+    ctnImag.place(x=0, y=0)#,width=500,height=500
+    global imagem
+    imagem= PhotoImage(file = 'images/signIn.png')
+    ctnImag.create_image(250, 300, image=imagem)
+    #parte do Sign in
+    #Titulo
+    lblLogIn = Label(signWindow, text = 'SIGN UP', fg = 'black', font = ('Calibri', 35), bg = 'grey')
+    lblLogIn.place(x=770, y=40)
+    #Label e Entry
+
+    lblMail = Label(signWindow, text = 'E-MAIL',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblMail.place(x = 700, y = 100)
+    txtMail = Entry(signWindow, width=20, font = ('Calibri', 20))
+    userMail = StringVar()
+    txtMail = Entry(signWindow, width=20, font = ('Calibri', 20), textvariable=userMail)
+    txtMail.place( x = 700, y = 140)
+
+    lblUsername = Label(signWindow, text = 'USERNAME',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblUsername.place(x = 700, y = 200)
+    userName = StringVar()
+    txtUserNlblUsername = Entry(signWindow, width=20, font = ('Calibri', 20), textvariable=userName)
+    txtUserNlblUsername.place( x = 700, y = 240)
+    lblPw = Label(signWindow, text = 'PASSWORD',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblPw.place(x = 700, y = 300)
+    userPass = StringVar()
+    txtPw = Entry(signWindow, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
+    txtPw.place( x = 700, y = 340)
+    labelPass = Label(signWindow, text ="CONFIRM PASSWORD:", fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    labelPass.place(x=700, y= 400)
+    userPassConfirm = StringVar()
+    txtPass = Entry(signWindow, width=20, font = ('Calibri', 20), textvariable = userPassConfirm, show = "*")
+    txtPass.place(x=700, y= 440)
+
+    #botao submit
+
+    btnSubmit = Button(signWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: criaConta(userMail.get(), userName.get(), userPass.get(), userPassConfirm.get(), signWindow), width = 25)
+
+    btnSubmit.place(x = 710, y =500)
+
+    btnNoAcc = Button(signWindow, text='Already have an account?', font = ('Calibri', 13), command= lambda: (logInInterface(windowFechar, signWindow), signWindow.withdraw()), bg='grey', relief='flat')
+    btnNoAcc.place(x = 700, y = 550)
+
+def logInInterface(windowFechar):
+    
+    windowFechar.withdraw()
+
+
+    logInWindow = Toplevel()
+    logInWindow.focus_force()
+    logInWindow.grab_set()
+    logInWindow.title('Log In')
+    logInWindow.resizable(0, 0)
+    logInWindow.iconbitmap('images/login.ico')
+
+    screenWidth =logInWindow.winfo_screenwidth()
+    screenHeight =logInWindow.winfo_screenheight()
+
+    appWidth = 1200
+    appHeight = 600
+
+    x = (screenWidth/2) - (appWidth/2)
+    y = (screenHeight/2) - (appHeight/2)
+    logInWindow.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+    logInWindow.configure(bg="grey")
+
+
+
+    #imagem
+    ctnImg = Canvas(logInWindow, width= 500, height=600)
+    ctnImg.place(x=0, y=0)
+    global imagem 
+    imagem = PhotoImage(file = 'images/Login.png') 
+    ctnImg.create_image(250, 300, image=imagem)
+    #parte do log in
+    #Titulo
+    lblLogIn = Label(logInWindow, text = 'LOG IN', fg = 'black', font = ('Calibri', 35), bg = 'grey')
+    lblLogIn.place(x=770, y=100)
+    #Label e Entry
+    lblUser = Label(logInWindow, text = 'USERNAME',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblUser.place(x = 700, y = 200)
+    userName = StringVar()
+    txtUser = Entry(logInWindow, width=20, font = ('Calibri', 20), textvariable=userName)
+    txtUser.place( x = 700, y = 250)
+    lblPw = Label(logInWindow, text = 'PASSWORD',  fg = 'black', font = ('Calibri', 20), bg = 'grey')
+    lblPw.place(x = 700, y = 300)
+    userPass = StringVar()
+    txtPw = Entry(logInWindow, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
+    txtPw.place( x = 700, y = 350)
+    #botao submit
+    btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get(), windowFechar, logInWindow), width = 25)
+    btnSubmit.place(x = 710, y = 430)
+    btnNoAcc = Button(logInWindow, text='No Account yet?', font = ('Calibri', 13), command= lambda: signUp(logInWindow), bg='grey', relief='flat')
+    btnNoAcc.place(x = 700, y = 480)
 
 
 
@@ -250,11 +396,6 @@ txtCategoriaAdd.place(x=120, y = 1)
 
 btnDeleteCategory = Button(window, text="Delete Category",font=('Helvetica', 10), width=20, height=1, bg="red", fg="black", command= lambda: removerCategoria(search_by))
 btnDeleteCategory.place(x = 300, y = 1)
-
-
-
-
-
 
 
 

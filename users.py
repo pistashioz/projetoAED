@@ -17,7 +17,7 @@ def guardarPerfil(filename):
  
 #pasar esto para interfacve conta y hacer withdwraw y toda esa vaina para windowfechar
 
-def validaConta(userName, userPass):
+def validaConta(userName, userPass, windowFechar, logInWindow):
     """
     Validar cautenticação com uma conta
     """
@@ -28,8 +28,8 @@ def validaConta(userName, userPass):
         if linha.split(";")[1] == userName and linha.split(";")[2][:-1] == userPass:
             msg = "Bem-Vindo " + userName
             messagebox.showinfo("Iniciar Sessão", msg)
+            windowFechar.deiconify()
             logInWindow.destroy()
-            
     messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
 

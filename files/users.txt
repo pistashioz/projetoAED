@@ -1,10 +1,9 @@
-40220096@esmad.ipp.pt;123456789
 admin;admin
-martinezvictoria781@gmail.com;1590159
-momo;mimi
-yoyiii;1590
-moh;789
 aa@aaa.com;vika;123
 simao@gmail.com;simao;123
 luisa@gmail.com;luisa;456
 victoria@gmail.com;victoria;789
+teste@gmail.com;vic;123
+mail;mail;pass
+teste;teste;teste
+teste2;testea;teste
