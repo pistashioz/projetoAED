@@ -10,14 +10,14 @@ images/stray.png;game12;ADVENTURE;description
 images/gow.png;game13;ADVENTURE;description
 images/eldenring.png;game14;EXPERIMENTAL;description
 images/nightsinthewood.png;game15;MINIGAMES;description
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;game19;AAA;AAA
+images/stray.png;game19;AAA;AAA
 images/stray.png;GAME20;COZY;DESCRIPTION
 images/stray.png;test;test;test
 images/stray.png;teste;test;test
 images/stray.png;;;
 images/stray.png;;;
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/Login.png;ttese;adada;dadada
-C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/stray.png;teste;teste;teste
+images/Login.png;ttese;adada;dadada
+images/stray.png;teste;teste;teste
 images/stray.png;teste;teste;teste
 images/stray.png;a;a;a
 images/stray.png;a;a;a
