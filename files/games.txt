@@ -21,3 +21,4 @@ images/stray.png;teste;teste;teste
 images/stray.png;teste;teste;teste
 images/stray.png;a;a;a
 images/stray.png;a;a;a
+images/stray.png;luisa;teste;linda
