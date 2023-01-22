@@ -96,8 +96,11 @@ def on_select(event):
 
 
     #Buttons
+    
+    btnVideo = Button(frameVideo, text="Play Trailer", width=10, height=2)
+    btnVideo.place(x=450, y=120)
 
-    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white', command=lambda:[likess(), disable_button()])
+    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white')
     btnLike.place(x=350, y =330)
 
 
@@ -162,25 +165,25 @@ def PanelConfigurar():
     panelJogos = PanedWindow(window, width = 1200, height =600, bd = "3", relief = "sunken")
     panelJogos.place(x=0, y=0)
 
-    btn_selecionar = Button(panelJogos, text = "Selecione imagem \n do jogo", width = 20, height = 5, 
+    btn_selecionar = Button(panelJogos, text = "Select image \n of the game", width = 20, height = 5, 
                     command = selecionaJogo)
 
-    btn_selecionar.place(x=250, y= 210)
+    btn_selecionar.place(x=300, y= 275)
     global canvas_jogo
-    canvas_jogo = Canvas(panelJogos, width = 180, height = 220)
-    canvas_jogo.place(x=70, y=240)
+    canvas_jogo = Canvas(panelJogos, width = 224, height = 125)
+    canvas_jogo.place(x=50, y=240)
     global img_jogo, filename
     img_jogo = PhotoImage(file = filename)
     global image_jogo_id
-    image_jogo_id = canvas_jogo.create_image(25, 25, image=img_jogo)
+    image_jogo_id = canvas_jogo.create_image(1, 1,anchor=NW, image=img_jogo)
 
-    lblGame = Label(panelJogos, text = 'Name of the Game', fg = 'black', font = ('Calibri', 12), bg = 'white') 
-    lblCategory = Label(panelJogos, text = 'Category', fg = 'black', font = ('Calibri', 12), bg = 'white') #añadir un combobox
-    lblDescription = Label(panelJogos, text = 'Description', fg = 'black', font = ('Calibri', 12), bg = 'white')
+    lblGame = Label(panelJogos, text = 'Name of the Game', fg = 'black', font = ('Calibri', 12)) 
+    lblCategory = Label(panelJogos, text = 'Category', fg = 'black', font = ('Calibri', 12)) #añadir un combobox
+    lblDescription = Label(panelJogos, text = 'Description', fg = 'black', font = ('Calibri', 12))
 
     lblGame.place(x = 50, y = 80)
-    lblCategory.place(x = 50, y = 120)
-    lblDescription.place(x= 50, y = 180)
+    lblCategory.place(x = 50, y = 140)
+    lblDescription.place(x= 50, y = 200)
 
 
 
@@ -191,11 +194,11 @@ def PanelConfigurar():
     description = StringVar()
     txtDescription = Entry(panelJogos, textvariable=description, width = 30, font = ('Helvetica', 10))
     txtGame.place(x= 180, y =80)
-    txtCategory.place(x=180, y= 120)
-    txtDescription.place(x=180, y = 180)
+    txtCategory.place(x=180, y= 140)
+    txtDescription.place(x=180, y = 200)
 
     #---- GUARDAR configurações----#
-    btn_guardar = Button(panelJogos, text = "Guardar configurações", height = 3, width=24, 
+    btn_guardar = Button(panelJogos, text = "Save configuration", height = 3, width=24, 
                     command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree, description, panelJogos)])
     btn_guardar.place(x=450, y=420)
 

@@ -1,56 +1,64 @@
 from tkinter import *
 from tkinter import Tk, ttk
 from tkinter import messagebox
-#-----Arranque da aplicação ------#
-"""
-class Application:
-    def __init__(self, master=None):
-        pass
-window = Tk()
-Application(window)
-"""
-
-
+import os
 
 
 # Registar, Iniciar Sessão
 fUsers= "files/users.txt"
-ficheiro_perfil = 'files/perfil.txt'
 
-def guardarPerfil(filename):
-  """
-  Guarda dados no ficheiro perfil.txt
-  """
-  filePerfil = open(ficheiro_perfil, "w")
-
-  linha = filename
-  filePerfil.write(linha)
-  filePerfil.close()
+def guardarPerfil(filenamePerfil): #mudarFotoPerfil
  
-#pasar esto para interfacve conta y hacer withdwraw y toda esa vaina para windowfechar
+  #Guarda dados no ficheiro perfil.txt
+  filePerfil = open(fUsers, "r")
+  listaPerfis = filePerfil.readline()
+  filePerfil.close
+  for linha in listaPerfis:
+    fields = linha.split(';')
+  filePerfil = open(fUsers, "a")
+  fields[3][:-1] = filenamePerfil     
+  filePerfil.write(fields)
+  filePerfil.close()
+  messagebox.showinfo("Boa!", "Configurações guardadas com sucesso")
+  
 
 
-def validaConta(userName, userPass, windowFechar, logInWindow):
+def ler_perfil():
+  
+  #Ler ficheiro de perfil: devolve nome do ficheiro associado à imagem de perfil
+  filePerfil = open(fUsers, "r")
+  linha= filePerfil.readline()
+  filePerfil.close()
+
+  filenamePerfil =  linha.split(";")[3][:-1]
+  return filenamePerfil
+ 
+#pasar esto para interface conta y hacer withdwraw y toda esa vaina para windowfechar
+
+
+def validaConta(userName, userPass, windowFechar, logInWindow, login):
     """
     Validar cautenticação com uma conta
     """
     fileUsers=open(fUsers, "r", encoding="utf-8")
     listaUsers = fileUsers.readlines()
     fileUsers.close()
-    for linha in listaUsers:
-        try:
-            if linha.split(";")[1] == userName and linha.split(";")[2][:-1] == userPass:
+    try:
+        n = 0
+        for linha in listaUsers:
+            if linha.split(";")[1] == userName and linha.split(";")[2] == userPass:
+                n=2
                 msg = "Bem-Vindo " + userName
                 messagebox.showinfo("Iniciar Sessão", msg)
+                login = True
                 windowFechar.deiconify()
                 logInWindow.destroy()
-            else:
-                messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
                 break
+        if n == 0:
+            messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
 
-        except:
-            if linha.split(";")[1] != userName and linha.split(";")[2][:-1] != userPass:
-                messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
+    except:
+        messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
 
 
@@ -78,7 +86,8 @@ def criaConta(userMail, userName, userPass, userPassConfirm, signWindow, logInWi
             messagebox.showerror("Criar Conta", "Já existe um utilizador com esse username!")
             return 
     fileUsers = open(fUsers, "a")
-    linha = userMail + ';' + userName + ";" + userPass + "\n"
+    defaultImg = 'images/default-user-image.png'
+    linha = userMail + ';' + userName + ";" + userPass + ';' + defaultImg + "\n"
     fileUsers.write(linha)
     fileUsers.close()
     messagebox.showinfo("Criar Conta", "Conta criada com sucesso!")
