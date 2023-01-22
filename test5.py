@@ -384,7 +384,7 @@ btnSearch.place(x= 50, y = 40)
 btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
 btnLogin.place(x = 985, y = 1)
 # Create Account Button
-btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=signUp)
+btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=lambda: signUp(logInInterface))
 btnCreateAccount.place(x = 1095, y = 1)
 
 btnCreateCategory = Button(window, text="Create Category",font=('Helvetica', 10), width=12, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
