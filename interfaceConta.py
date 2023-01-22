@@ -7,6 +7,9 @@ import os
 # Registar, Iniciar Sessão
 fUsers= "files/users.txt"
 
+
+
+
 def guardarPerfil(filenamePerfil): #mudarFotoPerfil
  
   #Guarda dados no ficheiro perfil.txt
@@ -15,7 +18,7 @@ def guardarPerfil(filenamePerfil): #mudarFotoPerfil
   filePerfil.close
   for linha in listaPerfis:
     fields = linha.split(';')
-  filePerfil = open(fUsers, "a")
+  
   fields[3][:-1] = filenamePerfil     
   filePerfil.write(fields)
   filePerfil.close()
@@ -36,7 +39,7 @@ def ler_perfil():
 #pasar esto para interface conta y hacer withdwraw y toda esa vaina para windowfechar
 
 
-def validaConta(userName, userPass, windowFechar, logInWindow, login):
+def validaConta(userName, userPass, windowFechar, logInWindow, login, userLogedIn):
     """
     Validar cautenticação com uma conta
     """
@@ -51,6 +54,9 @@ def validaConta(userName, userPass, windowFechar, logInWindow, login):
                 msg = "Bem-Vindo " + userName
                 messagebox.showinfo("Iniciar Sessão", msg)
                 login = True
+                userLogedIn = userName
+                defaultImg = linha.split(';')[3][:-1]
+                filenamePerfil = defaultImg
                 windowFechar.deiconify()
                 logInWindow.destroy()
                 break
