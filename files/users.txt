@@ -1,10 +1,5 @@
-admin;admin
+admin;admin;admin
 aa@aaa.com;vika;123
 simao@gmail.com;simao;123
 luisa@gmail.com;luisa;456
 victoria@gmail.com;victoria;789
-teste1;teste1;15
-testee;testee;12
-testeeee;testeee;123
-teste2;teste2;teste
-teste3;teste4;teste

@@ -52,7 +52,6 @@ def validaConta(userName, userPass, windowFechar, logInWindow):
             if linha.split(";")[1] != userName and linha.split(";")[2][:-1] != userPass:
                 messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
     return ""
-    
 
 
 
@@ -83,5 +82,6 @@ def criaConta(userMail, userName, userPass, userPassConfirm, signWindow, logInWi
     fileUsers.write(linha)
     fileUsers.close()
     messagebox.showinfo("Criar Conta", "Conta criada com sucesso!")
+    signWindow.destroy()
     signWindow.destroy()
     logInWindow.deiconify()
