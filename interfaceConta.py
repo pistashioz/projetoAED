@@ -10,12 +10,16 @@ fUsers= "files/users.txt"
 def guardarPerfil(filenamePerfil): #mudarFotoPerfil
  
   #Guarda dados no ficheiro perfil.txt
+  filePerfil = open(fUsers, "r")
+  listaPerfis = filePerfil.readline()
+  filePerfil.close
+  for linha in listaPerfis:
+    fields = linha.split(';')
   filePerfil = open(fUsers, "a")
-
-  linha = filenamePerfil     
-  filePerfil.write(linha)
+  fields[3][:-1] = filenamePerfil     
+  filePerfil.write(fields)
   filePerfil.close()
-  messagebox.showinfo("Quizz Cidades", "Configurações guardadas com sucesso")
+  messagebox.showinfo("Boa!", "Configurações guardadas com sucesso")
   
 
 

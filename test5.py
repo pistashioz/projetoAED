@@ -30,8 +30,8 @@ def selecionaPerfil():
   
   #selecionar imagem para o perfil, nas configurações, a partir de FileDialog
   
-  global filename
-  filename = filedialog.askopenfilename(title = "Select file", initialdir= "./imagens",
+  global filenamePerfil
+  filenamePerfil = filedialog.askopenfilename(title = "Select file", initialdir= "images/",
               filetypes = (("png files","*.png"),("gif files", "*.gif"), ("all files","*.*")))
   
   global img_perfil
@@ -96,14 +96,14 @@ def PerfilConfigurar():
     global canvas_perfil
     canvas_perfil = Canvas(perfilConfig, width = 50, height = 50, bd = 4, relief = "sunken")
     canvas_perfil.place(x=270, y=70)
-    global img_perfil, filename
-    img_perfil = PhotoImage(file = filename)
+    global img_perfil, filenamePerfil
+    img_perfil = PhotoImage(file = filenamePerfil)
     global image_perfil_id
     image_perfil_id = canvas_perfil.create_image(25, 25, image=img_perfil)
 
     #---- GUARDAR configurações
     btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, 
-                    command = lambda: [guardarPerfil(filename),  atualizaImgPerfil()])
+                    command = lambda: [guardarPerfil(filenamePerfil),  atualizaImgPerfil()])
     btn_guardar.place(x=100, y=320)
 
 
