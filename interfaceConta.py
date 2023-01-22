@@ -8,7 +8,7 @@ import os
 fUsers= "files/users.txt"
 
 
-def guardarPerfil(userLogedIn,imageLogedIn):
+def guardarPerfil(userLogedIn,imageLogedIn, perfilConfig):
     listcopy = []
     print(userLogedIn + 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?')
     with open(fUsers,'r') as file:
@@ -30,6 +30,7 @@ def guardarPerfil(userLogedIn,imageLogedIn):
         for line in listcopy:
             file.write(line)# n sei se isso ja adiciona o \n do ouro lado mas qlqr coisa adicionas um \n
         messagebox.showinfo("Boa!", "Configurações guardadas com sucesso")
+        perfilConfig.place_forget()
     return 
 
 

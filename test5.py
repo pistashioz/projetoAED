@@ -16,10 +16,10 @@ imageLogedIn = ''
 
 def switch():
     while login == True:
-        btnCreateCategory['state'] = 'active'
-        btnDeleteCategory['state'] = 'active'
+        btnCreateCategory['state'] = 'normal'
+        btnDeleteCategory['state'] = 'normal'
         btnLogin['state'] = 'disabled'
-        btnLogOut = Button(window, text="logOut",font=('Helvetica', 10), width=10, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar), state= 'active')
+        btnLogOut = Button(window, text="logOut",font=('Helvetica', 10), width=10, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar), state= 'normal')
         btnLogOut.place(x = 1005, y = 1)
 
 
@@ -44,9 +44,11 @@ def selecionaPerfil():
   global filenamePerfil
   filenamePerfil = filedialog.askopenfilename(title = "Select file", initialdir= "images/",
               filetypes = (("png files","*.png"),("gif files", "*.gif"), ("all files","*.*")))
-  
+ 
   global img_perfil
   global image_perfil_id
+
+  
   img_perfil = PhotoImage(file = filenamePerfil)
   # change image on canvas
   global canvas_perfil
@@ -75,7 +77,8 @@ def consulta_jogo(search_by, numJogos):
         categoria = linha.split(';')[2]
         if categoria == val:
             treeCategoria.insert('', 'end', values=(jogo, categoria))
-        elif val == 'ALL':treeCategoria.insert('', 'end', values = (jogo, categoria))
+        elif val == 'ALL':
+            treeCategoria.insert('', 'end', values = (jogo, categoria))
         
     contarJogos(numJogos, treeCategoria)
         
@@ -218,24 +221,24 @@ def logInInterface(windowFechar):
 
 def PerfilConfigurar(userLogedIn, imageLogedIn):
     # ------------------------------------------------------------
-    perfilConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken")
+    perfilConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken", bg = 'grey')
     perfilConfig.place(x=0, y=50)
 
-    btn_selecionar = Button(perfilConfig, text = "Selecione imagem de perfil", width = 14, height = 3, 
+    btn_selecionar = Button(perfilConfig, text = "Selecione imagem de perfil", width = 30, height = 3, bg = 'blue', 
                     command = selecionaPerfil)
 
     btn_selecionar.place(x=100, y= 70)
     global canvas_perfil
-    canvas_perfil = Canvas(perfilConfig, width = 50, height = 50, bd = 4, relief = "sunken")
-    canvas_perfil.place(x=270, y=70)
+    canvas_perfil = Canvas(perfilConfig, width = 200, height = 200, bd = 4, relief = "sunken")
+    canvas_perfil.place(x=350, y=80)
     global img_perfil, filenamePerfil
     img_perfil = PhotoImage(file = filenamePerfil)
     global image_perfil_id
-    image_perfil_id = canvas_perfil.create_image(25, 25, image=img_perfil)
+    image_perfil_id = canvas_perfil.create_image(100, 100, image=img_perfil)
 
     #---- GUARDAR configurações
-    btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, 
-                    command = lambda: [guardarPerfil(userLogedIn,imageLogedIn),  atualizaImgPerfil()])
+    btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, bg = 'green', 
+                    command = lambda: [guardarPerfil(userLogedIn,imageLogedIn, perfilConfig),  atualizaImgPerfil()])
     btn_guardar.place(x=100, y=320)
 
 
@@ -309,7 +312,7 @@ window.configure(bg="beige")
 barraMenu = Menu(window, background='orange', fg='white')
 barraMenu.add_command(label="LIBRARY", command="noaction")
 barraMenu.add_command(label="COMMUNITY", command="noaction")
-barraMenu.add_command(label="ADD A GAME", command=PanelConfigurar, state = 'disabled')
+barraMenu.add_command(label="ADD A GAME", command=PanelConfigurar, state = 'normal')
 window.configure(menu=barraMenu)
 #FrameCatalogo
 frame1 = LabelFrame(window, width=280, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
@@ -326,6 +329,8 @@ frameLinha1 = LabelFrame(frameNewGames,width=850,height=1, bg="white",borderwidt
 frameLinha1.place(x=130, y=20)
 frame5 = LabelFrame(window,width=280, height=50, bg='blue', borderwidth=0, highlightthickness=0)
 frame5.place(x=0, y=530)
+frame7 = LabelFrame(window, width=220, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
+frame7.place(x=980, y=30)
 # Treeview New Games
 
 
@@ -424,33 +429,33 @@ btnSearch = Button(frame4, text='Search', width=25, height=2, bg="gray13", fg="w
 btnSearch.place(x= 50, y = 40)
 
 
-btnCreateCategory = Button(window, text="Create Category",state = 'disabled', font=('Helvetica', 10), width=12, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
+btnCreateCategory = Button(window, text="Create Category",state = 'normal', font=('Helvetica', 10), width=12, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
 btnCreateCategory.place(x = 10, y = 1)
 
 newCategoria = StringVar()
 txtCategoriaAdd = Entry(window, textvariable=newCategoria, font=('Helvetica', 15), width=15)
 txtCategoriaAdd.place(x=120, y = 1)
 
-btnDeleteCategory = Button(window, text="Delete Category",font=('Helvetica', 10), state = 'disabled',width=20, height=1, bg="red", fg="black", command= lambda: removerCategoria(search_by))
+btnDeleteCategory = Button(window, text="Delete Category",font=('Helvetica', 10), state = 'normal',width=20, height=1, bg="red", fg="black", command= lambda: removerCategoria(search_by))
 btnDeleteCategory.place(x = 300, y = 1)
 
 
-btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=10, height=1, bg="orange", fg="black", state = 'active', command= lambda: logInInterface(windowFechar))
-btnLogin.place(x = 1005, y = 1)
+btnLogin = Button(frame7, text="Login",font=('Helvetica', 10), width=10, height=1, bg="orange", fg="black", state = 'normal', command= lambda: logInInterface(windowFechar))
+btnLogin.place(x = 65, y = 280)
 
 
 
 
 #----- Button CONFIGURAÇÕES -----------------------
 
-btnConfig = Button(window, text = "Configurar perfil", bg = 'orange', compound = LEFT, state = 'active',
+btnConfig = Button(frame7, text = "Configurar perfil", bg = 'blue', compound = LEFT, state = 'normal',
                   width = 15, height = 1, font = ("Helvetica", "10"), command = lambda: PerfilConfigurar(userLogedIn, imageLogedIn))
-btnConfig.place(x=800, y=1)
+btnConfig.place(x=50, y=330)
 # Imagem de perfil
-ctnUser = Canvas(window, width = 50, height = 50, relief = "flat")
-ctnUser.place(x=600, y=0)
+ctnUser = Canvas(frame7, width = 200, height = 200, relief = "flat")
+ctnUser.place(x=10, y=60)
 imgPerfilHeader = PhotoImage(file = filenamePerfil)
-imageHeader_id = ctnUser.create_image(25, 25, image=imgPerfilHeader)
+imageHeader_id = ctnUser.create_image(100, 100, image=imgPerfilHeader)
 
 
 
