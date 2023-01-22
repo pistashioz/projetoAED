@@ -312,10 +312,10 @@ for dato in jogos:
 
 
 # Login Button
-btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black", command= lambda: logInInterface(windowFechar))
+btnLogin = Button(window, text="Login",font=('Helvetica', 10), width=6, height=1, bg="orange", fg="black",)
 btnLogin.place(x = 1000, y = 1)
 # Create Account Button
-btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black", command=signUp)
+btnCreateAccount = Button(window, text="Create Account",font=('Helvetica', 10), width=12, height=1, bg="orange", fg="black",)
 btnCreateAccount.place(x = 1065, y = 1)
 
 btnCreateCategory = Button(frame1, text="Create Category",font=('Helvetica', 10), width=12, height=1, bg="orange1", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
