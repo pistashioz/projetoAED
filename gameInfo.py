@@ -18,8 +18,17 @@ like=0
 
 def gameInfo(linha):
     '''Abre o game info'''
+
     root = Tk()
-    print(linha)
+    def likess():
+        '''Aumenta a quantidade de likes'''
+        global like
+        like+=1
+        numLike.set(like) 
+
+    def disable_button():
+        '''Faz o botão ser clicável apenas uma vez'''
+        btnLike['state'] = DISABLED
    
     title=linha['values'][1]#Seleciona o nome da linha
     category=linha['values'][2]
@@ -32,8 +41,8 @@ def gameInfo(linha):
     screenWidth =root.winfo_screenwidth()
     screenHeight = root.winfo_screenheight()
 
-    appWidth = 1000
-    appHeight = 700
+    appWidth = 700
+    appHeight =600
 
     x = (screenWidth/2) - (appWidth/2)
     y = (screenHeight/2) - (appHeight/2)
@@ -42,53 +51,48 @@ def gameInfo(linha):
     #Frames que compoem a window
 
     frameAll=LabelFrame(root,width=1000,height=700,bg="#595959")
-    frameAll.place(x=0,y=200)
+    frameAll.place(x=0,y=0)
 
 
-
-    canvasjogo = Canvas(frameAll, width = 280, height = 280)
-    canvasjogo.place(x=38, y=10)
-    #canvasjogo.create_image(140, 140, image=)
-        
 
 
     #ENTRYS
 
     nameTitle=StringVar()
     Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Title.place(x=350, y=100)
+    Title.place(x=150, y=200)
     nameTitle.set(title)    
         
     nameCategory=StringVar()
     
     Category = Entry( frameAll,textvariable=nameCategory,font=('Helvetica', 15),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Category.place(x=350, y=165)
+    Category.place(x=150, y=265)
     nameCategory.set(category)    
 
     nameDescription=StringVar()
     Description=Entry( frameAll,textvariable=nameDescription,font=('Helvetica', 12),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Description.place(x=350, y=200)
+    Description.place(x=150, y=300)
     nameDescription.set(description)
 
 
 
     numLike=IntVar()
-    Like = Entry(root,textvariable=numLike, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=1, highlightthickness=0)
-    Like.place(x=40, y=540)
-
+    Like = Entry(root,textvariable=numLike, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=1, highlightthickness=0,)
+    Like.place(x=150, y=400)
+    
 
 
     #Buttons
         
 
-    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white')
-    btnLike.place(x=350, y =330)
+    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white',command=lambda: [likess(), disable_button()])
+    btnLike.place(x=250, y =400)
 
 
     btnAddGame = Button(frameAll, text='ADD GAME', width=15, height=2,bg="#F89546",fg='white')
-    btnAddGame.place(x=480, y =330)
+    btnAddGame.place(x=350, y =400)
 
     btnAddFavorite = Button(frameAll, text='ADD FAVORITE', width=15, height=2,bg="#F89546", fg='white', image="")
-    btnAddFavorite.place(x=600, y =330)
-        
+    btnAddFavorite.place(x=465, y =400)
+    
     root.mainloop()
