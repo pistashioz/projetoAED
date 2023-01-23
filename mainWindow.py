@@ -174,8 +174,8 @@ def consulta_jogo(search_by, numJogos):
         if categoria == val:
         
             img_jogo = PhotoImage(file = filename)
-            tree.insert('', 'end', values=(jogo, categoria,descricao))
-        elif val == 'ALL':tree.insert('', 'end', values = (jogo, categoria,descricao))
+            tree.insert('', 'end', values=(filename,jogo, categoria,descricao))
+        elif val == 'ALL':tree.insert('', 'end', values = (filename,jogo, categoria,descricao))
  
     contarJogos(numJogos, tree)
         
