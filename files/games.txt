@@ -10,14 +10,17 @@ images/stray.png;game12;ADVENTURE;description
 images/gow.png;game13;ADVENTURE;description
 images/eldenring.png;game14;EXPERIMENTAL;description
 images/nightsinthewood.png;game15;MINIGAMES;description
-images/stray.png;game19;AAA;AAA
-images/stray.png;GAME20;COZY;DESCRIPTION
-images/stray.png;test;test;test
-images/stray.png;teste;test;test
-images/stray.png;;;
-images/stray.png;;;
-images/Login.png;ttese;adada;dadada
-images/stray.png;teste;teste;teste
-images/stray.png;teste;teste;teste
-images/stray.png;a;a;a
-images/stray.png;a;a;a
+images/stray.png;game19;FANTASY;description
+images/stray.png;game20;COZY;description
+images/stray.png;game21;FIRST-PERSON;description
+images/stray.png;game22;NOSTALGIA;description
+images/stray.png;game23;RACING;description
+images/stray.png;game24;SCI-FI;description
+images/Login.png;game25;CYBERPUNK;description
+images/stray.png;game26;RELAXING;description
+images/stray.png;game27;EXPERIMENTAL;description
+images/stray.png;game28;EXPERIMENTAL;description
+images/stray.png;game29;FIRST-PERSON;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;game30;EXPERIMENTAL;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game31;CASUAL;description
+C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game32;HORROR;description

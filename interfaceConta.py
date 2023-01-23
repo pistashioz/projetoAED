@@ -10,18 +10,14 @@ fUsers= "files/users.txt"
 
 def guardarPerfil(userLogedIn,imageLogedIn, perfilConfig):
     listcopy = []
-    print(userLogedIn + 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?')
     with open(fUsers,'r') as file:
         listUsers = file.readlines()
         listcopy=listUsers.copy()
         for user in listUsers:
             userNameI = user.split(';')[1]
             filenamePerfil = user.split(';')[3][:-1] # ve se pega o \n
-            print(filenamePerfil)
-            print(userLogedIn)
             if userNameI==userLogedIn:
                 listcopy.remove(user)
-                print(listcopy, 'depoois do if')
                 userNewI = user.replace(filenamePerfil,imageLogedIn)
                 listcopy.append(userNewI)
             
