@@ -346,12 +346,6 @@ frame5 = LabelFrame(window,width=980, height=50, bg='black', borderwidth=0, high
 frame5.place(x=0, y=530)
 frame7 = LabelFrame(window, width=220, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
 frame7.place(x=980, y=0)
-# Treeview New Games
-
-
-
-
-# Add the rowheight and vertical scrollbar
 
 s=ttk.Style()
 s.configure('Treeview', rowheight=150)
@@ -365,18 +359,18 @@ style = ttk.Style(window)
 
 
 style.configure("Treeview", background="gray13", 
-                fieldbackground="black", foreground="white")
+                fieldbackground="black", foreground="white", font = ('Helvetica', 15))
 
 
-tree.column('Image', width =200, anchor = 'center', stretch=False)
-tree.column('Name', width = 200, anchor = 'center', stretch=False)
-tree.column('Category', width = 200, anchor = 'center', stretch=False)
-tree.column('Description', width = 200, anchor = 'center', stretch=False)
+tree.column('Image', width =100, anchor = 'center', stretch=False)
+tree.column('Name', width = 225, anchor = 'center', stretch=False)
+tree.column('Category', width = 250, anchor = 'center', stretch=False)
+tree.column('Description', width = 225, anchor = 'center', stretch=False)
 
-tree.heading('Image', text = 'Image')
-tree.heading('Name', text = 'Name')
-tree.heading('Category', text = 'Category')
-tree.heading('Description', text = 'Description')
+tree.heading('Image', text = 'IMAGE')
+tree.heading('Name', text = 'NAME')
+tree.heading('Category', text = 'CATEGORY')
+tree.heading('Description', text = 'DESCRIPTION')
 
 
 
