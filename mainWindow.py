@@ -5,7 +5,7 @@ from interfaceConta import *
 import tkinter as tk
 import os
 from jogo import *
-from gameInfo import *
+
 
 
 
