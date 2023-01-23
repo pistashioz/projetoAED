@@ -26,7 +26,7 @@ def guardarPerfil(perfilConfig, userLogedIn,imageLogedIn):
         for line in listcopy:
             file.write(line)# n sei se isso ja adiciona o \n do ouro lado mas qlqr coisa adicionas um \n
         messagebox.showinfo("Boa!", "Configurações guardadas com sucesso")
-        perfilConfig.place_forget()
+        perfilConfig.place_forget() 
 
     return 
 

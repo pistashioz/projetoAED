@@ -22,7 +22,7 @@ def removerCategoria(search_by):
       f.close()
   search_by['values']=my_new
   search_by.delete(0, 'end')
-  messagebox.showinfo("Great", "Category deleted succesfully")
+  messagebox.showinfo("Great", "Category deleted succesfully ")
 
 def adicionarCategoria(newCategoria, search_by):
   if newCategoria.get() not in search_by['values']:
