@@ -16,16 +16,98 @@ userLogedIn = ''
 imageLogedIn = 'images/default-user-image.png'
 
 
-like=0
+
 def on_select(event):
     '''Abre o game info'''
-    
+    root = Tk()
+    like=0
+    def likess(numLike):
+            '''Aumenta a quantidade de likes'''
+            numLike.set(numLike.get()+1)
+
+    def disable_button():
+            '''Faz o botão ser clicável apenas uma vez'''
+            btnLike['state'] = DISABLED
+        
     row_id=tree.focus() #Obtem o id da linha ativa
     linha=tree.item(row_id) #Transforma em uma linha
 
+    image=linha['values'][0]
+    title=linha['values'][1]#Seleciona o nome da linha
+    category=linha['values'][2]
+    description=linha['values'][3]
+        
+        
 
-    window.destroy()
-    gameInfo(linha)
+
+        #Name Title que muda de acordo com o jogo que clicamos
+    nameTitle=StringVar(root)
+    nameTitle.set(title)
+
+        #Categoria q tambem muda de acordo com o jogo q clicamos
+    nameCategory=StringVar(root) 
+    nameCategory.set(category)
+        #descrição que muda de acordo com o jogo que clicamos
+    nameDescription=StringVar(root)
+    nameDescription.set(description)
+        
+        
+
+        
+    
+
+        #Isso sao as medidas da janela que abre quando a função é chamada 
+    screenWidth =root.winfo_screenwidth()
+    screenHeight = root.winfo_screenheight()
+
+    appWidth =700
+    appHeight =600
+
+    x = (screenWidth/2) - (appWidth/2)
+    y = (screenHeight/2) - (appHeight/2)
+    root.geometry(f'{appWidth}x{appHeight}+{int(x)}+{int(y)}')
+
+    #Frames que compoem a window
+
+    frameAll=LabelFrame(root,width=1000,height=700,bg="#595959")
+    frameAll.place(x=0,y=0)
+
+
+
+        #ENTRYS
+    
+    
+    Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
+    Title.place(x=150, y=200)
+      
+        
+    
+    
+    Category = Entry( frameAll,textvariable=nameCategory,font=('Helvetica', 15),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
+    Category.place(x=150, y=265)
+      
+
+    
+    Description=Entry( frameAll,textvariable=nameDescription,font=('Helvetica', 12),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
+    Description.place(x=150, y=300)
+    
+
+
+
+    numLike=IntVar()
+    numLike.set(0)
+    Like = Entry(root,textvariable=numLike, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=1, highlightthickness=0,)
+    Like.place(x=150, y=400)
+   
+
+
+
+        #Buttons
+
+    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white', command=lambda:[likess(numLike), disable_button()])
+    btnLike.place(x=250, y =400)
+
+    root.mainloop()
 
 
 def switch():
