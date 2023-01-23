@@ -4,7 +4,7 @@ from tkinter import messagebox
 from interfaceConta import *
 import tkinter as tk
 import os
-from jogo2 import *
+from jogo import *
 from gameInfo import *
 
 
