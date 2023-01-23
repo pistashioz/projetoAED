@@ -15,20 +15,22 @@ userLogedIn = ''
 
 imageLogedIn = 'images/default-user-image.png'
 
-
+like=0
 
 def on_select(event):
     '''Abre o game info'''
+
     root = Tk()
-    like=0
-    def likess(numLike):
-            '''Aumenta a quantidade de likes'''
-            numLike.set(numLike.get()+1)
+    def likess():
+        '''Aumenta a quantidade de likes'''
+        global like
+        like+=1
+        numLikes.set(like) 
 
     def disable_button():
-            '''Faz o botão ser clicável apenas uma vez'''
-            btnLike['state'] = DISABLED
-        
+        '''Faz o botão ser clicável apenas uma vez'''
+        btnLike['state'] = DISABLED
+    
     row_id=tree.focus() #Obtem o id da linha ativa
     linha=tree.item(row_id) #Transforma em uma linha
 
@@ -36,32 +38,32 @@ def on_select(event):
     title=linha['values'][1]#Seleciona o nome da linha
     category=linha['values'][2]
     description=linha['values'][3]
-        
-        
+    
+    #Variavel do número de likes que é preciso guardar
+    numLikes=IntVar(root) 
 
-
-        #Name Title que muda de acordo com o jogo que clicamos
+    #Name Title que muda de acordo com o jogo que clicamos
     nameTitle=StringVar(root)
     nameTitle.set(title)
 
-        #Categoria q tambem muda de acordo com o jogo q clicamos
+    #Categoria q tambem muda de acordo com o jogo q clicamos
     nameCategory=StringVar(root) 
     nameCategory.set(category)
-        #descrição que muda de acordo com o jogo que clicamos
-    nameDescription=StringVar(root)
-    nameDescription.set(description)
-        
-        
-
-        
+    #descrição que muda de acordo com o jogo que clicamos
+    textDescription=StringVar(root)
+    textDescription.set(description)
+    
     
 
-        #Isso sao as medidas da janela que abre quando a função é chamada 
+    
+   
+
+    #Isso sao as medidas da janela que abre quando a função é chamada 
     screenWidth =root.winfo_screenwidth()
     screenHeight = root.winfo_screenheight()
 
-    appWidth =700
-    appHeight =600
+    appWidth = 1000
+    appHeight = 700
 
     x = (screenWidth/2) - (appWidth/2)
     y = (screenHeight/2) - (appHeight/2)
@@ -70,45 +72,42 @@ def on_select(event):
     #Frames que compoem a window
 
     frameAll=LabelFrame(root,width=1000,height=700,bg="#595959")
-    frameAll.place(x=0,y=0)
+    frameAll.place(x=0,y=200)
 
+    frameVideo = LabelFrame(root, width=1000, height=260, bg='#D3996E')
+    frameVideo.place(x=0, y=0)
 
+    frameJogo=LabelFrame(root, width=310,height=435,bg='#3C3D3E')
+    frameJogo.place(x=30, y=100)
 
-        #ENTRYS
-    
-    
-    Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Title.place(x=150, y=200)
-      
-        
-    
-    
-    Category = Entry( frameAll,textvariable=nameCategory,font=('Helvetica', 15),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Category.place(x=150, y=265)
-      
+    #ENTRYS
 
     
-    Description=Entry( frameAll,textvariable=nameDescription,font=('Helvetica', 12),disabledforeground="white",disabledbackground="#595959", highlightthickness=0,state= "disabled")
-    Description.place(x=150, y=300)
+    Title = Entry( frameAll,textvariable=nameTitle, font=('Helvetica', 30), bg="#595959",fg='white')
+    Title.place(x=350, y=100)
+
     
 
+    Category = Entry( frameAll,textvariable=nameCategory, font=('Helvetica', 15), bg="#595959",fg='white')
+    Category.place(x=350, y=165)
+    
 
+    
+    Description=Entry( frameAll,textvariable=textDescription,font=('Helvetica', 12), bg="#595959",fg='white')
+    Description.place(x=350, y=200)
 
-    numLike=IntVar()
-    numLike.set(0)
-    Like = Entry(root,textvariable=numLike, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=1, highlightthickness=0,)
-    Like.place(x=150, y=400)
    
+    Like = Entry(root,textvariable=numLikes, font=('Helvetica', 12), bg="#595959",fg='#F89546',width=2)
+    Like.place(x=40, y=540)
 
 
 
-        #Buttons
+    #Buttons
 
-    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white', command=lambda:[likess(numLike), disable_button()])
-    btnLike.place(x=250, y =400)
+    btnLike = Button(frameAll, text='LIKE', width=10, height=2,bg="#F89546",fg='white', command=lambda:[likess(), disable_button()])
+    btnLike.place(x=350, y =330)
 
     root.mainloop()
-
 
 def switch():
     while login == True:
