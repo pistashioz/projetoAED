@@ -1,6 +1,6 @@
-admin;admin;admin;images/Login.png
-aa@aaa.com;vika;123;images/default-user-image.png
 simao@gmail.com;simao;123;images/default-user-image.png
 luisa@gmail.com;luisa;456;images/default-user-image.png
 victoria@gmail.com;victoria;123;images/default-user-image.png
 test@gmail.com;test1;123;images/default-user-image.png
+admin;admin;admin;images/nightsinthewood.png
+aa@aaa.com;vika;123;images/pfp1.png

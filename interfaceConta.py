@@ -3,21 +3,25 @@ from tkinter import Tk, ttk
 from tkinter import messagebox
 import os
 
-
+ 
 # Registar, Iniciar Sessão
 fUsers= "files/users.txt"
 
 
-def guardarPerfil(userLogedIn,imageLogedIn, perfilConfig):
+def guardarPerfil(userLogedIn,imageLogedIn):
     listcopy = []
+    print(userLogedIn + 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?')
     with open(fUsers,'r') as file:
         listUsers = file.readlines()
         listcopy=listUsers.copy()
         for user in listUsers:
             userNameI = user.split(';')[1]
             filenamePerfil = user.split(';')[3][:-1] # ve se pega o \n
+            print(filenamePerfil)
+            print(userLogedIn)
             if userNameI==userLogedIn:
                 listcopy.remove(user)
+                print(listcopy, 'depoois do if')
                 userNewI = user.replace(filenamePerfil,imageLogedIn)
                 listcopy.append(userNewI)
             
@@ -26,7 +30,6 @@ def guardarPerfil(userLogedIn,imageLogedIn, perfilConfig):
         for line in listcopy:
             file.write(line)# n sei se isso ja adiciona o \n do ouro lado mas qlqr coisa adicionas um \n
         messagebox.showinfo("Boa!", "Configurações guardadas com sucesso")
-        perfilConfig.place_forget()
     return 
 
 
@@ -41,16 +44,29 @@ def ler_perfil(imageLogedIn):
  
 #pasar esto para interface conta y hacer withdwraw y toda esa vaina para windowfechar
 
-def abrirUser():
-    userLogedIn = ''
+def abrirUser(user):
     fileUsers=open(fUsers, "r", encoding="utf-8")
     listaUsers = fileUsers.readlines()
     fileUsers.close()
+    t = False
     for linha in listaUsers:
-        userLogedIn == linha.split(';')[1]
-    return userLogedIn
+        if user== linha.split(';')[1]:
+            t = True
+            break
+    return t
+       
+def imgPath(user):
+    fileUsers=open(fUsers, "r", encoding="utf-8")
+    listaUsers = fileUsers.readlines()
+    fileUsers.close()
+    path='images/default-user-image.png'
+    for linha in listaUsers:
+        if user== linha.split(';')[1]:
+            path = linha.split(';')[3][:-1]
+    return path
 
-def validaConta(userName, userPass, windowFechar, logInWindow, login, userLogedIn, imageLogedIn):
+
+def validaConta(userName, userPass, windowFechar, logInWindow, login,):
     """
     Validar cautenticação com uma conta
     """
@@ -65,9 +81,7 @@ def validaConta(userName, userPass, windowFechar, logInWindow, login, userLogedI
                 msg = "Bem-Vindo " + userName
                 messagebox.showinfo("Iniciar Sessão", msg)
                 login = True
-                userLogedIn = userName
                 defaultImg = linha.split(';')[3][:-1]
-                imageLogedIn = defaultImg
                 windowFechar.deiconify()
                 logInWindow.destroy()
                 break
@@ -76,7 +90,7 @@ def validaConta(userName, userPass, windowFechar, logInWindow, login, userLogedI
 
     except:
         messagebox.showerror("Iniciar Sessão", "O UserName ou a Password estão incorretos!")
-    return ""
+    return ''
 
 
 

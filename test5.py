@@ -5,14 +5,28 @@ from interfaceConta import *
 import tkinter as tk
 import os
 from jogo2 import *
+from gameInfo import *
 
 
 
 
+global userLogedIn 
+userLogedIn = ''
+
+imageLogedIn = 'images/default-user-image.png'
 
 
-userLogedIn = abrirUser()
-imageLogedIn = ''
+like=0
+def on_select(event):
+    '''Abre o game info'''
+    
+    row_id=tree.focus() #Obtem o id da linha ativa
+    linha=tree.item(row_id) #Transforma em uma linha
+
+
+    window.destroy()
+    gameInfo(linha)
+
 
 def switch():
     while login == True:
@@ -44,11 +58,10 @@ def selecionaPerfil():
   global filenamePerfil
   filenamePerfil = filedialog.askopenfilename(title = "Select file", initialdir= "images/",
               filetypes = (("png files","*.png"),("gif files", "*.gif"), ("all files","*.*")))
- 
+  global imageLogedIn
+  imageLogedIn = filenamePerfil
   global img_perfil
   global image_perfil_id
-
-  
   img_perfil = PhotoImage(file = filenamePerfil)
   # change image on canvas
   global canvas_perfil
@@ -58,13 +71,14 @@ filenamePerfil = ler_perfil(imageLogedIn)
 
 
 
+
 def contarJogos(numJogos, treeCategoria):
   numJogos.set(len(treeCategoria.get_children()))
 
 def consulta_jogo(search_by, numJogos):
-
+    global filename
     
-    treeCategoria.delete(*treeCategoria.get_children())
+    tree.delete(*tree.get_children())
 
     val = search_by.get()
 
@@ -75,12 +89,14 @@ def consulta_jogo(search_by, numJogos):
         filename =  linha.split(";")[0]
         jogo = linha.split(";")[1]
         categoria = linha.split(';')[2]
+        descricao=linha.split(';')[3]
         if categoria == val:
-            treeCategoria.insert('', 'end', values=(jogo, categoria))
-        elif val == 'ALL':
-            treeCategoria.insert('', 'end', values = (jogo, categoria))
         
-    contarJogos(numJogos, treeCategoria)
+            img_jogo = PhotoImage(file = filename)
+            tree.insert('', 'end', values=(jogo, categoria,descricao))
+        elif val == 'ALL':tree.insert('', 'end', values = (jogo, categoria,descricao))
+ 
+    contarJogos(numJogos, tree)
         
 
 def selecionaJogo():
@@ -97,6 +113,7 @@ def selecionaJogo():
   # change image on canvas
   global canvas_jogo
   canvas_jogo.itemconfig(image_jogo_id, image=img_jogo)
+
 
 def signUp(logInWindow):
     windowFechar.withdraw()
@@ -211,8 +228,17 @@ def logInInterface(windowFechar):
     userPass = StringVar()
     txtPw = Entry(logInWindow, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
     txtPw.place( x = 700, y = 350)
+    
+    def veri(userName):
+        if abrirUser(userName.get()):
+            global userLogedIn
+            userLogedIn=userName.get()
+            print(userLogedIn,'1')
+        return 
+    print(userLogedIn,'2')
     #botao submit
-    btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda: validaConta(userName.get(), userPass.get(), windowFechar, logInWindow, login, userLogedIn, imageLogedIn), width = 25)
+    btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda :  [validaConta(userName.get(), userPass.get(), windowFechar, logInWindow, login),veri(userName)],width = 25)
+    #btnSubmit.after(10000,lambda :veri(userName))
     btnSubmit.place(x = 710, y = 430)
     btnNoAcc = Button(logInWindow, text='No Account yet?', font = ('Calibri', 13), command= lambda: (signUp(logInWindow), logInWindow.withdraw()), bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 480)
@@ -237,8 +263,8 @@ def PerfilConfigurar(userLogedIn, imageLogedIn):
     image_perfil_id = canvas_perfil.create_image(100, 100, image=img_perfil)
 
     #---- GUARDAR configurações
-    btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, bg = 'green', 
-                    command = lambda: [guardarPerfil(userLogedIn,imageLogedIn, perfilConfig),  atualizaImgPerfil()])
+    btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, 
+                    command = lambda: [guardarPerfil(userLogedIn,filenamePerfil.split('projetoAED/')[1]),  atualizaImgPerfil()])
     btn_guardar.place(x=100, y=320)
 
 
@@ -315,22 +341,12 @@ barraMenu.add_command(label="COMMUNITY", command="noaction")
 barraMenu.add_command(label="ADD A GAME", command=PanelConfigurar, state = 'normal')
 window.configure(menu=barraMenu)
 #FrameCatalogo
-frame1 = LabelFrame(window, width=280, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
-frame1.place(x=0, y=30)
-frameNewGames = LabelFrame(window, width = 920, height=220, relief = "ridge", bg='RoyalBlue4', borderwidth=0, highlightthickness=0)
-frameNewGames.place(x=280, y=30)
-frame2 = LabelFrame(window, width = 920, height=450, bg='gray45', borderwidth=0, highlightthickness=0)
-frame2.place(x=280, y=250)
-frame4 = LabelFrame(window,width=280, height=100, bg='gray13', borderwidth=0, highlightthickness=0)
-frame4.place(x=0, y=30)
-frameLoginBackground = LabelFrame(window,width=1200,height=30, bg="thistle",borderwidth=0, highlightthickness=0)
-frameLoginBackground.place(x=0, y=0)
-frameLinha1 = LabelFrame(frameNewGames,width=850,height=1, bg="white",borderwidth=0, highlightthickness=0)
-frameLinha1.place(x=130, y=20)
+frame1 = LabelFrame(window, width=980, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
+frame1.place(x=0, y=0)
 frame5 = LabelFrame(window,width=280, height=50, bg='blue', borderwidth=0, highlightthickness=0)
 frame5.place(x=0, y=530)
 frame7 = LabelFrame(window, width=220, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
-frame7.place(x=980, y=30)
+frame7.place(x=980, y=0)
 # Treeview New Games
 
 
@@ -343,22 +359,27 @@ s.configure('Treeview', rowheight=150)
 
 global tree
 
-tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'))
-treeScroll = Scrollbar(tree, orient = 'vertical')
-treeScroll.pack(side = 'right', fill = 'y')
-tree.place(x=0, y=35)
+tree = ttk.Treeview(frame1, selectmode='browse', columns = ('Image', 'Name', 'Category','Description'))
+tree.bind('<<TreeviewSelect>>', on_select)
+tree.place(x=0, y=20)
+style = ttk.Style(window)
 
-tree = ttk.Treeview(frameNewGames, selectmode='browse', columns = ('Image', 'Name', 'Category'), yscrollcommand=treeScroll.set)
-tree.place(x=0, y=35)
 
-tree.column('Image', width =100, anchor = 'center', stretch=False)
-tree.column('Name', width = 350, anchor = 'center', stretch=False)
-tree.column('Category', width = 350, anchor = 'center', stretch=False)
+style.configure("Treeview", background="gray13", 
+                fieldbackground="black", foreground="white")
 
+
+tree.column('Image', width =200, anchor = 'center', stretch=False)
+tree.column('Name', width = 200, anchor = 'center', stretch=False)
+tree.column('Category', width = 200, anchor = 'center', stretch=False)
+tree.column('Description', width = 200, anchor = 'center', stretch=False)
 
 tree.heading('Image', text = 'Image')
 tree.heading('Name', text = 'Name')
 tree.heading('Category', text = 'Category')
+tree.heading('Description', text = 'Description')
+
+
 
 
 
@@ -376,41 +397,13 @@ for dato in jogos:
 
 
 
-#  Scrollbar Vertical
-verscrlbar = ttk.Scrollbar(frameNewGames, orient ="vertical", command = tree.yview)
-# CallinPlace da Scrollbar
-verscrlbar.place(x=905, y=20, height=250)
-# Adicionar scrollbar à  treeview
-tree.configure(yscrollcommand = verscrlbar.set)
-#treeview Jogos por categorias
 
-global treeCategoria
 
-treeCategoria = ttk.Treeview(frame1, selectmode= 'browse', columns = ('jogos', 'categoria'), show = 'headings')
-
-treeCategoria.column('jogos', width = 120, anchor = 'center')
-treeCategoria.heading('jogos', text = 'Jogos')
-treeCategoria.column('categoria', width = 120, anchor = 'center')
-treeCategoria.heading('categoria', text = 'Categoria')
-treeCategoria.place(x = 20, y=110)
 
 #TOTAL GAMES
 lbNumJogos = Label(frame5, text = "Nº Games:", font = ("Helvetica", "15"), bg = 'blue')
 lbNumJogos.place(x=40, y=10)
 
-numJogos = StringVar()
-txt_num_jogos = Entry(frame5, width=15, textvariable = numJogos)
-txt_num_jogos.place(x=150, y=15)
-
-
-lblWhatsNew = Label(frameNewGames, text = 'NEW GAMES', font=('Helvetica', 12, "bold"), bg="RoyalBlue4", fg="white")
-lblWhatsNew.place(x=20, y=10)
-lblMostViewed = Label(frame2, text = 'MOST VIEWED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
-lblMostViewed.place(x=20, y=20)
-lblMostLiked = Label(frame2, text='MOST LIKED', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
-lblMostLiked.place(x=20, y=150)
-lblMyFavorites = Label(frame2, text = 'MY FAVORITES', font=('Helvetica', 12, "bold"), bg="gray45", fg="white")
-lblMyFavorites.place(x=20, y=280)
 
 # Search Category
 
@@ -419,29 +412,35 @@ fileCategoria = open('files/categorias.txt', 'r')
 for line in fileCategoria:
     column.append(line.strip())
 fileCategoria.close()
-search_by = ttk.Combobox(frame4, values = column, width = 43, height= 100)
+search_by = ttk.Combobox(frame1, values = column, width = 160, height= 400)
 search_by.current(0)
 search_by.place(x = 0, y = 0)
-# Search Text
+
+
+
+numJogos = StringVar()
+txt_num_jogos = Entry(frame5, width=15, textvariable = numJogos)
+txt_num_jogos.place(x=150, y=15)
+
 
 # Search Button
-btnSearch = Button(frame4, text='Search', width=25, height=2, bg="gray13", fg="white", command= lambda: (consulta_jogo(search_by, numJogos)))
-btnSearch.place(x= 50, y = 40)
+btnSearch = Button(frame7, text='Search', width=22, height=3, bg="gray13", fg="white", command= lambda: (consulta_jogo(search_by, numJogos)))
+btnSearch.place(x= 25, y = 10)
 
 
-btnCreateCategory = Button(window, text="Create Category",state = 'normal', font=('Helvetica', 10), width=12, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
-btnCreateCategory.place(x = 10, y = 1)
+btnCreateCategory = Button(frame7, text="Create Category",state = 'normal', font=('Helvetica', 10), width=12, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
+btnCreateCategory.place(x = 55, y = 170)
 
 newCategoria = StringVar()
-txtCategoriaAdd = Entry(window, textvariable=newCategoria, font=('Helvetica', 15), width=15)
-txtCategoriaAdd.place(x=120, y = 1)
+txtCategoriaAdd = Entry(frame7, textvariable=newCategoria, font=('Helvetica', 15), width=15)
+txtCategoriaAdd.place(x=25, y = 130)
 
-btnDeleteCategory = Button(window, text="Delete Category",font=('Helvetica', 10), state = 'normal',width=20, height=1, bg="red", fg="black", command= lambda: removerCategoria(search_by))
-btnDeleteCategory.place(x = 300, y = 1)
+btnDeleteCategory = Button(frame7, text="Delete Category",font=('Helvetica', 10), state = 'normal',width=20, height=1, bg="red", fg="black", command= lambda: removerCategoria(search_by))
+btnDeleteCategory.place(x = 25, y =85)
 
 
 btnLogin = Button(frame7, text="Login",font=('Helvetica', 10), width=10, height=1, bg="orange", fg="black", state = 'normal', command= lambda: logInInterface(windowFechar))
-btnLogin.place(x = 65, y = 280)
+btnLogin.place(x = 67, y = 450)
 
 
 
@@ -450,10 +449,10 @@ btnLogin.place(x = 65, y = 280)
 
 btnConfig = Button(frame7, text = "Configurar perfil", bg = 'blue', compound = LEFT, state = 'normal',
                   width = 15, height = 1, font = ("Helvetica", "10"), command = lambda: PerfilConfigurar(userLogedIn, imageLogedIn))
-btnConfig.place(x=50, y=330)
+btnConfig.place(x=50, y=500)
 # Imagem de perfil
 ctnUser = Canvas(frame7, width = 200, height = 200, relief = "flat")
-ctnUser.place(x=10, y=60)
+ctnUser.place(x=10, y=230)
 imgPerfilHeader = PhotoImage(file = filenamePerfil)
 imageHeader_id = ctnUser.create_image(100, 100, image=imgPerfilHeader)
 
