@@ -53,7 +53,7 @@ def atualizaImgPerfil():
 
 def selecionaPerfil():
   
-  #selecionar imagem para o perfil, nas configurações, a partir de FileDialog
+  #selecionar imagem para o perfil, nas configurações
   
   global filenamePerfil
   filenamePerfil = filedialog.askopenfilename(title = "Select file", initialdir= "images/",
@@ -144,7 +144,7 @@ def signUp(logInWindow):
     global imagem
     imagem= PhotoImage(file = 'images/signIn.png')
     ctnImag.create_image(250, 300, image=imagem)
-    #parte do Sign in
+
     #Titulo
     lblLogIn = Label(signWindow, text = 'SIGN UP', fg = 'black', font = ('Calibri', 35), bg = 'grey')
     lblLogIn.place(x=770, y=40)
@@ -238,7 +238,7 @@ def logInInterface(windowFechar):
     print(userLogedIn,'2')
     #botao submit
     btnSubmit = Button(logInWindow, text = 'CONTINUE', fg = 'black', font = ('Calibri', 15), bg = 'orange', command= lambda :  [validaConta(userName.get(), userPass.get(), windowFechar, logInWindow, login),veri(userName)],width = 25)
-    #btnSubmit.after(10000,lambda :veri(userName))
+
     btnSubmit.place(x = 710, y = 430)
     btnNoAcc = Button(logInWindow, text='No Account yet?', font = ('Calibri', 13), command= lambda: (signUp(logInWindow), logInWindow.withdraw()), bg='grey', relief='flat')
     btnNoAcc.place(x = 700, y = 480)
@@ -262,9 +262,9 @@ def PerfilConfigurar(userLogedIn, imageLogedIn):
     global image_perfil_id
     image_perfil_id = canvas_perfil.create_image(100, 100, image=img_perfil)
 
-    #---- GUARDAR configurações
+    #----R configurações
     btn_guardar = Button(perfilConfig, text = "Guardar configurações", height = 3, width=42, 
-                    command = lambda: [guardarPerfil(userLogedIn,filenamePerfil.split('projetoAED/')[1]),  atualizaImgPerfil()])
+                    command = lambda: [guardarPerfil(perfilConfig, userLogedIn,filenamePerfil.split('projetoAED/')[1]),  atualizaImgPerfil()])
     btn_guardar.place(x=100, y=320)
 
 

@@ -4,7 +4,7 @@ from tkinter import messagebox
 import tkinter as tk
 from tkinter import PhotoImage
 import os
-from jogo2 import *
+from jogo import *
 ficheiro_jogo = "files/games.txt"
 like=0
 

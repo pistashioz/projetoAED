@@ -24,3 +24,4 @@ images/stray.png;game29;FIRST-PERSON;description
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/eldenring.png;game30;EXPERIMENTAL;description
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/gow.png;game31;CASUAL;description
 C:/Users/marti/OneDrive/Documentos/uc tsiw/algoritmia e estruturas de dados/projetoAED/images/nightsinthewood.png;game32;HORROR;description
+C:/Users/marti/Downloads/projetoAED/images/gow.png;game25;ACTION-ADVENTURE;description

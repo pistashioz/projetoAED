@@ -8,20 +8,16 @@ import os
 fUsers= "files/users.txt"
 
 
-def guardarPerfil(userLogedIn,imageLogedIn):
+def guardarPerfil(perfilConfig, userLogedIn,imageLogedIn):
     listcopy = []
-    print(userLogedIn + 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?')
     with open(fUsers,'r') as file:
         listUsers = file.readlines()
         listcopy=listUsers.copy()
         for user in listUsers:
             userNameI = user.split(';')[1]
-            filenamePerfil = user.split(';')[3][:-1] # ve se pega o \n
-            print(filenamePerfil)
-            print(userLogedIn)
+            filenamePerfil = user.split(';')[3][:-1]
             if userNameI==userLogedIn:
                 listcopy.remove(user)
-                print(listcopy, 'depoois do if')
                 userNewI = user.replace(filenamePerfil,imageLogedIn)
                 listcopy.append(userNewI)
             
@@ -30,6 +26,8 @@ def guardarPerfil(userLogedIn,imageLogedIn):
         for line in listcopy:
             file.write(line)# n sei se isso ja adiciona o \n do ouro lado mas qlqr coisa adicionas um \n
         messagebox.showinfo("Boa!", "Configurações guardadas com sucesso")
+        perfilConfig.place_forget()
+
     return 
 
 

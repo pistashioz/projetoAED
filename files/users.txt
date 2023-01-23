@@ -4,3 +4,4 @@ victoria@gmail.com;victoria;123;images/default-user-image.png
 test@gmail.com;test1;123;images/default-user-image.png
 admin;admin;admin;images/nightsinthewood.png
 aa@aaa.com;vika;123;images/pfp1.png
+teste@gmail.com;testeUni;123;images/pfp1.png
