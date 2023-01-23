@@ -183,6 +183,7 @@ def signUp(logInWindow):
     btnNoAcc.place(x = 700, y = 550)
 
 def logInInterface(windowFechar):
+    #interface da log in
     
     windowFechar.withdraw()
 
@@ -228,12 +229,11 @@ def logInInterface(windowFechar):
     userPass = StringVar()
     txtPw = Entry(logInWindow, width=20, font = ('Calibri', 20), show = '*', textvariable=userPass)
     txtPw.place( x = 700, y = 350)
-    
+    #funcao usada para verificar o inicio de sessao e manter o user
     def veri(userName):
         if abrirUser(userName.get()):
             global userLogedIn
             userLogedIn=userName.get()
-            print(userLogedIn,'1')
         return 
     print(userLogedIn,'2')
     #botao submit
@@ -246,7 +246,7 @@ def logInInterface(windowFechar):
 
 
 def PerfilConfigurar(userLogedIn, imageLogedIn):
-    # ------------------------------------------------------------
+    # -------------------Configura a imagem de perfil do utilizador
     perfilConfig = PanedWindow(window, width = 700, height = 450, bd = "3", relief = "sunken", bg = 'grey')
     perfilConfig.place(x=0, y=50)
 
@@ -272,47 +272,46 @@ def PerfilConfigurar(userLogedIn, imageLogedIn):
 
 
 def PanelConfigurar():
-
-
-    panelJogos = PanedWindow(window, width = 1200, height =600, bd = "3", relief = "sunken")
+    #painel encarregado de adicionar jogos novos
+    panelJogos = PanedWindow(window, width = 1200, height =600, bg= 'gray13')
     panelJogos.place(x=0, y=0)
 
-    btn_selecionar = Button(panelJogos, text = "Select image \n of the game", width = 20, height = 5, 
+    btn_selecionar = Button(panelJogos, text = "SELECT IMAGE \n OF THE GAME", bg = 'gray50', fg = 'white', width = 20, height = 5, 
                     command = selecionaJogo)
 
-    btn_selecionar.place(x=300, y= 275)
+    btn_selecionar.place(x=880, y= 230)
     global canvas_jogo
     canvas_jogo = Canvas(panelJogos, width = 224, height = 125)
-    canvas_jogo.place(x=50, y=240)
+    canvas_jogo.place(x=850, y=80)
     global img_jogo, filename
     img_jogo = PhotoImage(file = filename)
     global image_jogo_id
     image_jogo_id = canvas_jogo.create_image(1, 1,anchor=NW, image=img_jogo)
 
-    lblGame = Label(panelJogos, text = 'Name of the Game', fg = 'black', font = ('Calibri', 12)) 
-    lblCategory = Label(panelJogos, text = 'Category', fg = 'black', font = ('Calibri', 12)) #añadir un combobox
-    lblDescription = Label(panelJogos, text = 'Description', fg = 'black', font = ('Calibri', 12))
+    lblGame = Label(panelJogos, text = 'NAME OF THE GAME', fg = 'white', font = ('Calibri', 20), bg= 'gray13') 
+    lblCategory = Label(panelJogos, text = 'CATEGORY', fg = 'white', font = ('Calibri', 20), bg= 'gray13')
+    lblDescription = Label(panelJogos, text = 'DESCRIPTION', fg = 'white', font = ('Calibri', 20), bg= 'gray13')
 
     lblGame.place(x = 50, y = 80)
-    lblCategory.place(x = 50, y = 140)
-    lblDescription.place(x= 50, y = 200)
+    lblCategory.place(x = 50, y = 250)
+    lblDescription.place(x= 50, y = 450)
 
 
 
     nameGame = StringVar()
-    txtGame = Entry(panelJogos, textvariable=nameGame, width=30, font = ('Calibri',10))
+    txtGame = Entry(panelJogos, textvariable=nameGame, width=30, font = ('Calibri',20), bg = 'gray45')
     nameCategory = StringVar()
-    txtCategory = Entry(panelJogos, textvariable=nameCategory, width=30, font = ('Calibri', 10))
+    txtCategory = Entry(panelJogos, textvariable=nameCategory, width=30, font = ('Calibri', 20), bg = 'gray45')
     description = StringVar()
-    txtDescription = Entry(panelJogos, textvariable=description, width = 30, font = ('Helvetica', 10))
-    txtGame.place(x= 180, y =80)
-    txtCategory.place(x=180, y= 140)
-    txtDescription.place(x=180, y = 200)
+    txtDescription = Entry(panelJogos, textvariable=description, width = 30, font = ('Helvetica', 20), bg = 'gray45')
+    txtGame.place(x= 300, y =80)
+    txtCategory.place(x=300, y= 255)
+    txtDescription.place(x=300, y = 455)
 
-    #---- GUARDAR configurações----#
-    btn_guardar = Button(panelJogos, text = "Save configuration", height = 3, width=24, 
+    #---- GUARDAR configurações do jogo----#
+    btn_guardar = Button(panelJogos, text = "SAVE", height = 5, width=24, bg = 'green',
                     command = lambda: [guardarJogo(nameCategory, nameGame, filename, tree, description, panelJogos)])
-    btn_guardar.place(x=450, y=420)
+    btn_guardar.place(x=870, y=420)
 
 
 #-----Arranque da aplicação ------#
@@ -343,7 +342,7 @@ window.configure(menu=barraMenu)
 #FrameCatalogo
 frame1 = LabelFrame(window, width=980, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
 frame1.place(x=0, y=0)
-frame5 = LabelFrame(window,width=280, height=50, bg='blue', borderwidth=0, highlightthickness=0)
+frame5 = LabelFrame(window,width=980, height=50, bg='black', borderwidth=0, highlightthickness=0)
 frame5.place(x=0, y=530)
 frame7 = LabelFrame(window, width=220, height=660, bg='gray35', borderwidth=0, highlightthickness=0)
 frame7.place(x=980, y=0)
@@ -401,8 +400,12 @@ for dato in jogos:
 
 
 #TOTAL GAMES
-lbNumJogos = Label(frame5, text = "Nº Games:", font = ("Helvetica", "15"), bg = 'blue')
+lbNumJogos = Label(frame5, text = "Nº GAMES:", font = ("Helvetica", "15"), bg = 'black', fg = 'white')
 lbNumJogos.place(x=40, y=10)
+
+numJogos = StringVar()
+txt_num_jogos = Entry(frame5, width=15, textvariable = numJogos, font= ('Helvetica', 20), bg = 'black', fg= 'white', relief = 'flat')
+txt_num_jogos.place(x=190, y=5)
 
 
 # Search Category
@@ -418,38 +421,34 @@ search_by.place(x = 0, y = 0)
 
 
 
-numJogos = StringVar()
-txt_num_jogos = Entry(frame5, width=15, textvariable = numJogos)
-txt_num_jogos.place(x=150, y=15)
-
 
 # Search Button
-btnSearch = Button(frame7, text='Search', width=22, height=3, bg="gray13", fg="white", command= lambda: (consulta_jogo(search_by, numJogos)))
-btnSearch.place(x= 25, y = 10)
+btnSearch = Button(frame7, text='SEARCH', width=15, font = ('Helvetica', 15),height=2, bg="gray13", fg="white", command= lambda: (consulta_jogo(search_by, numJogos)))
+btnSearch.place(x= 20, y = 10)
 
 
-btnCreateCategory = Button(frame7, text="Create Category",state = 'normal', font=('Helvetica', 10), width=12, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
-btnCreateCategory.place(x = 55, y = 170)
+btnCreateCategory = Button(frame7, text="CREATE CATEGORY",state = 'normal', font=('Helvetica', 15), width=20, height=1, bg="blue", fg="black", command= lambda: adicionarCategoria(newCategoria, search_by))
+btnCreateCategory.place(x = 0, y = 125)
 
 newCategoria = StringVar()
-txtCategoriaAdd = Entry(frame7, textvariable=newCategoria, font=('Helvetica', 15), width=15)
-txtCategoriaAdd.place(x=25, y = 130)
+txtCategoriaAdd = Entry(frame7, textvariable=newCategoria, font=('Helvetica', 20), width=15)
+txtCategoriaAdd.place(x=0, y = 170)
 
-btnDeleteCategory = Button(frame7, text="Delete Category",font=('Helvetica', 10), state = 'normal',width=20, height=1, bg="red", fg="black", command= lambda: removerCategoria(search_by))
-btnDeleteCategory.place(x = 25, y =85)
+btnDeleteCategory = Button(frame7, text="DELETE CATEGORY",font=('Helvetica', 15), state = 'normal',width=20, height=1, bg="red", fg="black", command= lambda: removerCategoria(search_by))
+btnDeleteCategory.place(x = 0, y =80)
 
 
-btnLogin = Button(frame7, text="Login",font=('Helvetica', 10), width=10, height=1, bg="orange", fg="black", state = 'normal', command= lambda: logInInterface(windowFechar))
-btnLogin.place(x = 67, y = 450)
+btnLogin = Button(frame7, text="LOGIN",font=('Helvetica', 15), width=10, height=1, bg="orange", fg="black", state = 'normal', command= lambda: logInInterface(windowFechar))
+btnLogin.place(x = 55, y = 450)
 
 
 
 
 #----- Button CONFIGURAÇÕES -----------------------
 
-btnConfig = Button(frame7, text = "Configurar perfil", bg = 'blue', compound = LEFT, state = 'normal',
-                  width = 15, height = 1, font = ("Helvetica", "10"), command = lambda: PerfilConfigurar(userLogedIn, imageLogedIn))
-btnConfig.place(x=50, y=500)
+btnConfig = Button(frame7, text = "CHANGE PROFILE \nPICTURE", bg = 'blue', compound = LEFT, state = 'normal',
+                  width = 17, height = 2, font = ("Helvetica", "15"), command = lambda: PerfilConfigurar(userLogedIn, imageLogedIn))
+btnConfig.place(x=10, y=500)
 # Imagem de perfil
 ctnUser = Canvas(frame7, width = 200, height = 200, relief = "flat")
 ctnUser.place(x=10, y=230)
