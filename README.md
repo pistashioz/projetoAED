@@ -25,10 +25,9 @@ Admin
 
 __
 User
--Adicionar aos favoritos
--Dar Gosto
+
 -Procurar por categorias 
 
 Game Manager- My game list
-Onde podemos ver jogos, suas descrições, adicionar a lista de favoritos e dar likes
+Onde podemos ver jogos, suas descrições.
 -----------------------------------------------
